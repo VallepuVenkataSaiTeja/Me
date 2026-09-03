@@ -1,5 +1,3 @@
-Absolutely. Let’s go through **Level 1 — HTML Fundamentals** properly, from zero to interview-ready. The goal is not just to memorize tags, but to understand **what HTML is, how it works, and why each concept matters**.
-
 # 🟢 Level 1 — HTML Fundamentals
 
 ## 1. What is HTML?
