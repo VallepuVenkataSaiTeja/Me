@@ -1,0 +1,343 @@
+<!-- 
+
+- <form> :
+  --------
+- The <form> element is a container for controls that collect user input and submit data.
+
+    <form action="/register" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <button type="submit">Register</button>
+    </form>
+
+- action → where the form data is sent
+- method → how the data is sent
+
+
+- <input> :
+ ----------
+- <input> is one of the most important form elements.
+- It is a void element, so it doesn't have a closing tag.
+
+1. type="text" (Used for normal single-line text.) <input type="text" name="username">
+2. type="email" (Used for email addresses.) <input type="email" name="email">
+3. type="password" (Used for passwords.) <input type="password" id="password" name="password" >
+4. type="number" (Used when the value represents a number.) <input type="number" name="age" min="18" max="100" >
+5. type="date" (Used for dates.) <input type="date" name="appointment" min="2026-09-01" max="2026-12-31" >
+6. type="radio" (Radio buttons are used when the user should select one option from a group.)
+
+        <p>Gender:</p>
+
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label>
+
+- Most important concept: same name
+- name="gender" is the same for all three. That groups them together.
+
+7. type="checkbox" (Checkboxes are used when the user can select zero, one, or multiple options.)
+
+        <p>Skills:</p>
+
+        <input type="checkbox" id="html" name="skills" value="html">
+        <label for="html">HTML</label>
+
+        <input type="checkbox" id="css" name="skills" value="css">
+        <label for="css">CSS</label>
+
+        <input type="checkbox" id="js" name="skills" value="javascript">
+        <label for="js">JavaScript</label>
+
+8. type="file" : (Used for uploading files.)
+
+- Ex: <input type="file" name="resume">
+- restrict file types: <input type="file" name="resume" accept=".pdf,.doc,.docx" >
+- For images:  <input type="file" name="profile" accept="image/*" >
+- For multiple files: <input type="file" name="documents" multiple >
+- For a normal HTML form uploading files : <form action="/upload" method="POST" enctype="multipart/form-data" >
+
+
+9. type="range" : (Creates a slider.) <input type="range">
+- specify a range: <input type="range" name="volume" min="0" max="100" value="50" >
+
+10. type="color" : (Provides a color picker.) <input type="color" name="favoriteColor">
+- provide an initial value: <input type="color" name="favoriteColor" value="#ff0000" >
+
+11. type="search" : (Used for search input.)  <input type="search" name="query" placeholder="Search..." >
+
+12. type="tel" (Used for telephone numbers.) <input type="tel" name="phone">
+
+13. type="url" (Used for URLs.) <input type="url" name="website">
+
+
+        | Type       | Purpose                  |
+        | ---------- | ------------------------ |
+        | `text`     | Normal text              |
+        | `email`    | Email address            |
+        | `password` | Password                 |
+        | `number`   | Numeric value            |
+        | `date`     | Date                     |
+        | `radio`    | One option from a group  |
+        | `checkbox` | Zero/multiple selections |
+        | `file`     | File upload              |
+        | `range`    | Slider                   |
+        | `color`    | Color picker             |
+        | `search`   | Search field             |
+        | `tel`      | Telephone number         |
+        | `url`      | URL                      |
+
+
+- <label> :
+ ----------
+- <label> gives a form control a human-readable label.
+
+    <label for="username">Username</label>
+    <input type="text" id="username">
+
+- The important relationship is:
+
+    label's for
+      ↓
+    input's id
+
+- <textarea> : Used for multi-line text.
+  ------------
+
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="5" cols="40" ></textarea>
+
+
+- <select> : Creates a dropdown.
+ -----------
+
+    <label for="country">Country</label>
+
+    <select id="country" name="country">
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="uk">United Kingdom</option>
+    </select>
+
+
+- <option> : Defines an individual option inside <select>.
+ ----------
+
+    <select name="country">
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="uk">UK</option>
+    </select>
+
+    <option value="india">India</option>
+    - Displayed text → India
+    - Submitted value → india
+    - These don't have to be identical.
+
+
+- <button> : Creates a button. <button>Submit</button>
+  ----------
+
+- Submit: Submits the form. (<button type="submit">Submit</button>)
+- Reset: Resets form controls to their initial values. (<button type="reset">Reset</button>)
+- Normal Button: Doesn't submit the form by itself. (<button type="button">Click Me</button>)
+
+- <button>Click</button> : If you don't specify the type, a button associated with a form defaults to submit behavior.
+- <button type="button">Open Menu</button> : Therefore, if you have a button that should only trigger JavaScript behavior: is clearer and safer.
+
+
+- <fieldset> : Groups related form controls.
+--------------
+- for grouping : Personal information, Address, Payment information, Account information
+
+    <fieldset>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+    </fieldset>
+
+
+- <legend> : Provides a caption/title for a <fieldset>.
+ -----------
+
+    <fieldset>
+        <legend>Personal Information</legend>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+    </fieldset>
+
+- fieldset = grouping
+- legend = title for that group
+
+
+- Important Form Attributes :
+ ----------------------------
+
+ - name : This is one of the most important form attributes.
+  ------
+ - The name identifies the field when form data is submitted.
+
+    <input type="text" name="username" value="john" >
+    <input type="email" name="email" value="john@example.com" >
+
+    The submitted data can conceptually look like:
+        username=john
+        email=john@example.com
+
+
+- value : Defines the value associated with a form control.
+ --------
+- Defines the value associated with a form control.
+- The initial value is: John
+
+        <input type="text" name="username" value="John" >
+
+
+- placeholder : Shows a hint inside an empty field.
+ --------------
+- When the user types, the placeholder disappears.
+
+    <input type="text" placeholder="Enter your name" >
+
+
+- required : Makes a field required.
+ -----------
+- The browser won't allow normal form submission when the field is empty.
+
+        <input type="text" name="username" required >
+
+
+- disabled : Disables the control.
+ -----------
+- The user generally can't interact with it.
+- A disabled form control is not submitted as successful form data.
+
+        <input type="text" name="username" disabled >
+
+
+- readonly : Makes the value uneditable.
+ -----------
+- The user cannot normally change it, but unlike disabled, the field can still participate in form submission.
+
+        <input type="text" name="username" value="john" readonly >
+
+
+| `disabled`                               | `readonly`                     |
+| ---------------------------------------- | ------------------------------ |
+| User can't interact normally             | User can't edit                |
+| Not submitted                            | Can be submitted               |
+| Often appears disabled                   | Looks like normal field        |
+| Doesn't receive normal interaction/focus | Can generally still be focused |
+
+
+- checked : Used for radio buttons and checkboxes.
+ ----------
+        <input type="checkbox" name="terms" checked > (It's initially selected.)
+
+
+- selected : Used with <option>.
+ -----------
+
+        <select name="country">
+            <option value="india" selected>India</option>  (India is initially selected.)
+            <option value="usa">USA</option>
+        </select>
+
+- min : Defines the minimum allowed value.
+ ------
+       <input type="number" name="age" min="18" >
+
+
+- max : Defines the maximum allowed value.
+ ------
+
+       <input type="number" name="age" min="18" max="100" >
+
+
+- minlength : Defines the minimum number of characters.
+ ------------
+
+        <input type="text" name="username" minlength="3" >
+
+
+- maxlength : Defines the maximum number of characters.
+ ------------
+
+        <input type="text" name="username" maxlength="20" >
+
+
+- pattern : Allows you to define a regular-expression pattern for validation.
+ ----------
+- This requires the value to match the specified pattern.
+
+        <input type="text" name="username" pattern="[A-Za-z]+" >
+        <input type="text" name="code" pattern="[0-9]{6}" >
+
+
+- autocomplete : Tells the browser whether/how it can use stored information to help fill the form.
+ --------------
+
+ <input type="email" name="email" autocomplete="email" >
+ <input type="text" name="name" autocomplete="name" >
+ <input type="tel" name="phone" autocomplete="tel" >
+ <input type="password" name="password" autocomplete="new-password" >
+ <input type="password" name="password" autocomplete="current-password" >
+
+
+- GET :
+ ------
+- GET is commonly appropriate for: Search ,Filters ,Sorting ,Retrieving resources
+
+        <form action="/search" method="GET">
+            <input
+                type="search"
+                name="q"
+            >
+
+            <button type="submit">Search</button>
+        </form>
+
+- POST :
+ -------
+- The data is sent in the request body rather than being appended to the URL query string in the normal form-submission model.
+- POST is commonly used when: Creating something, Submitting data for processing, Login/authentication flows, Uploading data, Sending messages
+
+
+        <form action="/register" method="POST">
+            <input
+                type="text"
+                name="username"
+            >
+            <input
+                type="email"
+                name="email"
+            >
+            <button type="submit">Register</button>
+        </form>
+
+
+- action : action specifies the URL to which the form submission is sent.
+ ---------
+
+
+
+
+
+
+
+
+
+
+
+
+-->
