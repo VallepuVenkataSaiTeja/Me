@@ -1,0 +1,139 @@
+<!-- 
+
+- <audio> :
+ --------
+- The <audio> element is used to embed audio content.
+- The browser provides audio controls.
+
+    <audio controls src="song.mp3"></audio>
+
+    ┌────────────────────────────────────┐
+    │ ▶ ━━━━━━━●━━━━━━━━  🔊             │
+    └────────────────────────────────────┘
+
+- Instead of putting src directly on <audio>, you can use <source>:
+- The browser can choose a supported source.
+
+    <audio controls>
+        <source src="song.mp3" type="audio/mpeg">
+        <source src="song.ogg" type="audio/ogg">
+
+        Your browser does not support audio.
+    </audio>
+
+
+- <video> : <video> embeds video content.
+ ---------
+
+        <video controls src="movie.mp4"></video>
+
+        - You can also provide fallback text:
+        <video controls width="640">
+            <source src="movie.mp4" type="video/mp4">
+
+            Your browser does not support the video element.
+        </video>
+
+
+- <source> : 
+ -----------
+- <source> specifies a media source for <audio> or <video>.
+
+        <video controls>
+            <source src="video.mp4" type="video/mp4">
+            <source src="video.webm" type="video/webm">
+        </video>
+
+- Different browsers/platforms may have different media format/codec support.
+- The browser can try the available sources in order.
+
+
+- type attribute :
+ ----------------
+- The type tells the browser what kind of media the source represents.
+
+    Audio : <source src="song.mp3" type="audio/mpeg" >
+    Video: <source src="movie.mp4" type="video/mp4" >
+
+
+- <track> :
+ ---------
+- <track> provides timed text associated with video/audio, most commonly: Captions ,Subtitles, Descriptions, Chapter information
+
+        <video controls>
+            <source src="lesson.mp4" type="video/mp4">
+
+            <track
+                src="captions.vtt"
+                kind="captions"
+                srclang="en"
+                label="English"
+            >
+        </video>
+
+- <track> commonly uses WebVTT files. The .vtt file contains timed text.
+- The kind attribute tells the browser what type of track it is. (captions, subtitles, descriptions, chapters, metadata)
+- srclang : Specifies the language of the track. (srclang="en" means english)
+- label : Provides a human-readable name for the track.
+- default : indicates that this track should be the default track when appropriate.
+
+        <track src="english.vtt" kind="captions" srclang="en" label="English" default>
+
+
+- <iframe> :
+ -----------
+- <iframe> means inline frame.
+- It allows another document/resource to be embedded inside your webpage.
+
+    <iframe src="https://example.com" width="600" height="400" ></iframe>
+
+    ┌────────────────────────────────────┐
+    │             YOUR PAGE              │
+    │                                    │
+    │   ┌────────────────────────────┐   │
+    │   │       EMBEDDED PAGE        │   │
+    │   │                            │   │
+    │   │       iframe content       │   │
+    │   │                            │   │
+    │   └────────────────────────────┘   │
+    │                                    │
+    └────────────────────────────────────┘
+
+- Uses of <iframe> : YouTube videos, Google Maps, External documents, Payment/authentication widgets
+- An iframe creates a separate browsing context.
+
+    <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="HTML Tutorial"
+        width="560"
+        height="315"
+        allowfullscreen
+    ></iframe>
+
+- title: For accessibility, give meaningful iframes a title.
+- controls : The controls attribute tells the browser to display built-in media controls.
+- autoplay : asks the browser to start media automatically.
+- muted : starts media without audio.
+- poster : specifies an image shown before the video starts playing.
+
+        <video
+            controls
+            poster="thumbnail.jpg"
+        >
+            <source src="movie.mp4" type="video/mp4">
+        </video>
+
+- preload : <video preload="metadata">
+
+- none : Don't preload the media unnecessarily.
+- metadata : Load metadata such as duration/dimensions when appropriate.
+- auto : Allows the browser to preload more of the media.
+
+
+
+
+
+
+
+
+-->
