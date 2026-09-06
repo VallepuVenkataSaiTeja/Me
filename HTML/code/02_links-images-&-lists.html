@@ -1,0 +1,194 @@
+<!-- 
+
+- Anchor <a> :
+ -------------
+- create hyper link.
+
+- link to website : <a href="https://google.com" >Google</a>
+- link to page : <a href="about.html" >Google</a>
+- link to section on same page : <a href="#about" >About</a> (use id : <h2 id="about">About section</h2>)
+- link to another page section : <a href="about.html#team" >Google</a>
+
+
+- absolute vs relative paths :
+  ----------------------------
+- absolute : contains the complete address. ( https://example.com/images/logo.png )
+- relative : location relative to current document. ( <img src="images/logo.png" alt="Logo"> )
+- Current directory : relative to the current document location. ( <a href="about.html">About</a> )
+- Child directory : ( <img src="images/logo.png" alt="Logo"> )
+- Parent directory ../ :  ( <a href="../index.html">Home</a> )
+- Root-relative URL : The / at the beginning means the path starts from the site's root. ( <a href="/about">About</a> )
+
+
+- target : specifies where the linked document should open.
+  --------
+- target="_blank" ( opens the link in a new tab. )
+- target="_self" ( Opens in the current browsing context. This is generally the default. )
+- target="_parent" ( Relevant when working with nested browsing contexts such as iframes. )
+- target="_top" ( Loads into the top-level browsing context. these are primarily relevant when dealing with frames/iframes.)
+
+
+- rel :
+  -----
+- rel means relationship.
+- It tells the browser the relationship between the current document and the linked resource.
+
+- rel="noopener" ( Controls the opener relationship. )
+- rel="noreferrer" ( Tells the browser not to send the referring URL in the Referer header. )
+- rel="nofollow" ( indicate that you don't want search engines to associate your site's ranking signals with the linked page in the normal way. )
+- rel="sponsored" ( Used for paid/sponsored links. )
+- rel="ugc" ( Useful for links posted by users, such as in comments or forums. )
+
+
+- Email : ( When clicked, the browser can open the user's configured email application. )
+ --------
+  <a href="mailto:hello@example.com"> Email Us </a>
+
+- Email with subject : ( <a href="mailto:hello@example.com?subject=Job%20Opportunity"> Send Email </a>)
+ --------------------
+
+- Telephone link : ( open the phone/dialing interface. )
+ -----------------
+    <a href="tel:+919876543210"> Call Us </a>
+
+- SMS : ( <a href="sms:+919876543210"> Send SMS </a>)
+ ------
+
+----------------------------------------------------------------------------------------
+
+
+- Image <img> :
+---------------
+- embeds an image into a page.
+- <img> is a void element.
+- src means source.
+- alt means alternative text.
+
+    <img src="photo.jpg" alt="Profile photo">
+
+- alt : Screen readers can read the alternative text to users who cannot see the image.
+        If the image can't be loaded, the alternative text provides useful information.
+        If an image communicates information, its alt should communicate that information.
+
+- Decorative images : If an image is purely decorative and doesn't add meaningful information.
+                      An empty alt tells assistive technology that the image is decorative and can generally be skipped.
+
+                <img src="decorative-line.png" alt="">
+
+- Image Dimensions : This gives the browser intrinsic dimensions for the image.
+                     If the browser knows the image dimensions before the image finishes loading, it can reserve the appropriate space.
+                     This helps reduce unexpected layout movement.
+
+            <img src="photo.jpg" alt="Mountain" width="600" height="400" >
+            
+- Or CSS: 
+
+            img {
+                width: 600px;
+                height: 400px;
+            }
+
+- Responsive images : This allows an image to shrink with its container while maintaining its aspect ratio.
+
+              img {
+                  max-width: 100%;
+                  height: auto;
+              }
+
+
+----------------------------------------------------------------------------------------
+
+- Lists :
+---------
+
+- Ordered Lists <ol> :
+  --------------------
+- An ordered list represents items where order matters.
+
+      <ol>
+          <li>Wake up</li>
+          <li>Have breakfast</li>
+          <li>Go to work</li>
+      </ol>
+
+      1. Wake up
+      2. Have breakfast
+      3. Go to work
+
+
+- start : You can specify where numbering starts.
+
+      <ol start="5">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+      </ol>
+
+      5. HTML
+      6. CSS
+      7. JavaScript
+
+
+- reversed : You can reverse the numbering.
+
+      <ol reversed>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+      </ol>
+
+      3. HTML
+      2. CSS
+      1. JavaScript
+
+- type : You may encounter:
+
+      <ol type="A">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+      </ol>
+
+      Possible numbering styles include:
+
+        1
+        A
+        a
+        I
+        i
+
+
+- Unordered Lists <ul> :
+------------------------
+- An unordered list represents items where the order doesn't matter.
+
+      <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+      </ul>
+
+      • HTML
+      • CSS
+      • JavaScript
+
+
+- Description Lists <dl> :
+  ------------------------
+- A description list represents terms and their associated descriptions/details.
+
+      <dl>
+          <dt>HTML</dt>
+          <dd>HyperText Markup Language</dd>
+
+          <dt>CSS</dt>
+          <dd>Cascading Style Sheets</dd>
+      </dl>
+
+      <dl> → Description List
+      <dt> → Description Term
+      <dd> → Description Details
+
+
+
+-->
