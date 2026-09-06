@@ -1,0 +1,194 @@
+<!-- 
+
+- Semantic HTML :
+  ---------------
+- means using HTML elements according to their meaning/purpose, rather than using
+  generic elements everywhere.
+
+- Semantic : These communicate meaning:
+            <header>
+            <nav>
+            <main>
+            <section>
+            <article>
+            <aside>
+            <footer>
+            <figure>
+            <time>
+            <address>
+
+Non-semantic : These don't tell you much about their content:
+              <div>
+              <span>
+
+
+- Why Semantic :
+ ---------------
+- 1. Accessibility (Screen readers and other assistive technologies can understand the structure of the page better.)
+- 2. SEO (Semantic structure can help search engines better understand the organization and meaning of your content.)
+- 3. Readability 
+- 4. Maintainability (When another developer opens your code, semantic elements make the page structure obvious.)
+
+
+- <header> :
+  ----------
+- <header> represents introductory content for a page or a section.
+- contains: Logo ,Site title ,Heading ,Navigation ,Introductory information
+
+    <header>
+        <h1>My Website</h1>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+
+- <nav> :
+ --------
+- <nav> represents a section containing navigation links.
+
+
+- <main> :
+ ---------
+- <main> represents the primary content of the document.
+
+    Page
+    │
+    ├── Header
+    ├── Navigation
+    ├── MAIN CONTENT  ← <main>
+    └── Footer
+
+
+- <section> :
+ ------------
+- <section> represents a thematic grouping of content.
+
+    <section>
+        <h2>Our Services</h2>
+
+        <p>We build websites.</p>
+    </section>
+
+
+- <article> :
+  -----------
+- <article> represents self-contained content that could stand on its own.
+- for Blog post ,News article ,Forum post ,Product review ,User comment, Social media post
+
+    <article>
+
+        <h2>How to Learn HTML</h2>
+
+        <p>
+            HTML is the foundation of web development.
+        </p>
+
+    </article>
+
+
+- <aside> :
+ ----------
+- <aside> represents content that is related to the surrounding content but is not part of its main flow.
+- for Sidebar, Related posts, Advertisements, Author information, Related links, Additional information
+
+    ┌───────────────────────────────┐
+    │           HEADER              │
+    ├───────────────────────────────┤
+    │                               │
+    │   MAIN CONTENT    │  ASIDE    │
+    │                   │           │
+    │   Article         │ Related   │
+    │                   │ Articles  │
+    │                   │           │
+    ├───────────────────────────────┤
+    │           FOOTER              │
+    └───────────────────────────────┘
+
+
+- <footer> :
+ -----------
+- <footer> represents footer information for a page or section.
+
+    <footer>
+        <p>© 2026 My Website</p>
+    </footer>
+
+
+- <figure> :
+ -----------
+- <figure> represents self-contained content, often an image, diagram, illustration,
+  code example, or similar content that is referenced from the main content.
+
+    <figure>
+
+        <img
+            src="chart.png"
+            alt="Sales increased from January to March"
+        >
+
+        <figcaption>
+            Sales growth from January to March.
+        </figcaption>
+
+    </figure>
+
+
+- <time> :
+ ---------
+- <time> represents a specific period in time or date.
+- datetime provides a machine-readable representation.
+- Time with time (<time datetime="2026-09-06T10:30"> 10:30 AM </time>)
+- Duration (<time datetime="PT2H30M">2 hours 30 minutes </time>)
+
+    <p>
+        Published on
+        <time datetime="2026-09-06">
+            September 6, 2026
+        </time>
+    </p>
+
+
+- <address> :
+ ------------
+- <address> represents contact information for the nearest article or body ancestor.
+
+    <address>
+        Contact:
+        <a href="mailto:hello@example.com">
+            hello@example.com
+        </a>
+    </address>
+
+
+
+        html
+        │
+        ├── head
+        │
+        └── body
+            │
+            ├── header
+            │   ├── h1
+            │   └── nav
+            │
+            ├── main
+            │   │
+            │   ├── section
+            │   │   │
+            │   │   └── article
+            │   │       ├── header
+            │   │       ├── figure
+            │   │       │   └── figcaption
+            │   │       └── footer
+            │   │
+            │   └── aside
+            │
+            └── footer
+
+
+
+-->
