@@ -1,0 +1,140 @@
+<!-- 
+
+- Accessibility :
+  ---------------
+- Accessibility, commonly abbreviated as A11y, means building websites and applications
+  that people with different abilities can use effectively.
+- Use the correct HTML element first. Add ARIA only when necessary.
+
+  Accessibility
+        │
+        ├── Visual
+        │   ├── text alternatives
+        │   ├── contrast
+        │   └── readable structure
+        │
+        ├── Keyboard
+        │   ├── tab navigation
+        │   ├── focus
+        │   └── keyboard controls
+        │
+        ├── Screen readers
+        │   ├── semantic HTML
+        │   ├── labels
+        │   ├── headings
+        │   └── ARIA
+        │
+        ├── Auditory
+        │   └── captions/transcripts
+        │
+        └── Cognitive
+            ├── clear structure
+            └── predictable interactions
+
+
+- ARIA Basics :
+  -------------
+- ARIA stands for: Accessible Rich Internet Applications
+- ARIA provides additional accessibility semantics to HTML.
+
+    aria-label
+    aria-labelledby
+    aria-describedby
+    role
+    aria-expanded
+    aria-hidden
+    aria-pressed
+    aria-current
+
+- aria-label : gives an element an accessible name when a suitable visible text label isn't available.
+  ------------
+
+    <button aria-label="Close">
+        ×
+    </button>
+
+    - Visually: ×
+    - Assistive technology can expose it as something like: Close, button
+
+- aria-labelledby : Use the text from this other element as my accessible name
+ -----------------
+
+        <h2 id="dialog-title">
+            Delete Account
+        </h2>
+
+        <dialog aria-labelledby="dialog-title">
+            ...
+        </dialog>
+
+- aria-describedby :
+ --------------------
+- aria-describedby provides an accessible description using another element.
+
+        <label for="password">
+            Password
+        </label>
+
+        <input
+            id="password"
+            type="password"
+            aria-describedby="password-help"
+        >
+
+        <p id="password-help">
+            Password must contain at least 8 characters.
+        </p>
+
+- You can reference multiple IDs:
+
+        <input
+            aria-describedby="help error"
+        >
+
+        <p id="help">
+            Password must contain 8 characters.
+        </p>
+
+        <p id="error">
+            Password is too short.
+        </p>
+
+
+- role :
+ ------
+The role attribute tells assistive technology what an element represents.
+
+    <div role="alert">
+        Your payment failed.
+    </div>
+
+- common roles :
+
+    button
+    dialog
+    alert
+    navigation
+    tab
+    tabpanel
+    tablist
+    checkbox
+    radio
+    switch
+    status
+
+
+- The Accessibility Relationship :
+
+        aria-label
+            ↓
+        "I will directly provide the accessible name."
+
+        aria-labelledby
+            ↓
+        "Use another element's text as the accessible name."
+
+        aria-describedby
+            ↓
+        "Use another element's text as additional description."
+
+-->
