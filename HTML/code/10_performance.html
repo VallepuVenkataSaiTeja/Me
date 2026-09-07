@@ -1,0 +1,96 @@
+<!-- 
+ 
+- async :
+ --------
+- It tells the browser that the script can be downloaded without blocking HTML parsing.
+- The download happens in parallel with HTML parsing.
+- When the script is ready, the browser can execute it, potentially interrupting parsing at that point.
+- Independent scripts like analytics (e.g., Google Analytics) or ads.
+
+- defer :
+ --------
+- The browser can download the script while continuing to parse HTML.
+- But deferred scripts execute after the document has been parsed, and classic deferred scripts preserve their document order.
+
+        async
+        ↓
+        "Execute whenever ready."
+
+        defer
+        ↓
+        "Wait until HTML parsing is done."
+
+
+- Lazy Loading :
+  --------------
+- Don't load a resource until it is likely to be needed.
+- loading="lazy" - The loading attribute can be used for resources such as images and iframes.
+
+        <img
+            src="product.jpg"
+            loading="lazy"
+            alt="Black backpack"
+        >
+
+        <iframe
+            src="https://example.com"
+            loading="lazy"
+            title="Example content"
+        ></iframe>
+
+- loading="eager" - Requests normal/immediate loading behavior.
+
+
+- preload :
+-----------
+- preload tells the browser: This resource is important for the current page; fetch it early.
+- It is commonly used with <link>.
+
+        <link
+            rel="preload"
+            href="/fonts/my-font.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        >
+
+- prefetch :
+ -----------
+- prefetch tells the browser: This resource may be useful for a future navigation or future use.
+
+        <link
+            rel="prefetch"
+            href="/dashboard.html"
+        >
+
+        Current page
+            ↓
+        User may click Dashboard later
+            ↓
+        Browser can potentially fetch dashboard resource ahead of time
+
+
+        |                 | `preload`      | `prefetch`            |
+        | --------------- | -------------- | --------------------- |
+        | Purpose         | Current page   | Future navigation/use |
+        | Priority intent | More important | Lower-priority/future |
+        | Mental model    | "Need soon"    | "Might need later"    |
+
+
+
+                        PERFORMANCE
+                            │
+            ┌─────────────┼─────────────┐
+            │             │             │
+            JavaScript     Images       Resources
+            │             │             │
+        async/defer   srcset/sizes   preload
+            │             │             │
+            scripts      lazy loading    prefetch
+                            │
+                        compression
+                            │
+                        formats
+
+
+-->
