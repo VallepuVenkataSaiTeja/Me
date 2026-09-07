@@ -1,0 +1,22 @@
+<!-- 
+
+
+- XSS :
+ ------
+- XSS, or Cross-Site Scripting, is a vulnerability where untrusted input is interpreted as executable HTML or JavaScript in a user's browser. Common types include stored, reflected, and DOM-based XSS. To prevent it, we should treat user input as untrusted, safely encode output for its context, avoid unsafe HTML injection, and sanitize HTML when HTML is intentionally allowed.
+
+
+- iframe sandboxing :
+ -------------------
+- The sandbox attribute lets us restrict the capabilities of an iframe, such as scripts, forms, popups, and navigation. We can selectively enable required capabilities with sandbox tokens.
+
+
+- noopener prevents the newly opened page from accessing the opener through window.opener, while noreferrer prevents the referrer URL from being sent. noreferrer also provides opener protection behavior in modern browsers.
+
+| Attribute    | Main purpose                    |
+| ------------ | ------------------------------- |
+| `noopener`   | Prevents opener access          |
+| `noreferrer` | Suppresses referrer information |
+
+
+-->
