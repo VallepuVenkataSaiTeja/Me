@@ -1,0 +1,152 @@
+<!-- 
+
+- <title> :
+ ----------
+- <title> element defines the title of the document.
+- It is important for: browser tabs, bookmarks, search-engine results, describing what the page is about
+
+
+- Meta Description :
+ -------------------
+- The meta description provides a short description of the page.
+
+<head>
+    <meta
+        name="description"
+        content="Learn HTML forms, inputs, validation, labels, and accessibility with practical examples."
+    >
+</head>
+
+
+- Viewport Meta Tag :
+ --------------------
+- It's extremely common in responsive websites.
+- It tells mobile browsers how to interpret the page's viewport.
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+
+- Heading Hierarchy :
+  -------------------
+- Search engines use page structure to better understand content, while users and assistive technologies also benefit from logical headings.
+
+    H1 Learn HTML
+    │
+    ├── H2 HTML Fundamentals
+    │   ├── H3 Elements
+    │   └── H3 Attributes
+    │
+    └── H2 HTML Forms
+        ├── H3 Input Elements
+        └── H3 Validation
+
+    
+- Semantic HTML :
+  ---------------
+- This is directly connected to the accessibility section.
+- Semantic HTML helps machines understand what different parts of the document represent.
+
+
+- Image alt :
+  -----------
+- alt provides a text alternative describing the image.
+- Good alt text helps search engines understand the image's context.
+
+
+- Canonical URL Concept :
+  -----------------------
+- Imagine the same content is accessible through multiple URLs:
+        example.com/products
+        example.com/products?sort=popular
+        example.com/products?ref=email
+
+- Search engines may encounter multiple URLs representing the same or very similar content.
+- A canonical URL tells search engines: "This is the preferred/primary URL for this content."
+
+        <link
+            rel="canonical"
+            href="https://example.com/products"
+        >
+
+        Several URLs
+        │
+        ├── /products
+        ├── /products?sort=popular
+        └── /products?ref=email
+                │
+                ↓
+        Preferred URL
+        /products
+
+
+- Open Graph Basics :
+  ------------------
+- Open Graph metadata controls how a page can appear when shared on social platforms and other systems that support Open Graph.
+
+- og:title - Title shown in the shared preview.
+ ---------
+        <meta
+            property="og:title"
+            content="Learn HTML"
+        >
+
+- og:description - Description for the preview.
+  ---------------
+        <meta
+            property="og:description"
+            content="Learn HTML from fundamentals to advanced concepts."
+        >
+
+- og:image - Preview image.
+  ---------
+        <meta
+            property="og:image"
+            content="https://example.com/preview.jpg"
+        >
+
+- og:url - Canonical URL of the shared page.
+ -------
+        <meta
+            property="og:url"
+            content="https://example.com/html"
+        >
+
+- og:type - Describes the type of object.
+  -------
+        <meta
+            property="og:type"
+            content="website"
+        >
+
+
+- Structured Data Basics :
+ -------------------------
+- Structured data provides machine-readable information about the content of a page.
+- One common implementation uses: JSON-LD
+- It helps search engines understand entities and relationships in your content.
+- Depending on the content and search engine, correctly implemented structured data may make a page eligible for certain enhanced search-result features.
+
+Example: Article structured data
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "Learn HTML",
+            "author": {
+                "@type": "Person",
+                "name": "Rahul"
+            },
+            "datePublished": "2026-09-06"
+        }
+        </script>
+
+
+
+
+
+
+-->
