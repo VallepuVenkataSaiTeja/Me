@@ -1,0 +1,105 @@
+<!-- 
+
+- CSS : Cascading Style Sheets.
+  -----
+- style and design html elements.
+- HTML - structure/content & CSS - appearance.
+
+
+- Synatax :
+  ---------
+
+    selector {
+    property : value;
+    }
+
+    h1 {
+    color : red;   ( Select all <h1> elements and make their text red. )
+    }
+
+- we can add multiple properties inside one rule.
+
+    h1 {
+        color: blue;
+        font-size: 40px;
+        text-align: center;
+    }
+
+
+- Inline CSS : 
+  ------------
+- Inline CSS means writing CSS directly inside the HTML element using the style attribute.
+
+    <h1 style="color: red; font-size: 40px; text-align: center;">
+        Hello World
+    </h1>
+
+
+- Internal CSS :
+  --------------
+- Internal CSS means putting CSS inside a <style> tag in the HTML document.
+
+     <style>
+        h1 {
+            color: blue;
+            font-size: 40px;
+        }
+
+        p {
+            color: gray;
+        }
+     </style>
+
+    
+- External CSS :
+  --------------
+- External CSS means creating a separate .css file.
+
+    project/
+    │
+    ├── index.html
+    └── style.css
+
+- Then connect it to your HTML.
+
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+
+    | Type     | Where?               | Recommended? |
+    | -------- | -------------------- | ------------ |
+    | Inline   | Inside HTML element  | ❌ Usually no |
+    | Internal | `<style>` tag        | ⚠️ Sometimes |
+    | External | Separate `.css` file | ✅ Yes        |
+
+
+
+- CSS Comments :
+  --------------
+- CSS comments are notes written in your CSS code.
+- The browser does not apply anything inside the comment.
+
+    /* This is a CSS comment */
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="01_basics.css">
+    <style>
+        h1 {
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: blanchedalmond;">This is heading.</h1>
+</body>
+</html>
