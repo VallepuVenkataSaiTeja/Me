@@ -1,0 +1,281 @@
+<!-- 
+
+- CSS Selectors :
+  --------------
+- used to select HTML elements that you want to style.
+
+    selector {
+        property: value;
+    }
+
+    p {
+        color: blue;
+    }
+
+- Here p is the selector. It means Select all <p> elements and make their text blue.
+
+
+- Element Selector :
+  ------------------
+- selects HTML elements by their tag name.
+
+    <p>Welcome</p>
+
+    p {
+        color: blue;
+    }
+
+
+- Class Selector :
+  ---------------
+- selects elements using the class attribute.
+- In CSS, a class starts with: .
+- A class can be used on many elements.
+
+    <p class="text">Hello</p>
+    <p class="text">Welcome</p>
+
+    .text {
+        color: blue;
+    }
+
+
+- ID Selector :
+  -------------
+- selects an element using its id.
+- In CSS, an ID starts with: #
+- An ID is intended to identify one unique element within a page.
+
+    <h1 id="main-title">Welcome</h1>
+
+    #main-title {
+        color: red;
+    }
+
+
+- Universal Selector * :
+ -----------------------
+- selects all elements.
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+- Group Selector :
+ -----------------
+- for applying the same style for multiple different elements.
+
+    h1, h2, p {
+        color: blue;
+    }
+
+- CSS combinators :
+  -----------------
+- explain the relationship between two or more selectors.
+- Descendant , Child , Adjacent Sibling , General Sibling.
+
+
+- Descendant Selector :
+ ----------------------
+- selects an element inside another element, at any level.
+- Notice there is a space between them.
+
+    parent child {
+        property: value;
+    }
+
+    <div class="container">
+        <p>Hello</p>
+    </div>
+
+    .container p {
+        color: blue;
+    }
+
+- Select every <p> that is inside .container.
+
+
+- Child Selector > :
+ -------------------
+- selects an element that is a direct child of another element.
+
+    parent > child {
+        property: value;
+    }
+
+    <div class="container">
+        <p>Hello</p>
+        <section>
+            <p>Welcome</p>
+        </section>
+    </div>
+
+    .container > p {
+        color: blue;
+    }
+
+- Which <p> is selected? Only: <p>Hello</p>
+- Because it is directly inside .container.
+
+
+- Attribute Selector :
+ ---------------------
+- select elements based on their HTML attributes.
+
+    [attribute] {
+        property: value;
+    }
+
+    <input type="text">
+    <input type="email">
+    <input type="password">
+
+    [type] {
+        border: 1px solid blue;
+    }
+
+- Select a specific attribute value :
+
+    input[type="text"] {
+        background-color: lightgray;
+    }
+
+- This selects only: <input type="text">
+
+- Attribute Selector Variations :
+
+- [attribute] ( Element has the attribute. )
+
+    input[required] {
+        border: 1px solid red;
+    }
+
+- [attribute="value"] ( Exact value. )
+
+    input[type="email"] {
+        background: lightblue;
+    }
+
+- [attribute^="value"] ( Attribute value starts with something. )
+
+    a[href^="https"] {
+        color: green;
+    }
+
+- [attribute$="value"] ( Attribute value ends with something. )
+
+    img[src$=".png"] {
+        border: 1px solid black;
+    }
+
+
+| Selector        | Meaning         | Example            |
+| --------------- | --------------- | ------------------ |
+| `p`             | Element         | `p {}`             |
+| `.box`          | Class           | `.box {}`          |
+| `#header`       | ID              | `#header {}`       |
+| `*`             | Everything      | `* {}`             |
+| `h1, p`         | Group           | `h1, p {}`         |
+| `.box p`        | Descendant      | `.box p {}`        |
+| `.box > p`      | Direct child    | `.box > p {}`      |
+| `[type]`        | Has attribute   | `[type] {}`        |
+| `[type="text"]` | Exact attribute | `[type="text"] {}` |
+
+
+- Adjacent Sibling Combinator (+) :
+ ----------------------------------
+- The very next matching element directly after it on the same level.
+- This looks sideways instead of down. It targets an element that is on the same 
+  indentation level and comes immediately after the first element.
+
+    <div></div>
+    <p>I am targeted (Right next to the div).</p>
+    <p>I am NOT targeted (Too far away).</p>
+
+    div + p {
+       color: red; 
+    }
+
+
+- General Sibling Combinator (~) :
+  --------------------------------
+- All matching elements anywhere after it on the same level.
+- Like the adjacent sibling, this looks sideways at elements sharing the same parent. 
+- However, it targets every single matching element that follows the first one, not just the immediate next one.
+
+    <div></div>
+    <p>I am targeted (Sibling).</p>
+    <h1>Heading</h1>
+    <p>I am also targeted (Still a sibling further down).</p>
+
+    div ~ p { 
+    color: purple; 
+    }
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color: red;
+        }
+        .sec {
+            background-color: aqua;
+        }
+        #ptag {
+            background-color: chocolate;
+        }
+        * {
+            background-color: aliceblue;
+        }
+        h1, p {
+            font-size: 24px;
+        }
+        div p {
+            margin-left: 1rem;
+        }
+        div > p {
+            border: 3px solid pink;
+        }
+        input[type='text'] {
+            background-color: blue;
+        }
+        [required] {
+            padding: 30px;
+        }
+        div + p {
+            color: blanchedalmond;
+        }
+        div ~ p {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            border: 2px dotted black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Hi</h1>
+        <p id="ptag">P tag</p>
+        <section class="sec">
+            <p> section p tag</p>
+        </section>
+    </div>
+    <input type="text" name="" id="" required>
+    <input type="password">
+
+    <hr>
+
+    <div></div>
+    <p>I am targeted (Right next to the div).</p>
+    <p>I am NOT targeted (Too far away).</p>
+
+</body>
+</html>
