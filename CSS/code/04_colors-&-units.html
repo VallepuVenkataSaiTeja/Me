@@ -1,0 +1,262 @@
+<!-- 
+
+- CSS Colors :
+ -------------
+- CSS provides different ways to specify a color.
+
+1. Color names
+2. HEX
+3. RGB
+4. RGBA
+5. HSL
+
+
+- 1. Color Names :
+ -----------------
+- The simplest way is to use a predefined color name.
+
+    h1 {
+        color: red;
+    }
+
+- You can also use color names for backgrounds:
+
+    body {
+        background-color: lightblue;
+    }
+
+
+- 2. HEX Colors :
+ ----------------
+- HEX is extremely common in real-world CSS.
+- HEX means hexadecimal color.
+
+    h1 {
+        color: #ff0000;
+    }
+
+- A HEX color normally looks like: #RRGGBB
+
+    RR → Red
+    GG → Green
+    BB → Blue
+
+- Each pair can range from: 00 → 255
+
+    #ff0000   /* red */
+    #00ff00   /* green */
+    #0000ff   /* blue */
+    #000000   /* black */
+    #ffffff   /* white */
+
+
+- 3. RGB :
+ ----------
+- RGB means: Red + Green + Blue
+
+    rgb(red, green, blue)
+
+- Each value is generally between: 0 → 255
+
+    h1 {
+        color: rgb(255, 0, 0);
+    }
+
+    Red   = 255
+    Green = 0
+    Blue  = 0
+
+    rgb(255, 0, 0)     /* red */
+    rgb(0, 255, 0)     /* green */
+    rgb(0, 0, 255)     /* blue */
+    rgb(0, 0, 0)       /* black */
+    rgb(255, 255, 255) /* white */
+
+
+- 4. RGBA :
+ ----------
+- RGBA is RGB + Alpha.
+- Alpha controls transparency/opacity.
+
+    rgba(red, green, blue, alpha)
+
+- Alpha usually ranges from:
+    0 → completely transparent
+    1 → completely opaque
+
+    rgba(255, 0, 0, 1) - Fully visible red.
+    rgba(255, 0, 0, 0.5) - 50% transparent red.
+    rgba(255, 0, 0, 0) - Completely transparent red.
+
+
+- 5. HSL :
+ --------
+- HSL means:
+
+    H → Hue
+    S → Saturation
+    L → Lightness
+
+    hsl(hue, saturation, lightness)
+
+    h1 {
+        color: hsl(0, 100%, 50%);
+    }
+
+- H — Hue : 
+- Hue represents the actual color.
+- It uses degrees:
+    0°   → Red
+    120° → Green
+    240° → Blue
+
+- S — Saturation : 
+- Saturation controls how intense the color is.
+    0%   → no color / gray
+    100% → fully saturated
+
+- L — Lightness :
+- Lightness controls how light or dark the color is.
+    0%   → black
+    50%  → normal color
+    100% → white
+
+
+| Format     | Example           | Main idea                |
+| ---------- | ----------------- | ------------------------ |
+| Color name | `red`             | Simple predefined color  |
+| HEX        | `#ff0000`         | Very common in designs   |
+| RGB        | `rgb(255,0,0)`    | Red/Green/Blue values    |
+| RGBA       | `rgba(0,0,0,.5)`  | RGB + transparency       |
+| HSL        | `hsl(0,100%,50%)` | Hue/Saturation/Lightness |
+
+
+
+- CSS Units :
+ -----------
+- Units tell CSS how large something should be.
+
+    p {
+        font-size: 20px;
+    }
+
+- The important units for you are:
+
+    px
+    %
+    rem
+    em
+    vw
+    vh
+
+- 1. px :
+ --------
+- px means pixels.
+
+    300px → 300 CSS pixels
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .box {
+        width: 300px;
+        height: 200px;
+    }
+
+- 2. % :
+ -------
+- % is a relative unit.
+- It is generally calculated relative to the relevant parent/container dimension or
+  property context.
+
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+
+    .parent {
+        width: 1000px;
+    }
+
+    .child {
+        width: 50%;
+    }
+
+    - The child becomes: 50% of 1000px = 500px
+
+    Parent → 1000px
+    Child  → 50% = 500px
+
+- 3. rem :
+ ---------
+- rem means: Root EM
+- It is relative to the root (html) font size.
+
+- Typically browsers start with:
+
+    html {
+        font-size: 16px;
+    }
+
+- Therefore: 1rem = 16px
+
+
+- 4. em :
+ --------
+- em is also a relative unit, but its behavior depends on the font size of the
+  relevant element/parent context.
+
+    .parent {
+        font-size: 20px;
+    }
+
+    .child {
+        font-size: 2em;
+    }
+
+- The child's font size is: 2 × 20px = 40px
+
+    Parent font-size → 20px
+    Child 2em       → 40px
+
+
+- 5. vw :
+ --------
+- vw means: Viewport Width
+- 1vw = 1% of the viewport's width.
+- The viewport is basically the visible browser area.
+- If viewport width is: 1000px , Then: 1vw = 10px
+
+    If your browser width is: 1200px
+
+    Then:
+    1vw  = 12px
+    50vw = 600px
+    100vw = 1200px
+
+
+- 6. vh :
+  -------
+- vh means: Viewport Height
+- 1vh = 1% of the viewport's height.
+- If viewport height is: 800px ,Then: 1vh = 8px
+
+
+Let's assume:
+
+    Viewport:
+    Width  = 1200px
+    Height = 800px
+    Root font-size: 16px
+
+    | Unit  | Example | Approximate meaning                  |
+    | ----- | ------: | ------------------------------------ |
+    | `px`  |  `20px` | 20 CSS pixels                        |
+    | `%`   |   `50%` | 50% of relevant containing dimension |
+    | `rem` |  `2rem` | 32px                                 |
+    | `em`  |   `2em` | 2 × relevant font-size context       |
+    | `vw`  |  `50vw` | 600px                                |
+    | `vh`  |  `50vh` | 400px                                |
+
+
+-->
