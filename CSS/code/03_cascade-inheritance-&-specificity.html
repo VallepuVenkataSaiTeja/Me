@@ -1,0 +1,149 @@
+<!-- 
+ 
+- Cascade :
+  ---------
+- when multiple CSS rules apply to the same element, the browser has a system for
+  deciding which rule should win.
+
+    <p>Hello World</p>
+
+    p {
+        color: red;
+    }
+
+    p {
+        color: blue;
+    }
+
+// The paragraph becomes blue. This is called source order, which is one part of the cascade.
+
+
+- Inheritance :
+  -------------
+- some CSS properties can be passed from a parent element to its child elements.
+
+    <div>
+        <p>Hello</p>
+    </div>
+
+    div {
+        color: blue;
+    }
+
+- You didn't directly give the <p> a color. The <p> can inherit the color from its parent.
+  So Hello → blue.
+
+    div
+    ↓
+    p
+
+- Some properties commonly inherit: color, font-family, font-size, font-weight, line-height, text-align
+- generally do not inherit automatically : margin, padding, border, width, height, background
+
+
+- inherit :
+ ----------
+
+    <div class="parent">
+        <p>Hello</p>
+    </div>
+
+    .parent {
+        color: red;
+    }
+
+    p {
+        color: inherit;
+    }
+
+- Now you're explicitly telling the <p>: Take the color from my parent.
+
+    Parent → red
+    ↓
+    Child  → red
+
+
+- initial :
+  ---------
+- It resets a property to its initial/default CSS value.
+
+    p {
+        color: initial;
+    }
+
+
+- unset :
+ --------
+- If the property normally inherits, inherit it. Otherwise, use its initial value.
+
+
+- Specificity :
+ --------------
+- Specificity determines how specific a CSS selector is.
+
+    <p class="text" id="para">Hello</p>
+
+    p {
+        color: red;
+    }
+
+    .text {
+        color: blue;
+    }
+
+    #para {
+        color: green;
+    }
+
+    p          → less specific
+    .text      → more specific
+    #para      → even more specific
+
+- Therefore: #para wins
+
+
+- Source Order : 
+ ---------------
+- If competing CSS rules have the same specificity, the rule that appears later generally wins.
+
+
+- !important :
+ -------------
+- !important tells CSS that a declaration should receive very high priority within the cascade.
+- has higher priority than the normal declaration.
+
+    p {
+        color: red !important;
+    }
+
+    p {
+        color: blue;
+    }
+
+- The paragraph becomes: red
+
+
+- Inline CSS and Specificity :
+ -----------------------------
+
+    <p id="para" class="text" style="color: orange;">
+        Hello
+    </p>
+
+    #para {
+        color: blue;
+    }
+
+- The inline style normally wins over the normal stylesheet rule.
+- However, an important declaration can override a normal inline declaration:
+
+
+    !important → very high priority
+    inline      → very strong normal declaration
+    #id         → stronger selector
+    .class      → medium
+    element     → weaker
+    *           → very low
+
+
+-->
