@@ -1,0 +1,416 @@
+<!--
+
+- Grid :
+ -------
+- Grid is mainly used for two-dimensional layouts:
+
+    Flexbox → 1D → row OR column
+    Grid    → 2D → rows AND columns
+
+- CSS Grid is a layout system that lets you arrange elements into:
+
+    rows
+    columns
+    cells
+
+    ┌─────────┬─────────┬─────────┐
+    │ Card 1  │ Card 2  │ Card 3  │
+    ├─────────┼─────────┼─────────┤
+    │ Card 4  │ Card 5  │ Card 6  │
+    └─────────┴─────────┴─────────┘
+
+
+- Creating a Grid :
+ ------------------
+- You enable Grid using:
+
+    <div class="container">
+        <div>Box 1</div>
+        <div>Box 2</div>
+        <div>Box 3</div>
+    </div>
+
+    .container {
+        display: grid;
+    }
+
+- At this point, the container is a grid container, and its direct children become grid items.
+
+    .container
+         ↓
+    Grid container
+    
+    Box 1
+    Box 2
+    Box 3
+         ↓
+    Grid items
+
+
+- grid-template-columns :
+ ------------------------
+- It defines the columns.
+
+    .container {
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+    }
+
+- This creates 3 columns: Each column is 200px.
+
+    ┌────────┬────────┬────────┐
+    │        │        │        │
+    │ Col 1  │ Col 2  │ Col 3  │
+    │        │        │        │
+    └────────┴────────┴────────┘
+
+- Using percentages :
+ --------------------
+- You can also use %.
+
+    .container {
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+    }
+
+- This creates three roughly equal columns.
+- But there's an easier and more flexible way.
+
+
+- The fr unit :
+ --------------
+- fr means fraction of the available space.
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+- This creates three equal columns.
+
+    ┌──────────┬──────────┬──────────┐
+    │   1fr    │   1fr    │   1fr    │
+    └──────────┴──────────┴──────────┘
+
+- If the container is 900px: 1fr + 1fr + 1fr
+  900 / 3 = 300px each
+
+- So:
+
+  Column 1 = 300px
+  Column 2 = 300px
+  Column 3 = 300px
+
+- Different fr values : You can use different fractions.
+
+    .container {
+        grid-template-columns: 1fr 2fr;
+    }
+
+- Total: 1fr + 2fr = 3fr
+- The available space is divided into 3 parts.
+
+    ┌────────────┬──────────────────────┐
+    │    1fr     │         2fr          │
+    └────────────┴──────────────────────┘
+
+- The second column is twice as large as the first.
+
+
+- grid-template-rows :
+ ---------------------
+- Just like columns, you can define rows.
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 100px 200px;
+    }
+
+- Conceptually:
+    Row 1 → 100px
+    Row 2 → 200px
+
+    ┌──────────┬──────────┐
+    │          │          │ 100px
+    ├──────────┼──────────┤
+    │          │          │
+    │          │          │ 200px
+    └──────────┴──────────┘
+
+
+- gap :
+ ------
+- Just like Flexbox, Grid supports gap.
+- This adds space between:
+    rows
+    columns
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+    }
+
+    ┌───────┐ 20px ┌───────┐ 20px ┌───────┐
+    │ Card  │      │ Card  │      │ Card  │
+    └───────┘      └───────┘      └───────┘
+
+- You can also use:
+    row-gap: 20px;
+    column-gap: 30px;
+
+- or:
+  gap: 20px 30px;
+
+
+- repeat() :
+ -----------
+- Instead of: grid-template-columns: 1fr 1fr 1fr;
+- you can write: grid-template-columns: repeat(3, 1fr);
+
+- Meaning:
+
+    3 columns
+    each = 1fr
+
+- This is much cleaner.
+
+- repeat() with fixed sizes :
+ -----------------------------
+- You can also write: grid-template-columns: repeat(3, 200px);
+- Same as: grid-template-columns: 200px 200px 200px;
+
+
+- minmax() :
+ -----------
+- minmax() lets you specify a minimum and maximum size.
+
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+
+- Meaning: Each column should be at least 200px, but can grow up to 1fr.
+
+
+- Responsive Grid :
+ ------------------
+- This allows the browser to automatically fit as many columns as possible.
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+        gap: 20px;
+    }
+
+- For example, on a large screen:
+
+    ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐
+    │ Card │ │ Card │ │ Card │ │ Card │
+    └──────┘ └──────┘ └──────┘ └──────┘
+
+- On a smaller screen:
+
+    ┌──────┐ ┌──────┐
+    │ Card │ │ Card │
+    └──────┘ └──────┘
+
+- On mobile:
+
+    ┌──────────┐
+    │   Card   │
+    └──────────┘
+
+
+- Grid items :
+ --------------
+
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+    </div>
+    
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+- The browser automatically places them:
+
+    ┌────────┬────────┬────────┐
+    │   1    │   2    │   3    │
+    ├────────┼────────┼────────┤
+    │   4    │   5    │   6    │
+    └────────┴────────┴────────┘
+
+- This is called automatic grid placement.
+
+
+- grid-column :
+ ---------------
+- You can tell an item how many columns it should occupy.
+
+    .item1 {
+        grid-column: span 2;
+    }
+
+- This item takes two columns:
+
+    ┌──────────────────┬─────────┐
+    │      Item 1      │ Item 2  │
+    │     span 2       │         │
+    └──────────────────┴─────────┘
+
+- grid-row :
+ ----------
+
+    .item1 {
+        grid-row: span 2;
+    }
+
+- The item occupies two rows.
+
+    ┌────────────┬─────────┐
+    │            │ Item 2  │
+    │   Item 1   ├─────────┤
+    │            │ Item 3  │
+    └────────────┴─────────┘
+
+
+- Grid line numbers :
+ ---------------------
+- Grid columns have grid lines.
+
+       1        2        3        4
+       │        │        │        │
+       ↓        ↓        ↓        ↓
+       ┌────────┬────────┬────────┐
+       │        │        │        │
+       │        │        │        │
+       └────────┴────────┴────────┘
+
+- With three columns, there are four vertical grid lines.
+- You can position an item using:
+
+    .item {
+        grid-column: 1 / 3;
+    }
+
+- This means:
+    start at line 1
+    end at line 3
+- So it occupies two columns.
+
+
+- grid-area :
+  ------------
+- grid-area can be used to position an item by specifying its grid lines:
+
+    .item {
+        grid-area: 1 / 1 / 3 / 3;
+    }
+
+- The four values are:
+
+    row-start
+    column-start
+    row-end
+    column-end
+
+So:
+
+    grid-area:
+    1 / 1 / 3 / 3
+    ↓   ↓   ↓   ↓
+    row column row column
+    start start end end
+
+- This is useful but not as important as the basic Grid properties.
+
+
+- justify-items :
+ -----------------
+- Controls horizontal alignment of grid items inside their grid areas.
+
+    .container {
+        display: grid;
+        justify-items: center;
+    }
+
+- Common values:
+
+    start
+    center
+    end
+    stretch
+
+
+- align-items :
+ --------------
+- Grid also has: align-items: center;
+- This controls alignment along the vertical/cross direction of the grid's items within their areas.
+- So Grid has alignment concepts similar to Flexbox.
+
+
+- place-items :
+ --------------
+- You can combine:
+    justify-items
+    align-items
+
+- using:
+    place-items: center;
+
+
+- auto-fit vs auto-fill :
+ ------------------------
+- auto-fit : Fits available columns and allows tracks to expand when possible.
+- auto-fill : Creates as many possible tracks as fit, potentially preserving empty tracks.
+
+
+- grid-template-areas :
+ ----------------------
+- You can actually describe a layout using names.
+
+    .dashboard {
+        display: grid;
+        grid-template-columns: 200px 1fr;    
+        grid-template-areas:
+            "sidebar header"
+            "sidebar content";
+    }
+
+- Then:
+
+    .sidebar {
+        grid-area: sidebar;
+    }
+    
+    .header {
+        grid-area: header;
+    }
+    
+    .content {
+        grid-area: content;
+    }
+
+- This creates:
+
+    ┌──────────┬────────────────────┐
+    │          │       Header       │
+    │ Sidebar  ├────────────────────┤
+    │          │      Content       │
+    └──────────┴────────────────────┘
+
+- This is useful for page-level layouts.
+
+
+
+
+-->
