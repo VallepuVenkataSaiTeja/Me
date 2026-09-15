@@ -1,0 +1,198 @@
+<!-- 
+
+- display :
+ ----------
+- The display property tells the browser how an element should be laid out.
+
+
+- display: block 
+ ----------------
+- A block-level element generally:
+    Starts on a new line
+    Takes the available width by default
+    Allows width and height
+    Allows margin and padding
+
+- Common block elements:
+
+    <div>
+    <p>
+    <h1> - <h6>
+    <section>
+    <header>
+    <footer>
+    <nav>
+
+    <div class="box">Box 1</div>
+    <div class="box">Box 2</div>
+    
+    .box {
+        display: block;
+        background-color: lightblue;
+    }
+    
+    ┌─────────────────────────────┐
+    │ Box 1                       │
+    └─────────────────────────────┘
+    
+    ┌─────────────────────────────┐
+    │ Box 2                       │
+    └─────────────────────────────┘
+
+    .box {
+        display: block;
+        width: 300px;
+        height: 100px;
+    }
+
+- This works because block elements accept explicit width and height.
+
+
+- display: inline 
+ -----------------
+- An inline element stays within the same line as surrounding content when space is available.
+
+- Common inline elements:
+
+    <span>
+    <a>
+    <strong>
+    <em>
+
+<span>Hello</span>
+<span>World</span>
+
+- Normally: Hello World
+- rather than:
+
+    Hello
+    World
+
+- Inline elements don't behave like block elements
+
+    span {
+        display: inline;
+        width: 300px;
+        height: 100px;
+    }
+
+- The width and height do not work in the normal way you might expect for an inline element.
+
+
+- display: inline-block 
+ -----------------------
+- inline-block combines important characteristics of both.
+- It:
+    Stays on the same line like inline
+    Accepts width and height like block
+
+    <span class="box">One</span>
+    <span class="box">Two</span>
+    <span class="box">Three</span>
+    
+    .box {
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        padding: 10px;
+        background-color: lightblue;
+    }
+    
+    They can appear next to each other:
+    
+    ┌──────────┐ ┌──────────┐ ┌──────────┐
+    │   One    │ │   Two    │ │  Three   │
+    └──────────┘ └──────────┘ └──────────┘
+
+- This was historically useful for creating simple horizontal layouts before Flexbox became the standard approach.
+
+
+| Feature               | `block` | `inline`                                | `inline-block` |
+| --------------------- | ------- | --------------------------------------- | -------------- |
+| New line?             | Yes     | No                                      | No             |
+| Width works?          | Yes     | Not normally                            | Yes            |
+| Height works?         | Yes     | Not normally                            | Yes            |
+| Can sit side-by-side? | No      | Yes                                     | Yes            |
+| Padding?              | Yes     | Yes, but behavior differs               | Yes            |
+| Margin?               | Yes     | Horizontal mainly in normal inline flow | Yes            |
+
+
+- display: none 
+ ---------------
+- display: none completely removes an element from the layout.
+
+    .box {
+        display: none;
+    }
+
+- The element doesn't appear.
+- More importantly: It doesn't occupy space in the layout.
+    
+    ┌───────┐
+    │ Box 1 │
+    └───────┘
+    ┌───────┐
+    │ Box 3 │
+    └───────┘
+
+
+- visibility: hidden 
+ --------------------
+- ❌ Not visible 
+- ✅ Still occupies space
+
+    .box {
+        visibility: hidden;
+    }
+
+    ┌───────┐
+    │ Box 1 │
+    └───────┘
+    
+       [empty space]
+    
+    ┌───────┐
+    │ Box 3 │
+    └───────┘
+
+
+- display: flex 
+ ----------------
+
+.container {
+    display: flex;
+}
+
+- This changes the container into a flex container.
+- Its children become flex items.
+
+    <div class="container">
+        <div>One</div>
+        <div>Two</div>
+        <div>Three</div>
+    </div>
+    
+    .container {
+        display: flex;
+    }
+    
+    ┌───────┐ ┌───────┐ ┌───────┐
+    │  One  │ │  Two  │ │ Three │
+    └───────┘ └───────┘ └───────┘
+
+
+- display: grid
+ ---------------
+- creates a grid container.
+
+    .container {
+        display: grid;
+    }
+    
+    ┌────────┐ ┌────────┐
+    │   1    │ │   2    │
+    ├────────┼─┼────────┤
+    │   3    │ │   4    │
+    └────────┘ └────────┘
+
+-->
