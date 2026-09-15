@@ -1,0 +1,215 @@
+<!--
+
+- position :
+ -----------
+- CSS position allows you to change where an element is positioned.
+
+
+- position: static 
+ ------------------
+- static is the default position of almost every HTML element.
+- The element follows the normal document flow.
+
+    .box {
+        position: static;
+    }
+
+- With static, these generally don't move the element:
+
+    top: 20px;
+    left: 30px;
+    right: 10px;
+    bottom: 20px;
+
+- static is the default positioning value, and offset properties like top, left, right, and bottom don't reposition it.
+
+
+- position: relative
+ --------------------
+- stays in the normal document flow
+- can be moved using top, left, right, bottom
+- keeps its original space in the layout
+
+    .box {
+        position: relative;
+        left: 50px;
+    }
+
+- The box moves 50px to the right.
+- But its original space is still reserved.
+
+    Original:
+    
+    [ BOX ]
+    
+    After left: 50px:
+    
+    [    BOX ]
+    
+    Original space is still reserved.
+
+
+- position: absolute
+ --------------------
+- absolute removes the element from the normal document flow.
+
+    .box {
+        position: absolute;
+    }
+
+- Then you can position it using:
+
+    top
+    right
+    bottom
+    left
+
+    .box {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+    }
+
+- The element is positioned according to its containing block, typically the nearest ancestor that establishes positioning.
+
+- relative + absolute :
+ ---------------------
+
+    <div class="card">
+        <span class="badge">New</span>
+    </div>
+
+- We want the badge to appear in the top-right corner of the card.
+
+    .card {
+        position: relative;
+    }
+    
+    .badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+- The .card becomes the reference point. The badge is positioned relative to the card.
+
+    ┌──────────────────────────┐
+    │                    New   │ ← badge
+    │                          │
+    │          CARD            │
+    │                          │
+    └──────────────────────────┘
+
+- The child uses that parent as its positioning reference.
+    Relative parent → Absolute child
+
+
+- position: fixed 
+ -----------------
+- fixed positions an element relative to the viewport.
+
+    .button {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+    }
+
+- The button stays at the bottom-right of the screen.
+- Even when you scroll, it can remain in that location.
+
+    ┌─────────────────────────────┐
+    │                             │
+    │          Website            │
+    │                             │
+    │                             │
+    │                       [ + ] │
+    └─────────────────────────────┘
+
+
+- position: sticky
+ ------------------
+- sticky is extremely useful for headers and navigation.
+
+    .header {
+        position: sticky;
+        top: 0;
+    }
+
+- It behaves somewhat like a normal element initially.
+- When you scroll and it reaches: top: 0; it sticks there.
+
+    
+    Before scrolling:
+    
+    HEADER
+    ────────────
+    CONTENT
+    
+    
+    After scrolling:
+    
+    HEADER ← sticks here
+    ────────────
+    CONTENT
+    CONTENT
+    CONTENT
+
+
+- fixed
+→ always attached to viewport
+
+- sticky
+→ normal first
+→ sticks when scrolling reaches its position
+
+
+- inset :
+ --------
+- CSS also provides a shorthand called inset.
+- Instead of:
+
+    .box {
+        top: 10px;
+        right: 20px;
+        bottom: 30px;
+        left: 40px;
+    }
+
+- You can write:
+
+    .box {
+        inset: 10px 20px 30px 40px;
+    }
+
+- The order is the same as margin/padding:
+
+    top
+    right
+    bottom
+    left
+
+
+- z-index :
+ ----------
+- z-index controls which positioned elements appear in front of or behind each other when they overlap.
+
+    .box1 {
+        position: absolute;
+        z-index: 1;
+    }
+    
+    .box2 {
+        position: absolute;
+        z-index: 2;
+    }
+
+- .box2 will generally appear above .box1 when they're competing in the same stacking context.
+- Higher stacking level generally appears in front.
+
+    z-index: 3
+       ↑
+    z-index: 2
+       ↑
+    z-index: 1
+
+-->
