@@ -1,0 +1,126 @@
+<!--
+
+- CSS Variable :
+ ----------------
+→ store a reusable CSS value
+→ use it with var()
+
+
+- Syntax for Creating a CSS Variable :
+ --------------------------------------
+- CSS custom properties start with two hyphens: ( --variable-name: value; )
+
+    :root {
+        --primary-color: blue;
+    }
+
+
+- Using a CSS Variable :
+ ------------------------
+
+    button {
+        background-color: var(--primary-color);
+    }
+
+
+- Why Do We Need CSS Variables? 
+ -------------------------------
+- Imagine a website has:
+    Primary color → blue
+    Secondary color → gray
+    Spacing → 20px
+    Border radius → 10px
+
+- Without variables:
+
+    button {
+        background: blue;
+        border-radius: 10px;
+    }
+    
+    .card {
+        border-radius: 10px;
+    }
+    
+    .header {
+        background: blue;
+    }
+    
+    .footer {
+        background: gray;
+    }
+
+- With variables:
+
+    :root {
+        --primary-color: blue;
+        --secondary-color: gray;
+        --border-radius: 10px;
+        --spacing: 20px;
+    }
+
+Then:
+
+    button {
+        background: var(--primary-color);
+        border-radius: var(--border-radius);
+        padding: var(--spacing);
+    }
+    
+    .card {
+        border-radius: var(--border-radius);
+    }
+    
+    .header {
+        background: var(--primary-color);
+    }
+
+- Now your design values are centralized.
+
+
+- Fallback Values :
+ ------------------
+- What happens if a CSS variable isn't defined?
+- You can provide a fallback. ( var(--variable, fallback) )
+
+    button {
+        background-color: var(--primary-color, blue);
+    }
+
+- Multiple Fallbacks : color: var(--primary-color, var(--secondary-color, black));
+
+
+- CSS Variables with calc() :
+ ----------------------------
+- CSS variables work very well with calc().
+
+    :root {
+        --spacing: 20px;
+    }
+    
+    .card {
+        padding: calc(var(--spacing) * 2);
+    }
+
+- Result: 20px × 2 = 40px
+
+
+- Sass variable: 
+ ---------------
+
+    $primary-color: blue;
+    
+    button {
+        color: $primary-color;
+    }
+
+- Sass variables are processed when Sass is compiled.
+
+CSS custom property
+→ browser/runtime
+→ can be changed dynamically
+
+Sass variable
+→ preprocessor/compile time
+
+-->
