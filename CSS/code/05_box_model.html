@@ -1,0 +1,165 @@
+<!--
+
+- CSS Box Model :
+ ----------------
+- Every HTML element is treated by the browser as a box.
+
+        ┌───────────────────────────────┐
+        │            MARGIN             │
+        │   ┌───────────────────────┐   │
+        │   │        BORDER         │   │
+        │   │  ┌─────────────────┐  │   │
+        │   │  │     PADDING     │  │   │
+        │   │  │  ┌───────────┐  │  │   │
+        │   │  │  │  CONTENT  │  │  │   │
+        │   │  │  └───────────┘  │  │   │
+        │   │  └─────────────────┘  │   │
+        │   └───────────────────────┘   │
+        └───────────────────────────────┘
+
+- Think of it like a parcel/package:
+  Content → the actual item
+  Padding → space around the item inside the package
+  Border  → package boundary
+  Margin  → space outside the package
+
+
+- Content :
+ ----------
+- The content is the actual information inside the element.
+
+  <div class="box">
+      Hello World
+  </div>
+
+- Here Hello World is the content.
+
+  .box {
+      width: 300px;
+      height: 100px;
+  }
+
+- By default, with box-sizing: content-box, the width and height refer to the content area.
+- So:
+      Content width  = 300px
+      Content height = 100px
+
+
+- Width :
+ --------
+- width controls the width of an element.
+
+- Height :
+ ---------
+- height controls the height of an element.
+
+
+- Padding :
+ ----------
+- Padding is the space between the content and the border.
+- Padding creates inside space.
+
+- Padding syntax :
+
+  All four sides - padding: 20px; ( top    = 20px, right  = 20px, bottom = 20px, left   = 20px )
+  Top/bottom and left/right - padding: 10px 20px; ( top    = 10px, bottom = 10px, left   = 20px, right  = 20px )
+  Three values - padding: 10px 20px 30px; ( top    = 10px, left   = 20px, right  = 20px, bottom = 30px )
+  Four values - padding: 10px 20px 30px 40px; ( Order is: top → right → bottom → left )
+
+
+- Border :
+ ---------
+- A border surrounds the padding and content.
+- syntax - border: width style color; ( border: 2px solid red; )
+- You can also specify individual borders:
+      border-top: 2px solid red;
+      border-right: 2px solid blue;
+      border-bottom: 2px solid green;
+      border-left: 2px solid black;
+
+
+- Margin :
+ ---------
+- Margin is the space outside an element.
+
+- The important difference:
+  Padding → space INSIDE the element
+  Margin  → space OUTSIDE the element
+
+
+- box-sizing :
+ -------------
+- There are two main values: box-sizing: content-box; & box-sizing: border-box;
+
+- content-box :
+ --------------
+- content-box is the default CSS behavior.
+
+  .box {
+      width: 300px;
+      padding: 20px;
+      border: 5px solid black;
+      box-sizing: content-box;
+  }
+
+- Here: width = content width. So:
+  Content      = 300px
+  Padding left = 20px
+  Padding right= 20px
+  Border left  = 5px
+  Border right = 5px
+
+- Total: 300 + 20 + 20 + 5 + 5 = 350px
+
+
+- border-box :
+ -------------
+
+  .box {
+      width: 300px;
+      padding: 20px;
+      border: 5px solid black;
+      box-sizing: border-box;
+  }
+
+- With border-box: The declared width includes the content + padding + border.
+- So: Total width = 300px
+- The browser calculates the content width automatically:
+
+  Total width = 300px
+  Border = 5 + 5
+  Padding = 20 + 20
+  Content = 300 - 10 - 40
+  Content = 250px
+
+- The total element width remains: 300px
+
+- content-box vs border-box :
+ ----------------------------
+
+  |                         | `content-box`   | `border-box`               |
+  | ----------------------- | --------------- | -------------------------- |
+  | Default?                | Yes             | No                         |
+  | Width represents        | Content         | Content + padding + border |
+  | Padding added to width? | Yes             | No, included               |
+  | Border added to width?  | Yes             | No, included               |
+  | Easier for layouts?     | Less convenient | Usually yes                |
+
+
+- Margin Collapsing :
+ ---------------------
+- Vertical margins between normal block elements can sometimes collapse instead of adding together.
+
+  .box1 {
+      margin-bottom: 30px;
+  }
+  
+  .box2 {
+      margin-top: 20px;
+  }
+
+- You might expect: 30 + 20 = 50px
+- But in normal block flow, those adjacent vertical margins can collapse, resulting in: 30px
+- The larger margin wins.
+
+-->
