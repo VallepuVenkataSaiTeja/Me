@@ -1,0 +1,217 @@
+<!--
+
+- Typography :
+ -------------
+- Typography means controlling how text looks and how readable it is on a webpage.
+
+
+- font-family :
+ --------------
+- font-family controls which font is used for your text.
+
+    body {
+        font-family: Arial;
+    }
+
+- Multiple fonts / fallback fonts :
+- Usually you shouldn't depend on only one font.
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+    
+    Try Arial
+       ↓
+    If unavailable → use sans-serif
+
+
+- font-size :
+ ------------
+- font-size controls how large the text is.
+
+    h1 {
+        font-size: 40px;
+    }
+    
+    p {
+        font-size: 18px;
+    }
+
+
+- font-weight :
+ --------------
+- font-weight controls how thick/bold the text is.
+
+    h1 {
+        font-weight: bold;
+    }
+    
+    h1 {
+        font-weight: 700;
+    }
+
+- Common values:
+
+    100 → very thin
+    200
+    300 → light
+    400 → normal
+    500 → medium
+    600 → semi-bold
+    700 → bold
+    800
+    900 → very bold
+
+
+- font-style :
+ -------------
+- font-style controls whether text is normal, italic, or oblique.
+
+    p {
+        font-style: italic;
+    }
+
+- The common values are:
+
+    normal
+    italic
+    oblique
+
+
+- line-height :
+ --------------
+- line-height controls the vertical space between lines of text.
+- This is extremely important for readability.
+
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+- The approximate line height becomes: 16 × 1.6 = 25.6px
+- So each line gets around 25.6px of vertical space.
+
+- line-height can use different values :
+    Number ( line-height: 1.5; )
+    Pixels ( line-height: 24px; )
+    Other length units  ( line-height: 1.5rem; )
+
+
+- letter-spacing :
+ -----------------
+- letter-spacing controls the horizontal space between characters.
+
+    h1 {
+        letter-spacing: 2px;
+    }
+
+- It produces: H e l l o
+
+- You can also use negative values: This brings letters closer together.
+
+
+- text-align :
+ -------------
+- text-align controls the horizontal alignment of inline content/text inside an element.
+- Common values:
+
+    left
+    center
+    right
+    justify
+
+
+- text-decoration :
+ ------------------
+- text-decoration adds or removes decorations from text.
+
+    a {
+        text-decoration: none;
+    }
+
+- This removes the default underline from links.
+
+    p {
+        text-decoration: underline;
+    }
+
+Hello World
+───────────
+
+    p {
+        text-decoration: line-through;
+    }
+
+H̶e̶l̶l̶o̶
+
+    p {
+        text-decoration: overline;
+    }
+
+
+- text-transform :
+ -----------------
+- text-transform changes the capitalization/display of text.
+- It does not change the original HTML text; it changes how the text is displayed.
+- Main values:
+
+    none
+    uppercase ( HELLO WORLD )
+    lowercase ( hello world )
+    capitalize ( Hello World From Inskill )
+
+
+- text-shadow :
+ --------------
+- text-shadow adds a shadow behind text.
+- syntax - text-shadow: x-offset y-offset blur color;
+
+    h1 {
+        text-shadow: 2px 2px 4px gray;
+    }
+    
+    2px → horizontal offset
+    2px → vertical offset
+    4px → blur
+    gray → shadow color
+
+- Multiple Text Shadows : You can add multiple shadows by separating them with commas.
+
+    h1 {
+        text-shadow:
+            2px 2px 3px gray,
+            -2px -2px 3px black;
+    }
+
+
+- Shorthand: font :
+ ------------------
+
+    h1 {
+        font-style: italic;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 1.5;
+        font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+        font: italic 700 30px/1.5 Arial, sans-serif;
+    }
+
+
+| Property          | Purpose                | Example             |
+| ----------------- | ---------------------- | ------------------- |
+| `font-family`     | Font type              | `Arial, sans-serif` |
+| `font-size`       | Text size              | `20px`              |
+| `font-weight`     | Text thickness         | `700`               |
+| `font-style`      | Italic/normal          | `italic`            |
+| `line-height`     | Line spacing           | `1.6`               |
+| `letter-spacing`  | Letter spacing         | `1px`               |
+| `text-align`      | Text alignment         | `center`            |
+| `text-decoration` | Underline/line-through | `none`              |
+| `text-transform`  | Capitalization         | `uppercase`         |
+| `text-shadow`     | Text shadow            | `2px 2px 4px gray`  |
+
+
+-->
