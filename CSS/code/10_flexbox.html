@@ -1,0 +1,528 @@
+<!--
+
+- Flexbox :
+ ----------
+- Flexbox = Flexible Box Layout
+- It is a CSS layout system used to arrange elements in one direction:
+
+    horizontally → row
+    vertically → column
+
+    <div class="container">
+        <div>Box 1</div>
+        <div>Box 2</div>
+        <div>Box 3</div>
+    </div>
+
+- Without Flexbox:
+
+    Box 1
+    Box 2
+    Box 3
+
+- With
+
+    .container {
+        display: flex;
+    }
+    
+    Box 1   Box 2   Box 3
+
+
+- Parent and Children :
+ ----------------------
+
+<div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+</div>
+
+    .container
+        ↓
+    Flex container
+    
+    .box
+    .box
+    .box
+        ↓
+    Flex items
+
+- the parent becomes a flex container.
+- Its direct children become flex items.
+
+    Parent
+    ┌───────────────────────────────┐
+    │                               │
+    │  Child 1   Child 2   Child 3 │
+    │                               │
+    └───────────────────────────────┘
+           ↑          ↑        ↑
+       flex items
+
+
+- display: flex
+ --------------
+- You activate Flexbox using:
+
+    <div class="container">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+    </div>
+    
+    .container {
+        display: flex;
+    }
+    
+    .box {
+        width: 100px;
+        height: 100px;
+    }
+
+- The boxes will normally appear in a row.
+
+
+- Main Axis and Cross Axis :
+ --------------------------
+- Flexbox has two axes:
+
+    Main Axis
+    Cross Axis
+
+- By default:
+
+    flex-direction: row;
+
+    Main axis →
+    ────────────────────────────→
+    
+    Cross axis
+         ↓
+         ↓
+         ↓
+
+- When direction is row
+    Main axis   → horizontal
+    Cross axis  ↓ vertical
+
+- When direction is column
+    Main axis   ↓ vertical
+    Cross axis  → horizontal
+
+- This is important because:
+    justify-content works along the main axis.
+    align-items works along the cross axis.
+
+
+- flex-direction :
+ ------------------
+- Controls the direction of flex items.
+
+    .container {
+        display: flex;
+        flex-direction: row;
+    }
+
+- There are four values:
+
+    row
+    row-reverse
+    column
+    column-reverse
+
+- row : Items go from left to right in the usual writing direction.
+
+    1   2   3
+    →
+
+- row-reverse : 
+
+   3   2   1
+   ←
+
+- column :
+
+    1
+    2
+    3
+    ↓
+
+- column-reverse :
+
+    3
+    2
+    1
+    ↑
+
+
+- justify-content :
+ ------------------
+- It controls how items are distributed along the main axis.
+
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+
+- justify-content: flex-start -> Items start from the beginning.
+  [1] [2] [3]
+
+- justify-content: flex-end
+              [1] [2] [3]
+
+- justify-content: center
+       [1] [2] [3]
+
+- justify-content: space-between -> First item at the start, last item at the end, equal space between them.
+  [1]        [2]        [3]
+
+- space-around -> Space around each item.
+    [1]    [2]    [3]
+
+- space-evenly -> Equal spacing between items and the container edges.
+     [1]     [2]     [3]
+
+
+- align-items :
+ --------------
+- align-items controls alignment along the cross axis.
+
+    .container {
+        display: flex;
+        align-items: center;
+    }
+
+- Suppose direction is: flex-direction: row;
+- Then:
+
+    justify-content
+    → horizontal
+    
+    align-items
+    → vertical
+
+- This centers items horizontally and vertically inside the flex container.
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+- align-items common values :
+
+    stretch
+    flex-start
+    flex-end
+    center
+    baseline
+
+- center : Centers items on the cross axis.
+- flex-start : Moves them toward the start of the cross axis.
+- flex-end : Moves them toward the end.
+- stretch : Items can stretch across the cross axis when their cross-size is auto.
+- baseline : Aligns items according to their text baselines.
+
+
+- flex-wrap :
+ -------------
+- By default, flex items try to stay on one line.
+
+    .container {
+        display: flex;
+    }
+
+- If there isn't enough space: items may become too cramped or overflow depending on their sizing.
+
+    [1] [2] [3] [4] [5]
+
+- Use: flex-wrap: wrap; Then they can move onto multiple lines.
+
+    [1] [2] [3]
+    [4] [5]
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+- Very useful for responsive card layouts.
+
+- flex-wrap values :
+
+    nowrap
+    wrap
+    wrap-reverse
+
+
+- gap :
+ ------
+- gap adds space between flex items.
+
+    .container {
+        display: flex;
+        gap: 20px;
+    }
+
+- Result:
+
+    [Box 1]   [Box 2]   [Box 3]
+
+- This is usually much cleaner than doing: margin-right: 20px;
+
+
+- row-gap and column-gap :
+ -------------------------
+- You can control them separately.
+
+    .container {
+        row-gap: 20px;
+        column-gap: 30px;
+    }
+
+or
+
+    gap: 20px 30px;
+
+
+- flex-flow :
+ -------------
+- flex-flow is shorthand for: flex-direction flex-wrap
+- Instead of:
+
+    .container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+- you can write:
+
+    .container {
+        flex-flow: row wrap;
+    }
+
+
+- Flexbox item properties :
+ ---------------------------
+- So far we've mostly discussed container properties.
+- Now let's look at properties applied to individual flex items.
+
+- Important ones:
+
+    flex
+    flex-grow
+    flex-shrink
+    flex-basis
+    order
+    align-self
+
+
+- flex-grow :
+ ------------
+- Controls how a flex item can grow when there is extra available space.
+
+    .box1 {
+        flex-grow: 1;
+    }
+
+- If multiple items have: they can share available extra space.
+
+    .box1 {
+        flex-grow: 1;
+    }
+    
+    .box2 {
+        flex-grow: 1;
+    }
+
+    Before:
+    
+    [1] [2]
+    
+    Extra space available
+    
+    After:
+    
+    [    1    ] [    2    ]
+
+- if
+
+    .box1 {
+        flex-grow: 2;
+    }
+    
+    .box2 {
+        flex-grow: 1;
+    }
+
+- the available extra space is distributed in a 2:1 ratio.
+
+
+- flex-shrink :
+ --------------
+- Controls how an item can shrink when there isn't enough space.
+- Default is generally: flex-shrink: 1;
+
+    .box {
+        flex-shrink: 1;
+    }
+
+- If:
+
+    .box {
+        flex-shrink: 0;
+    }
+
+- the item won't shrink due to flex shrinking.
+
+    .box {
+        width: 300px;
+        flex-shrink: 0;
+    }
+
+- This is useful when you don't want a flex item to become smaller than its intended size.
+
+
+- flex-basis :
+ -------------
+- Defines the item's initial size along the main axis before remaining space is distributed.
+
+.box {
+    flex-basis: 200px;
+}
+
+- For a row:
+    main axis → horizontal
+    basis = initial width-like size
+
+- For a column:
+    main axis ↓ vertical
+    basis = initial height-like size
+
+- That's why flex-basis is more general than simply saying "width."
+
+
+- flex shorthand :
+ ----------------
+- Instead of writing:
+
+    .box {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0;
+    }
+
+- you can write:
+
+    .box {
+        flex: 1;
+    }
+
+
+- order :
+ ---------
+- Default: order: 0;
+- By default, flex items appear in HTML order.
+
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+- Result : 1 2 3
+
+- You can change the visual order:
+
+    .box1 {
+        order: 3;
+    }
+    
+    .box2 {
+        order: 1;
+    }
+    
+    .box3 {
+        order: 2;
+    }
+
+- Result: 2 3 1
+
+- order changes visual layout order, not the underlying HTML/DOM order.
+
+
+- align-self :
+ -------------
+- align-self allows one flex item to override the container's align-items.
+
+    .container {
+        display: flex;
+        align-items: center;
+    }
+    
+    .box2 {
+        align-self: flex-start;
+    }
+
+- So:
+
+    Box 1 → center
+    Box 2 → start
+    Box 3 → center
+
+- Useful when one particular item needs different cross-axis alignment.
+
+
+- align-content :
+ -----------------
+- align-content is different from align-items.
+- It controls the spacing/alignment of multiple flex lines when wrapping occurs.
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+- This matters when you have:
+
+    Line 1: [1] [2] [3]
+    Line 2: [4] [5] [6]
+    Line 3: [7] [8]
+
+- align-content controls the arrangement of those lines along the cross axis.
+- Important distinction:
+
+    align-items
+    → items within a flex line
+    
+    align-content
+    → multiple flex lines
+
+
+- Parent / Container :
+ ----------------------
+
+| Property          | Purpose                          |
+| ----------------- | -------------------------------- |
+| `display: flex`   | Enables Flexbox                  |
+| `flex-direction`  | Row/column direction             |
+| `justify-content` | Main-axis alignment              |
+| `align-items`     | Cross-axis alignment             |
+| `flex-wrap`       | Allows wrapping                  |
+| `gap`             | Space between items              |
+| `align-content`   | Alignment of multiple flex lines |
+
+
+- Child / Item :
+
+| Property      | Purpose                         |
+| ------------- | ------------------------------- |
+| `flex-grow`   | Controls growing                |
+| `flex-shrink` | Controls shrinking              |
+| `flex-basis`  | Initial main-axis size          |
+| `flex`        | Shorthand for flex sizing       |
+| `order`       | Changes visual order            |
+| `align-self`  | Individual cross-axis alignment |
+
+
+-->
