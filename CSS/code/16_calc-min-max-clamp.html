@@ -1,0 +1,69 @@
+<!--
+
+calc()  → calculate
+min()   → choose the smallest
+max()   → choose the largest
+clamp() → stay between minimum and maximum
+
+
+- calc() :
+ ----------
+- calc() allows you to perform calculations directly in CSS. ( property: calc(expression); )
+
+    .box {
+        width: calc(100% - 40px);
+    }
+
+- So the element takes the available width minus 40px.
+
+ 
+- min() :
+ ---------
+- min() returns the smallest value from the values you provide. ( property: min(value1, value2); )
+
+    .box {
+        width: min(90%, 1200px);
+    }
+
+- The browser chooses whichever is smaller: 90% or 1200px
+
+
+- max() :
+ --------
+- max() does the opposite.
+- It returns the largest value. ( property: max(value1, value2); )
+
+    .box {
+        width: max(300px, 50%);
+    }
+
+- The browser chooses the larger value between: 300px or 50%
+
+
+- clamp() :
+ ----------
+- clamp() is extremely useful in modern responsive CSS. ( property: clamp(minimum, preferred, maximum); )
+- It lets you define:
+    minimum
+    preferred value
+    maximum
+
+    h1 {
+        font-size: clamp(24px, 5vw, 60px);
+    }
+
+- Meaning:
+    minimum = 24px
+    preferred = 5vw
+    maximum = 60px
+
+            preferred
+               ↓
+      ┌─────────────────┐
+min   │      5vw         │   max
+24px  │                 │   60px
+      └─────────────────┘
+
+- means Use a flexible value, but keep it between 24px and 60px.
+
+-->
