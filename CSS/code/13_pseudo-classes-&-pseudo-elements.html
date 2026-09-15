@@ -1,0 +1,284 @@
+<!--
+
+- Pseudo-class :
+ ---------------
+- A pseudo-class is a keyword added to a selector to style an element when it is in a particular state or matches a particular condition.
+
+    selector:pseudo-class {
+        property: value;
+    }
+
+    button:hover {
+        background-color: blue;
+    }
+
+- This means: When the user moves the mouse over the button, make its background blue.
+- Notice the single colon:
+
+    :hover
+    :focus
+    :active
+    :nth-child()
+
+
+- Pseudo-element :
+ -----------------
+- A pseudo-element lets you style a specific part of an element or create generated content around an element.
+
+    selector::pseudo-element {
+        property: value;
+    }
+    
+    p::first-letter {
+        font-size: 40px;
+    }
+
+- This styles only the first letter of the paragraph.
+- Notice the double colon:
+
+    ::before
+    ::after
+    ::first-letter
+    ::first-line
+    ::selection
+
+
+| Pseudo-class                        | Pseudo-element                     |
+| ----------------------------------- | ---------------------------------- |
+| Uses `:`                            | Uses `::`                          |
+| Represents state/condition          | Represents part of an element      |
+| Usually selects an existing element | Styles a part or generated content |
+| `:hover`                            | `::before`                         |
+| `:focus`                            | `::after`                          |
+| `:nth-child()`                      | `::first-letter`                   |
+| `:active`                           | `::selection`                      |
+
+
+
+- :hover 
+ --------
+- :hover applies styles when the mouse pointer is over an element.
+
+    button:hover {
+        background-color: blue;
+        color: white;
+    }
+
+
+- :focus
+ -------
+- :focus applies when an element receives focus.
+
+    input:focus {
+        border: 2px solid blue;
+    }
+
+
+- :active
+ --------
+- :active applies while an element is being activated.
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+
+- :visited
+ ----------
+- :visited styles links that the browser considers already visited.
+
+    a:visited {
+        color: purple;
+    }
+
+
+- :first-child 
+ --------------
+- :first-child selects an element if it is the first child of its parent.
+
+    <div class="container">
+        <p>First</p>
+        <p>Second</p>
+        <p>Third</p>
+    </div>
+    
+    p:first-child {
+        color: red;
+    }
+
+- Only: First becomes red.
+
+
+- :last-child
+ -------------
+- Selects an element if it is the last child of its parent.
+
+    p:last-child {
+        color: blue;
+    }
+    
+    <div>
+        <p>One</p>
+        <p>Two</p>
+        <p>Three</p>
+    </div>
+
+- Only Three gets the style.
+
+
+- :nth-child()
+ --------------
+- :nth-child() allows you to select children based on their position.
+
+    li:nth-child(2) {
+        color: red;
+    }
+
+- This selects the second child.
+
+
+- :nth-child(odd)
+ -----------------
+- Selects odd-positioned children:
+
+    li:nth-child(odd) {
+        background-color: lightgray;
+    }
+
+- Positions:
+
+    1 → selected
+    2 → not selected
+    3 → selected
+    4 → not selected
+    5 → selected
+
+- Very useful for tables and lists.
+
+
+- :nth-child(even)
+ -----------------
+- Selects even-positioned children.
+
+    li:nth-child(even) {
+        background-color: lightgray;
+    }
+
+- Positions:
+
+    1 → not selected
+    2 → selected
+    3 → not selected
+    4 → selected
+
+
+- :nth-child(3n)
+ ----------------
+- You can also use formulas.
+
+    li:nth-child(3n) {
+        color: red;
+    }
+
+- This selects:
+
+    3
+    6
+    9
+    12
+    ...
+
+
+- :not()
+ --------
+- :not() selects elements that do not match a selector.
+
+    <p>Hello</p>
+    <p class="special">Special</p>
+    <p>World</p>
+    
+    p:not(.special) {
+        color: gray;
+    }
+
+- The first and third paragraphs become gray.
+- The .special paragraph is excluded.
+
+
+- ::before
+ ----------
+- ::before creates generated content before the element's content.
+
+    <h2>Courses</h2>
+    
+    h2::before {
+        content: "★ ";
+    }
+
+- Visual result: ★ Courses
+- When using ::before, you normally need: content: ""; or some actual content.
+
+
+- ::after
+ ---------
+- ::after creates generated content after the element's content.
+
+    <h2>Courses</h2>
+    
+    h2::after {
+        content: " →";
+    }
+
+- Result: Courses →
+
+
+- ::first-letter
+ ----------------
+- Styles only the first letter of an element.
+
+    <p>Welcome to our website.</p>
+    
+    p::first-letter {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+- The W becomes larger and bold.
+
+
+- ::first-line
+ --------------
+- Styles the first line of text.
+
+    p::first-line {
+        font-weight: bold;
+    }
+
+
+- ::selection
+ -------------
+- ::selection styles text when the user selects/highlights it.
+
+    ::selection {
+        background-color: black;
+        color: white;
+    }
+
+- Now when the user selects text: Selected text ,it can appear with your custom selection styling.
+
+
+- :nth-of-type() 
+ ----------------
+- :nth-of-type() counts only elements of the same type.
+
+    <div>
+        <h2>Title</h2>
+        <p>First</p>
+        <p>Second</p>
+    </div>
+    
+    p:nth-of-type(1)
+
+- the first <p> is selected because it is the first <p>.
+
+-->
