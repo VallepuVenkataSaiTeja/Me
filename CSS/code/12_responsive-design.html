@@ -1,0 +1,93 @@
+<!--
+
+- Responsive Design :
+ ---------------------
+- A responsive website changes its layout based on the available screen size. 
+
+
+- Viewport Meta Tag :
+ --------------------
+- This tells the browser how to size the page's viewport on mobile devices.
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+width=device-width
+        ↓
+Use the device's width
+
+initial-scale=1.0
+        ↓
+Start at normal zoom
+
+
+- Media Queries :
+ -----------------
+- They allow you to apply CSS depending on conditions such as screen width.
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+    }
+
+- Meaning: If the screen width is 768px or less, apply these styles.
+
+
+- max-width vs min-width :
+ -------------------------
+- max-width :
+
+  @media (max-width: 768px) {
+      /* styles */
+  }
+
+- Means: Apply these styles when the viewport is 768px or smaller.
+- Think:
+    max-width
+    ↓
+    up to this width
+
+
+- min-width :
+
+  @media (min-width: 768px) {
+      /* styles */
+  }
+
+- Means: Apply these styles when the viewport is 768px or larger.
+- Think:
+    min-width
+    ↓
+    from this width and above
+
+
+- Common Breakpoints :
+  ---------------------
+- You may see breakpoints such as: 
+    480px  → small mobile
+    576px  → mobile
+    768px  → tablet
+    992px  → laptop/smaller desktop
+    1200px → desktop
+    1400px → large desktop
+
+- But don't memorize these as universal rules.
+- There is no single official list of responsive breakpoints.
+
+
+- Mobile-First Design :
+ ----------------------
+- This is an important modern approach.
+- Instead of designing desktop first and then fixing mobile, you can design for mobile first.
+
+
+- Responsive Units :
+ -------------------
+- Responsive design becomes easier when you understand relative units.
+
+    %   → relative size
+    vw  → viewport width
+    vh  → viewport height
+    rem → root font-size based
+
+-->
