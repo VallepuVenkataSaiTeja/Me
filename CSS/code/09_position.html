@@ -213,3 +213,47 @@
     z-index: 1
 
 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            background-color: bisque;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+        }
+        .one {
+            position: relative;
+            left: 150px;
+            top: 150px;
+            z-index: 3;
+        }
+        .two {
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            background-color: brown;
+        }
+        .three {
+            position: sticky;
+            top: 0;
+        }
+        h1 {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+        
+        <div class="one">one</div>
+        <div class="two">two</div>
+        <div class="three">three</div>
+        <h1>h1</h1>
+</body>
+</html>
