@@ -213,7 +213,7 @@ Specifies how long the transition takes.
 
 - linear - Constant speed. ( transition: transform 0.5s linear; )
 - ease - Starts and ends more gently. ( transition: transform 0.5s ease; )
-- ease - Starts and ends more gently. ( transition: transform 0.5s ease; )
+- ease-in - Starts slowly. ( transition: transform 0.5s ease-in; )
 - ease-out - Ends slowly. ( transition: transform 0.5s ease-out; )
 - ease-in-out - Starts and ends slowly. ( transition: transform 0.5s ease-in-out; )
 
@@ -423,3 +423,48 @@ Or shorthand:
 
 
 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            background-color: rebeccapurple;
+            transform: translateX(20px);
+            /* transform: translateY(100px); */
+            /* transform: scale(2); */
+            /* transform: rotate(45deg); */
+            /* transform: skew(20deg); */
+        }
+        button {
+            background-color: yellow;
+            padding: 10px 20px;
+            transition: background-color 0.5s;
+            transition-timing-function: ease-in-out;
+        }
+        button:hover {
+            background-color: aqua;
+            animation: moveRight 1s ease-in-out 1s infinite alternate;
+            /* animation-iteration-count: infinite; */
+        }
+        @keyframes moveRight{
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(100px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>paragraph</p>
+        <button>Click</button>
+    </div>
+</body>
+</html>
