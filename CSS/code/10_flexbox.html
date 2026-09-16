@@ -526,3 +526,43 @@ or
 
 
 -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+        }
+        .one {
+            flex-grow: 1;
+            flex-shrink: 0;
+        }
+        .two {
+            /* flex-grow: 1; */
+        }
+    </style>
+</head>
+<body>
+    <div class="div-box">
+        <div class="one item">one</div>
+        <div class="two item">two</div>
+        <div class="three item">three</div>
+    </div>
+</body>
+</html>
