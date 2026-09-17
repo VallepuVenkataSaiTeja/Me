@@ -1,0 +1,425 @@
+<!-- 
+
+- Variable :
+ -----------
+- A variable is a named place/reference used to store a value so we can use that
+  value later in our program.
+
+        let name = "Sai";
+
+- var :
+ -------
+- var is the older way of declaring variables. 
+
+        var name = "Sai";
+
+- You can change it:
+
+        var age = 25;
+        age = 26;
+
+- You can also redeclare it:
+
+        var name = "Sai";
+        var name = "John";
+
+- This behavior is one reason modern JavaScript generally prefers let and const.
+
+
+- let :
+ -------
+- let is the modern way to declare a variable when its value may change.
+
+        let age = 25;
+        age = 26;
+
+- But you cannot redeclare the same variable in the same scope:
+
+        let name = "Sai";
+        let name = "John";   ❌ This causes an error.
+
+- You can, however, reassign it:
+
+        let name = "Sai";
+        name = "John";    ✅ Valid.
+
+
+- const :
+ --------
+- const is used when the variable binding should not be reassigned.
+
+        const country = "India";
+
+- You cannot do:
+
+        const country = "India";
+        country = "USA";          ❌ Error.
+
+
+- var vs let vs const :
+ -----------------------
+
+| Feature                      | `var`      | `let` | `const` |
+| ---------------------------- | ---------- | ----- | ------- |
+| Can reassign?                | Yes        | Yes   | No      |
+| Can redeclare in same scope? | Yes        | No    | No      |
+| Function scoped?             | Yes        | No    | No      |
+| Block scoped?                | No         | Yes   | Yes     |
+| Modern preferred usage       | Usually no | Yes   | Yes     |
+
+
+
+- Block Scope :
+ --------------
+- A block is code inside:
+
+        {
+            // block
+        }
+
+- The let variable exists only inside that block.
+- The variable isn't available outside the block.
+- The same applies to const.
+
+        if (true) {
+            let name = "Sai";
+            console.log(name); // Sai
+        }
+        console.log(name); // Error
+
+
+- Function Scope :
+ -----------------
+- var is function-scoped rather than block-scoped.
+
+        function test() {
+            var name = "Sai";
+            console.log(name);  // Sai
+        }
+        console.log(name); // Error
+
+
+- Objects with const :
+ ---------------------
+- You cannot reassign the variable. But you can modify properties:
+
+        const student = {
+            name: "Sai",
+            age: 25
+        };
+
+        student = {}; ❌
+        student.age = 26; ✅
+
+- So const prevents reassignment of the binding, not necessarily mutation of the object.
+
+
+- Arrays with const :
+ --------------------
+- you can modify the array.
+
+        const numbers = [1, 2, 3];
+
+        numbers = [4, 5, 6]; ❌
+        numbers.push(4); ✅ // [1, 2, 3, 4]
+
+
+- Data Types :
+ -------------
+- A data type tells JavaScript what kind of value something is.
+
+    Data Types
+    │
+    ├── Primitive
+    │   ├── String
+    │   ├── Number
+    │   ├── BigInt
+    │   ├── Boolean
+    │   ├── Undefined
+    │   ├── Null
+    │   └── Symbol
+    │
+    └── Non-Primitive / Reference
+        ├── Object
+        ├── Array
+        └── Function
+
+- String :
+ ---------
+- A string represents text.
+
+    let name = "Sai";  // "Hello" or 'Hello' or `Hello`( template literals )
+
+- Number :
+ ---------
+- JavaScript uses the number type for normal numeric values.
+- JavaScript's number type represents both integers and floating-point numbers.
+
+    let age = 25;
+    let price = 99.99;
+    let temperature = -10;
+
+- Boolean :
+ ----------
+- Boolean has only two values:
+
+    true
+    false
+
+- Undefined :
+ ------------
+- A variable can exist without having a value assigned to it.
+
+    let name;
+    console.log(name); // undefined
+
+- Null :
+ -------
+- null represents an intentional absence of a value.
+
+    let selectedUser = null; ( There is currently no selected user. )
+
+- There is also a famous JavaScript oddity. This is a historical behavior of JavaScript.
+
+    typeof null -> returns: "object"
+
+
+undefined
+→ JavaScript doesn't currently have a value
+
+null
+→ programmer intentionally says "no value"
+
+- BigInt :
+ ---------
+- BigInt is used for integers larger than the safe range of JavaScript's normal Number type.
+
+    const bigNumber = 123456789012345678901234567890n;
+
+- Symbol :
+ ---------
+- Symbol creates a unique value.
+
+    const id1 = Symbol("id");
+    const id2 = Symbol("id");
+    console.log(id1 === id2); // false
+
+
+- Object :
+ ---------
+- An object stores data in key-value pairs.
+
+    const student = {
+        name: "Sai",
+        age: 25,
+        course: "React"
+    };
+
+- You can access values:
+
+    console.log(student.name);   // Sai
+    console.log(student["age"]); // 25
+
+
+- Array :
+ --------
+- An array stores an ordered collection of values.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+
+- Access values using indexes:
+
+    console.log(fruits[0]);
+
+
+- Function :
+ -----------
+- Functions are also values in JavaScript.
+
+        function greet() {
+            console.log("Hello");
+        }
+        greet();
+
+
+- Primitive vs Reference Types :
+ -------------------------------
+- Primitive values : They represent individual values.
+
+    let a = 10;
+    let b = a;
+    b = 20;
+    console.log(a); // 10
+    console.log(b); // 20
+
+- Changing b doesn't change a.
+
+- Objects behave differently
+
+    const user1 = {
+        name: "Sai"
+    };
+    const user2 = user1;
+    user2.name = "John";
+    console.log(user1.name); // John
+
+- Because user1 and user2 refer to the same object.
+
+    user1 ─────┐
+            ↓
+        { name: "Sai" }
+            ↑
+    user2 ─────┘
+
+
+- Mutable vs Immutable :
+ -----------------------
+- Mutable :
+- Something can be changed after creation.
+- Objects and arrays are mutable by default.
+
+    const user = {
+        name: "Sai"
+    };
+    user.name = "John";
+
+- Immutable :
+- The existing value isn't modified; instead, a new value is created.
+
+    const user = {
+        name: "Sai"
+    };
+    const updatedUser = {
+        ...user,
+        name: "John"
+    };
+
+    user
+    → { name: "Sai" }
+
+    updatedUser
+    → { name: "John" }
+
+
+- typeof Operator :
+ ------------------
+- typeof tells you the type of a value.
+
+console.log(typeof "Hello"); // string
+console.log(typeof 25); // number
+console.log(typeof 25); // boolean
+console.log(typeof true); // undefined
+
+    const user = {
+        name: "Sai"
+    };
+    console.log(typeof user); // object
+
+    const numbers = [1, 2, 3];
+    console.log(typeof numbers); // object
+
+- Arrays are technically objects in JavaScript.
+- To properly check an array: 
+
+    Array.isArray(numbers); // true
+
+
+- Special Number values :
+ ------------------------
+- JavaScript's Number type includes some special values.
+
+- NaN : ( Not-a-Number )
+ ------
+
+ console.log("hello" * 5); // NaN
+ typeof NaN  // number
+
+- Infinity :
+ -----------
+    console.log(10 / 0); // Infinity
+
+- You can also have: -Infinity
+
+
+- Static vs Dynamic Typing :
+ ---------------------------
+- Static typing :
+- Languages such as Java/C# commonly require explicit types.
+
+    int age = 25; The type is explicitly declared.
+
+
+- Dynamic typing :
+- JavaScript determines the type from the value. This is called: Dynamic typing.
+
+    let age = 25;
+
+
+-->
+
+
+<script>
+    let name = 'Sai';
+    console.log(name);
+
+    var person = 'ram';
+    var person = 'sam';
+    person = 'jam';
+    console.log(person);
+
+    let age = 23;
+    age = 22;
+    console.log(age);
+
+    const id = 2;
+    console.log(id);
+
+    let a = 'hello';
+    let b = 21;
+    let c = false;
+    let d = null;
+    let e = undefined;
+    let f = 123n;
+    let g = Symbol('id');
+
+    let h = {
+        name: 'ram',
+        age: 22,
+    }
+
+    let i = [1,2,3];
+
+    function greet(){
+        console.log('hello')
+    }
+    greet();
+
+    console.log(typeof a, a);
+    console.log(typeof b, b);
+    console.log(typeof c, c);
+    console.log(typeof d, d);
+    console.log(typeof e, e);
+    console.log(typeof f, f);
+    console.log(typeof g, g);
+    console.log(typeof h, h);
+    console.log(typeof i, i);
+    console.log(Array.isArray(i));
+
+    const aa = {
+        name: 'ram',
+        age: 2,
+    }
+    // aa = {};
+    aa.name = 'sam';
+    console.log(aa);
+
+    const bb = [1,2,3];
+    // bb = [4,5,6];
+    bb.push(4)
+    console.log(bb);
+
+    console.log('hello' * 2);
+    console.log(10/0);
+    console.log(10/-0);
+
+</script>
