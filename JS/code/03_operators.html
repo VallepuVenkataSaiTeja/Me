@@ -1,0 +1,330 @@
+<!-- 
+ 
+- Operators :
+ ------------
+- Operators are symbols or keywords that tell JavaScript to perform an operation on values.
+
+
+- Types of JavaScript Operators :
+ --------------------------------
+
+    Operators
+    │
+    ├── Arithmetic
+    ├── Assignment
+    ├── Comparison
+    ├── Logical
+    ├── Increment / Decrement
+    ├── String
+    ├── Ternary
+    ├── Nullish Coalescing ??
+    ├── Optional Chaining ?.
+    ├── Bitwise
+    └── Unary
+
+- Arithmetic Operators :
+ -----------------------
+- Arithmetic operators are used for mathematical calculations.
+
+| Operator | Meaning        |
+| -------- | -------------- |
+| `+`      | Addition       |
+| `-`      | Subtraction    |
+| `*`      | Multiplication |
+| `/`      | Division       |
+| `%`      | Remainder      |
+| `**`     | Exponentiation |
+
+    let a = 10;
+    let b = 5;
+
+    console.log(a + b);  // 15
+    console.log(a - b);  // 5
+    console.log(10 * 5); // 50
+    console.log(10 / 5); // 2
+    console.log(10 % 3); // 1  ( The % operator returns the remainder after division )
+    console.log(2 ** 3); // 8  ( Used for powers )
+
+- Check even number : console.log(number % 2 === 0);
+- Check odd number  : console.log(number % 2 !== 0);
+
+
+- Assignment Operators :
+ ------------------------
+- Assignment operators assign values to variables.
+
+   let age = 25 ( means assign 25 to age )
+
+
+- Compound Assignment Operators :
+ --------------------------------
+
+- Instead of:
+
+    let count = 10;
+    count = count + 5;
+
+- you can write:
+
+    let count = 10;
+    count += 5;
+
+- Common operators:
+
+    +=
+    -=
+    *=
+    /=
+    %=
+    **=
+
+    let x = 10;
+
+    x += 5;  // 15
+    x -= 3;  // 12
+    x *= 2;  // 24
+    x /= 4;  // 6
+
+
+- Comparison Operators :
+ -----------------------
+- Comparison operators compare values and return: true or false.
+- Important operators:
+
+    ==
+    ===
+    !=
+    !==
+    >
+    <
+    >=
+    <=
+
+- Greater Than >            : console.log(10 > 5); // true
+- Less Than <               : console.log(3 < 5);  // true
+- Greater Than or Equal >=  : console.log(10 >= 10);  // true
+- Less Than or Equal <=     : console.log(5 <= 5); // true
+
+- == Loose Equality         : console.log(5 == "5"); // true
+- == compares values after allowing JavaScript to perform type conversion when necessary.
+- This behavior is called type coercion.
+
+- === Strict Equality       : console.log(5 === "5"); // false
+- === checks both: Value + Type
+- Because:
+    5   → number
+    "5" → string
+
+- Not Equal !=              : console.log(10 != 5); // true
+- Like ==, != can perform type coercion.
+
+- Strict Not Equal !==      : console.log(5 !== "5"); // true
+- Checks both type and value.
+
+
+- Logical Operators :
+ --------------------
+
+- AND && ( && means AND )
+ ---------
+- A && B : both conditions need to be truthy for the overall expression to produce a truthy result.
+
+let age = 25;
+console.log(age > 18 && age < 60);
+
+- Both are true:
+    25 > 18 → true
+    25 < 60 → true
+Therefore: true
+
+
+- OR || ( || means OR )
+ --------
+- If at least one operand is truthy, the expression can produce a truthy result.
+
+    console.log(10 > 20 || 10 < 20);
+
+First: 10 > 20 → false
+Second: 10 < 20 → true
+Therefore: true
+
+
+- NOT ! 
+ -------
+- ! reverses a boolean value.
+
+    console.log(!true); // Output: false
+    console.log(!false); // Output: true
+
+
+- Ternary Operator :
+ -------------------
+- The ternary operator is a short way of writing an if...else.
+- condition ? valueIfTrue : valueIfFalse
+
+    const age = 20;
+    const result = age >= 18 ? "Adult" : "Minor";
+    console.log(result); // Adult
+
+
+- Increment Operator ++ : Adds 1
+ ------------------------
+
+    let count = 10;
+    count++;
+    console.log(count); // 11
+
+- Equivalent to: count = count + 1;
+
+
+- Decrement Operator -- : Subtracts 1
+ ------------------------
+
+    let count = 10;
+    count--;
+    console.log(count); // 9
+
+
+- Prefix vs Postfix :
+ --------------------
+
+- Postfix :
+ ----------
+
+    let x = 5;
+    let y = x++;
+
+First: y gets 5
+Then: x becomes 6
+
+So:
+    x → 6
+    y → 5
+
+
+- Prefix :
+ ---------
+
+    let x = 5;
+    let y = ++x;
+
+First: x becomes 6
+Then: y gets 6
+
+So:
+    x → 6
+    y → 6
+
+Remember:
+
+    x++ → use first, increment later
+    ++x → increment first, use later
+
+
+- String + Operator :
+ ---------------------
+- The + operator behaves differently when strings are involved.
+
+    console.log("Hello " + "Sai"); // Hello Sai
+
+- Number + String :
+
+    console.log(10 + "5"); // 105
+    console.log(10 - "5"); // 5
+
+
+- Nullish Coalescing ?? 
+ -----------------------
+- value ?? fallback
+- It uses the fallback only when the first value is null or undefined.
+
+    const name = null;
+    console.log(name ?? "Guest"); // Guest
+
+    const name = "Sai";
+    console.log(name ?? "Guest"); // Sai
+
+
+- Optional Chaining ?.
+ ---------------------
+- The ?. means: If the value exists, access the property; otherwise return 
+  undefined instead of throwing an error.
+
+    const user = {
+        name: "Sai"
+    };
+    console.log(user.name); // You can access
+
+- But suppose: const user = null;
+  Then: console.log(user.name); ❌ Error
+- Because you're trying to access name from null.
+
+- Instead: console.log(user?.name);
+  Result: undefined
+
+- Optional Chaining with Functions : Call getName() only if it exists. ( user.getName?.(); )
+
+
+- Spread Operator ... 
+ ----------------------
+- The spread syntax expands values.
+
+const numbers1 = [1, 2, 3];
+const numbers2 = [...numbers1, 4, 5];
+console.log(numbers2); // [1, 2, 3, 4, 5]
+
+- Spread with Objects :
+
+    const user = {
+        name: "Sai",
+        age: 25
+    };
+    const updatedUser = {
+        ...user,
+        age: 26
+    };
+
+    user
+    → { name: "Sai", age: 25 }
+    updatedUser
+    → { name: "Sai", age: 26 }
+
+
+- Rest Operator ... 
+ -------------------
+- The same ... syntax can also be used as a rest parameter.
+
+    function add(...numbers) {
+        console.log(numbers);
+    }
+    add(10, 20, 30); // [10, 20, 30]
+
+- Here: ...numbers collects the remaining arguments into an array.
+
+
+- Unary Operators :
+ -------------------
+- Unary operators operate on a single value.
+
+    typeof
+    !
+    ++
+    --
+    +
+    -
+
+
+- Bitwise Operators :
+ ---------------------
+- JavaScript also has bitwise operators:
+- These work with binary representations of numbers.
+
+    &
+    |
+    ^
+    ~
+    <<
+    >>
+    >>>
+
+-->
