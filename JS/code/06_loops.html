@@ -1,0 +1,277 @@
+<!-- 
+
+- Loops :
+ ---------
+- Loops are used when you want to repeat a block of code multiple times.
+
+
+- Types of Loops in JavaScript :
+ --------------------------------
+
+1. for
+2. while
+3. do...while
+4. for...of
+5. for...in
+
+
+- for Loop :
+ ------------
+- The for loop is one of the most important loops.
+
+    for (initialization; condition; increment/decrement) {
+        // code
+    }
+
+    for (let i = 1; i <= 5; i++) {
+        console.log(i);
+    }
+
+                initialization
+                ↓
+    for (let i = 1; i <= 5; i++)
+                    ↑          ↑
+                condition    increment
+
+    1
+    2
+    3
+    4
+    5
+
+
+- while Loop :
+  -------------
+- A while loop repeats code while a condition is true.
+
+    while (condition) {
+        // code
+    }
+
+    let i = 1;
+    while (i <= 5) {
+        console.log(i);
+        i++;
+    }
+
+    1
+    2
+    3
+    4
+    5
+
+
+- do...while : 
+ -------------
+- do...while is similar to while, but there is one major difference:
+- The code executes at least once.
+
+    do {
+        // code
+    } while (condition);
+
+    let i = 1;
+    do {
+        console.log(i);
+        i++;
+    } while (i <= 5);
+
+    1
+    2
+    3
+    4
+    5
+
+
+- for...of :
+ -----------
+- for...of is very useful for iterating over values.
+
+    let fruits = ["Apple", "Banana", "Mango"];
+    for (let fruit of fruits) {
+        console.log(fruit);
+    }
+
+    Apple
+    Banana
+    Mango
+
+- for...of also works with strings.
+
+    let name = "Sai";
+    for (let character of name) {
+        console.log(character);
+    }
+
+    Output:
+
+    S
+    a
+    i
+
+
+- for...in : 
+ ------------
+- for...in is primarily used to iterate over property keys of an object.
+
+    let user = {
+        name: "Sai",
+        age: 25,
+        city: "Kadapa"
+    };
+    for (let key in user) {
+        console.log(key);
+    }
+
+    name
+    age
+    city
+
+- Here key contains the property names.
+
+- Getting Object Values with for...in :
+
+    let user = {
+        name: "Sai",
+        age: 25,
+        city: "Kadapa"
+    };
+    for (let key in user) {
+        console.log(user[key]);
+    }
+
+    Sai
+    25
+    Kadapa
+
+- If key = "name" then user[key] becomes: user["name"] which gives: Sai
+
+
+- break :
+---------
+- break immediately stops a loop.
+
+    for (let i = 1; i <= 10; i++) {
+        if (i === 5) {
+            break;
+        }
+        console.log(i);
+    }
+
+Output:
+
+1
+2
+3
+4
+
+
+- continue :
+ ------------
+- continue skips the current iteration and moves to the next iteration.
+
+    for (let i = 1; i <= 5; i++) {
+        if (i === 3) {
+            continue;
+        }
+        console.log(i);
+    }
+
+Output:
+
+1
+2
+4
+5
+
+
+- Nested Loops :
+ ---------------
+- A loop inside another loop is called a nested loop.
+
+    for (let i = 1; i <= 3; i++) {
+        for (let j = 1; j <= 3; j++) {
+            console.log(i, j);
+        }
+    }
+
+Output:
+
+1 1
+1 2
+1 3
+2 1
+2 2
+2 3
+3 1
+3 2
+3 3
+
+
+- forEach() :
+ ------------
+- This is another way to iterate over arrays.
+
+    let fruits = ["Apple", "Banana", "Mango"];
+
+    fruits.forEach(function(fruit) {
+        console.log(fruit);
+    });
+
+Or with an arrow function:
+
+    fruits.forEach((fruit) => {
+        console.log(fruit);
+    });
+
+Output:
+
+Apple
+Banana
+Mango
+
+
+- Traditional Loops vs Array Methods :
+ --------------------------------------
+
+- You'll eventually see:
+
+    for
+    while
+    do...while
+    for...of
+    for...in
+
+and:
+
+    forEach()
+    map()
+    filter()
+    reduce()
+
+
+| Situation                        | Usually use  |
+| -------------------------------- | ------------ |
+| Known number of repetitions      | `for`        |
+| Condition-based repetition       | `while`      |
+| Must execute at least once       | `do...while` |
+| Iterate over array/string values | `for...of`   |
+| Iterate over object keys         | `for...in`   |
+| Simple array iteration           | `forEach()`  |
+| Create a new transformed array   | `map()`      |
+| Select matching elements         | `filter()`   |
+| Calculate one accumulated result | `reduce()`   |
+
+
+-->
+
+
+<script>
+
+for(let i=i; i<=5; i++){
+    console.log(i);
+}
+
+
+
+</script>
