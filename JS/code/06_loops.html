@@ -268,10 +268,38 @@ and:
 
 <script>
 
-for(let i=i; i<=5; i++){
+for(let i=1; i<=5; i++){
     console.log(i);
 }
 
+let a=1;
+while(a<=5){
+    console.log(a);
+    a++;
+}
+
+let b=1;
+do{
+    console.log(b);
+    b++;
+} while(b<=5)
+
+let fruits = ['apple', 'mango', 'kiwi'];
+for(let fruit of fruits){
+    console.log(fruit)
+}
+
+fruits.forEach(fruit => {
+    console.log(fruit)
+})
+
+let user = {
+    name: 'sai',
+    age: 22,
+}
+for(let key in user){
+    console.log(key  + ':' , user[key])
+}
 
 
 </script>
