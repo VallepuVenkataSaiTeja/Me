@@ -1,0 +1,325 @@
+<!-- 
+
+- Function :
+ -----------
+- A function is a reusable block of code designed to perform a specific task.
+
+    function functionName() {
+        // code
+    }
+
+- Creating a function:
+
+    function greet() {
+        console.log("Hello");
+    }
+
+- Calling it:
+
+    greet();
+
+- Function Declaration :
+ -----------------------
+
+    function greet() {
+        console.log("Hello");
+    }
+
+
+- Parameter :
+ ------------
+- The variable defined in the function:
+
+    function greet(name) {
+        // name = parameter
+    }
+
+
+- Argument :
+ -----------
+- The actual value passed when calling the function:
+
+    greet("Sai");
+    // "Sai" = argument
+
+
+- Return Statement :
+ -------------------
+- its purpose is to send a value back to the caller.
+
+    function square(number) {
+        return number * number;
+    }
+    let result = square(5);
+    console.log(result); // 25
+
+- return Stops the Function.
+
+    function test() {
+        console.log("A");
+        return;
+        console.log("B");
+    }
+    test(); 
+
+- Output: A
+- "B" is never printed.
+- Once JavaScript executes: return; the function ends.
+
+
+- Default Parameters :
+ ---------------------
+- You can provide a default value for a parameter.
+
+    function greet(name = "Guest") {
+        console.log("Hello " + name);
+    }
+    greet("Sai"); // greet("Sai");
+    Hello Sai     // Hello Guest
+
+- Without a default: Output is Hello undefined
+
+
+- Function Expression :
+ -----------------------
+- A function can also be stored inside a variable.
+
+    const greet = function () {
+        console.log("Hello");
+    };
+    greet(); // Hello
+
+
+- Arrow Functions :
+ ------------------
+- Arrow functions are a modern and extremely important way of writing functions.
+
+- Normal function:
+
+    function add(a, b) {
+        return a + b;
+    }
+
+- Arrow function:
+
+    const add = (a, b) => {
+        return a + b;
+    };
+
+
+- Arrow Function Syntax :
+ ------------------------
+
+- Basic:
+
+    const greet = () => {
+        console.log("Hello");
+    };
+
+- With one parameter:
+- You can omit parentheses around a single parameter.
+
+    const greet = (name) => {
+        console.log("Hello " + name);
+    };
+
+- Multiple parameters:
+
+    const add = (a, b) => {
+        return a + b;
+    };
+
+
+- Arrow Function Implicit Return :
+ ---------------------------------
+- If the arrow function contains a single expression, you can return it without writing return.
+- Instead of:
+
+    const add = (a, b) => {
+        return a + b;
+    };
+
+- you can write:
+
+    const add = (a, b) => a + b;
+
+- This is called an implicit return.
+
+
+- Functions as Values :
+ -----------------------
+- In JavaScript, functions are first-class values.
+- That means you can:
+* store a function in a variable
+* pass a function as an argument
+* return a function from another function
+* store functions inside objects/arrays
+
+* store a function in a variable :
+
+    const greet = function () {
+        console.log("Hello");
+    };
+    greet();
+
+* pass a function as an argument :
+- This concept leads directly to callbacks.
+
+    function greet() {
+        console.log("Hello");
+    }
+    function executeFunction(fn) {
+        fn();
+    }
+    executeFunction(greet);
+
+- Callback Function :
+ --------------------
+- A callback is simply a function passed to another function to be called later/by that function.
+
+    function greet(name) {
+        console.log("Hello " + name);
+    }
+    function processUser(callback) {
+        callback("Sai");
+    }
+    processUser(greet);
+
+* return a function from another function :
+- This concept becomes very important when we study: Closures.
+
+    function outer() {
+        function inner() {
+            console.log("Hello");
+        }
+        return inner;
+    }
+    const result = outer();
+    result();
+
+
+- Function Scope :
+ -----------------
+- Variables created inside a function generally belong to that function's scope.
+
+function test() {
+    let message = "Hello";
+    console.log(message);
+}
+test(); // This works.
+
+- But console.log(message); outside the function doesn't work because message is local to the function.
+
+
+- Rest Parameters in Functions :
+ --------------------------------
+- Suppose you don't know how many arguments will be passed.
+- You can use: ... called the rest parameter.
+
+    function add(...numbers) {
+        console.log(numbers);
+    }
+    add(10, 20, 30, 40); // [10, 20, 30, 40]
+
+- All arguments are collected into an array called: numbers
+
+
+- Arguments Object :
+ -------------------
+- Traditional functions have access to an arguments object.
+
+    function test(a, b) {
+        console.log(arguments);
+    }
+    test(10, 20); // [Arguments] { '0': 10, '1': 20 }
+
+- It contains the arguments passed to the function.
+- However, modern JavaScript generally prefers rest parameters:
+
+    function test(...args) {
+        console.log(args);
+    }
+
+- because args is a real array.
+
+- Arrow functions do not have their own arguments object.
+
+    const test = () => {
+        console.log(arguments); // ReferenceError: arguments is not defined
+    };
+    test(10,20)
+
+- Use 
+
+    const test = (...args) => {
+        console.log(args);
+    };
+    test(10,20)
+
+
+- Pure Functions :
+ ------------------
+- A pure function is a function that:
+* Given the same input, always produces the same output.
+* Doesn't cause unwanted side effects.
+
+    function add(a, b) {
+        return a + b;
+    }
+    add(2, 3) // 5
+
+
+- Impure Function :
+ ------------------
+
+let count = 0;
+function increment() {
+    count++;
+}
+
+- The function changes external state: count
+
+
+- Function Declaration Hoisting :
+ ---------------------------------
+- function declarations are hoisted.
+
+    greet();
+    function greet() {
+        console.log("Hello");
+    }
+
+- Function Expression are not hoisted.
+
+    greet();
+    const greet = function () {
+        console.log("Hello");
+    };
+
+- return Without a Value gives undefined.\
+
+
+| Feature         | Normal Function      | Arrow Function          |
+| --------------- | -------------------- | ----------------------- |
+| Syntax          | `function test() {}` | `const test = () => {}` |
+| Parameters      | Yes                  | Yes                     |
+| Return          | Yes                  | Yes                     |
+| Implicit return | No                   | Yes                     |
+| Own `this`      | Yes                  | No                      |
+| Own `arguments` | Yes                  | No                      |
+| Common in React | Yes                  | Very common             |
+
+
+
+- The Most Important Arrow Function Difference: this 
+ -----------------------------------------------------
+- Arrow functions don't create their own this; they use the surrounding lexical this.
+
+-->
+
+<script>
+
+
+
+
+</script>
