@@ -319,7 +319,93 @@ function increment() {
 
 <script>
 
+function greet(){
+    console.log('hello');
+}
+greet();
+
+const hi = function(){
+    console.log('hi')
+}
+hi();
+
+function add(a,b){
+    console.log(a+b);
+}
+add(10,20);
+
+function grt(name){
+    console.log('hello ' + name)
+}
+grt('ram');
+
+function grt(name='guest'){
+    console.log('hello ' + name)
+}
+grt();
+
+function mul(a,b){
+    return a*b;
+}
+console.log(mul(3,5))
+
+const ad = (a,b) => {
+    return a+b;
+}
+console.log(ad(3,4))
+
+const msg = () => {
+    console.log('message');
+}
+msg();
+
+const sq = n => n*n;
+console.log(sq(6))
+
+function hello(){
+    console.log('hi')
+}
+function callback(cb){
+    cb();
+}
+callback(hello)
+
+function outer(){
+    let count = 0;
+    function inner(){
+        count++;
+        return count;
+    }
+    return inner;
+}
+let val = outer();
+console.log(val());
+console.log(val());
+console.log(val());
 
 
+function inf(...num){
+    return num;
+}
+console.log(inf(1,2,3,4,5))
+
+const ar = (...num) => num;
+console.log(ar(3,4,5)) 
+
+function ab(a,b,c){
+    console.log(arguments)
+}
+ab(2,3,4)
+
+const bc = (...args) => console.log(args);
+bc(5,6,7)
+
+aa();
+function aa(){
+    console.log('hi')
+}
+
+// bb();
+const bb = () => console.log('bb')
 
 </script>
