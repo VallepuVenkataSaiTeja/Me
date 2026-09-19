@@ -1,0 +1,210 @@
+<!-- 
+
+- Type Conversion = changing a value's type intentionally.
+- Type Coercion   = JavaScript automatically changing a value's type.
+
+- Type Conversion :
+ ------------------
+- Type conversion means converting one data type into another.
+
+    let age = "25";
+    console.log(typeof age); // string
+    let newAge = Number(age);
+    console.log(typeof newAge); // number
+
+- We manually converted:
+    "25" → 25
+    string → number
+
+- This is called explicit type conversion.
+
+
+- Type Coercion :
+ -----------------
+- Type coercion happens when JavaScript automatically converts one type into another
+  to perform an operation.
+
+    let result = "10" + 5;
+    console.log(result); // 105
+
+- Because JavaScript sees:
+
+    "10" → string
+    5    → number
+
+- With +, JavaScript converts the number to a string: "10" + "5". Result: "105"
+- This is type coercion.
+
+
+| Type            | Who performs conversion? | Example        |
+| --------------- | ------------------------ | -------------- |
+| Type Conversion | You                      | `Number("10")` |
+| Type Coercion   | JavaScript               | `"10" - 5`     |
+
+
+- Explicit Type Conversion :
+ ---------------------------
+    String()
+    Number()
+    Boolean()
+
+- String Conversion :
+ --------------------
+- You can convert a value to a string using: String()
+
+    let number = 100;
+    let result = String(number);
+    console.log(result); // '100'
+    console.log(typeof result); // string
+
+
+- Number Conversion :
+ --------------------
+- Number()
+
+    let value = "100";
+    let result = Number(value);
+    console.log(result); // 100
+    console.log(typeof result); // number
+
+- Important Number Conversion Table :
+
+| Value       | `Number(value)` |
+| ----------- | --------------: |
+| `"100"`     |           `100` |
+| `"10.5"`    |          `10.5` |
+| `""`        |             `0` |
+| `" "`       |             `0` |
+| `"hello"`   |           `NaN` |
+| `true`      |             `1` |
+| `false`     |             `0` |
+| `null`      |             `0` |
+| `undefined` |           `NaN` |
+
+
+- Boolean Conversion :
+ ---------------------
+- Boolean()
+- JavaScript has a concept called: Truthy and Falsy
+
+- Falsy Values :
+ ----------------
+- A falsy value is a value that JavaScript treats as false when used in a boolean context.
+
+    false
+    0
+    -0
+    0n
+    ""
+    null
+    undefined
+    NaN
+
+- Truthy Values :
+ -----------------
+- Everything that is not falsy is generally truthy.
+
+Boolean(1); // true
+Boolean(-1); // true
+Boolean("hello"); // true
+Boolean("0"); // true
+Boolean("false"); // true
+Boolean([]); // true
+Boolean({}); // true
+
+- This surprises many beginners:
+
+Boolean([]); // true
+Boolean({}); // true
+
+- An empty array and empty object are still objects, and objects are truthy.
+
+
+- Type Coercion :
+ -----------------
+-JavaScript sometimes converts values automatically when operators are used.
+
+    "5" + 2  → "52"
+    "5" - 2  → 3
+    "5" * 2  → 10
+    "5" / 2  → 2.5
+
+
+- == vs === :
+ -------------
+
+| Operator | Type coercion | Recommended   |
+| -------- | ------------- | ------------- |
+| `==`     | Yes           | Usually avoid |
+| `===`    | No            | Yes           |
+
+
+- Examples :
+
+5 == "5"   // true
+5 === "5"  // false
+true == 1  // true
+false == 0 // true
+"" == 0    // true
+null == undefined  // true
+null === undefined // false
+null == 0 // false
+
+
+- NaN : Not a Number
+ ------
+- NaN is technically a special numeric value in JavaScript.
+    typeof NaN -> number
+
+    let result = Number("hello");
+    console.log(result); // NaN
+
+- Checking for NaN : Number.isNaN()
+
+
+- parseInt() :
+ --------------
+- parseInt() converts a string into an integer.
+
+    parseInt("100"); // 100
+
+
+- parseFloat() :
+ ---------------
+- parseFloat() can preserve decimal values.
+
+    parseFloat("10.99"); // 10.99
+
+- Number() expects the whole value to represent a valid number.
+- parseInt() reads the integer from the beginning until the numeric part ends.
+
+
+| Function       | Purpose            | Example              | Result  |
+| -------------- | ------------------ | -------------------- | ------- |
+| `String()`     | Convert to string  | `String(100)`        | `"100"` |
+| `Number()`     | Convert to number  | `Number("100")`      | `100`   |
+| `Boolean()`    | Convert to boolean | `Boolean(1)`         | `true`  |
+| `parseInt()`   | Parse integer      | `parseInt("10.5")`   | `10`    |
+| `parseFloat()` | Parse decimal      | `parseFloat("10.5")` | `10.5`  |
+
+
+-->
+
+
+<script>
+
+console.log(Number('100'));
+console.log(String('22'));
+console.log(Boolean(true));
+console.log(Boolean(false));
+
+// falsy values : 0, null , undefined, false, NaN, ""
+
+console.log(parseInt(10.99));
+console.log(parseFloat(10.99));
+
+console.log(Number.isNaN('hello'));
+console.log(Number.isNaN(90));
+console.log(Number.isNaN(true));
+
+</script>
