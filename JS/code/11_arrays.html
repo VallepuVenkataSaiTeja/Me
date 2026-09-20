@@ -1,0 +1,517 @@
+<!-- 
+
+- Array :
+ ---------
+- An array is a data structure used to store multiple values in a single variable.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+
+
+- Array Indexing :
+ -----------------
+- Arrays use zero-based indexing.
+
+    Value:    Apple     Banana     Mango
+    Index:      0          1         2
+
+- console.log(fruits[0]); // Apple
+- console.log(fruits[1]); // Banana
+- console.log(fruits[2]); // Mango
+
+
+- Getting the Array Length :
+ ----------------------------
+- use .length
+- .length tells you the number of elements, not the last index.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    console.log(fruits.length); // 3
+
+- we have: length = 3, last index = 2
+- Therefore: array.length - 1 gives the last index.
+
+
+- Getting the Last Element :
+ ----------------------------
+- Traditional way:
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    console.log(fruits[fruits.length - 1]); // Mango
+
+- Modern way:
+
+    console.log(fruits.at(-1)); // Mango
+
+
+- Arrays Can Store Different Data Types :
+ -----------------------------------------
+
+    const data = [
+        "Sai",
+        22,
+        true,
+        null,
+        undefined
+    ];
+
+- Although JavaScript allows this, in real applications you usually keep arrays logically consistent.
+
+
+- Checking Whether Something Is an Array :
+ ------------------------------------------
+
+ - console.log(typeof []); // object
+ - Array.isArray([]); // true
+
+    console.log(Array.isArray([1, 2, 3])); // true
+
+
+- Creating an Array :
+ ----------------------
+
+- Array literal — preferred
+
+    const fruits = ["Apple", "Banana", "Mango"];
+
+- new Array() :
+
+    const fruits = new Array("Apple", "Banana", "Mango");
+
+- The literal syntax is usually simpler and preferred: []
+
+
+- Arrays Are Mutable :
+ ---------------------
+- Unlike strings, arrays are mutable.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    fruits[1] = "Orange";
+    console.log(fruits); // ["Apple", "Orange", "Mango"]
+
+
+- const Array Can Still Be Modified 
+
+    const fruits = ["Apple", "Banana"];
+    fruits.push("Mango");
+    console.log(fruits); // ["Apple", "Banana", "Mango"]
+
+- Because const prevents reassigning the variable, not modifying the array's contents.
+- fruits = ["Orange"]; ❌ is not allowed.
+- fruits.push("Mango"); ✅ is allowed.
+
+
+- push() :
+ ---------
+- Adds an element to the end of an array.
+
+    const fruits = ["Apple", "Banana"];
+    fruits.push("Mango");
+    console.log(fruits); // ["Apple", "Banana", "Mango"]
+
+- push() changes the original array.
+- push() returns the new array length.
+
+    const fruits = ["Apple", "Banana"];
+    const result = fruits.push("Mango");
+    console.log(result); // 3
+
+
+- pop() :
+ ---------
+- Removes the last element.
+- pop() returns the removed element.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    const result = fruits.pop();
+    console.log(result); // Mango
+    console.log(fruits); // ["Apple", "Banana"]
+
+
+- shift() :
+ -----------
+- Removes the first element.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    const result = fruits.shift();
+    console.log(result); // Apple
+    console.log(fruits); // ["Banana", "Mango"]
+
+
+- unshift() :
+ -------------
+- Adds an element to the beginning.
+
+    const fruits = ["Banana", "Mango"];
+    fruits.unshift("Apple");
+    console.log(fruits); // ["Apple", "Banana", "Mango"]
+
+
+| Method      | Action                | Mutates array? |
+| ----------- | --------------------- | -------------- |
+| `push()`    | Add to end            | ✅              |
+| `pop()`     | Remove from end       | ✅              |
+| `shift()`   | Remove from beginning | ✅              |
+| `unshift()` | Add to beginning      | ✅              |
+
+
+- splice() :
+ ------------
+- splice() is used to add, remove, or replace elements at a particular position.
+- array.splice(start, deleteCount, item1, item2, ...)
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    fruits.splice(1, 1);
+    console.log(fruits); // ["Apple", "Mango"]
+
+- It starts at index 1 and removes 1 element.
+
+* splice() Add Elements :
+
+    const fruits = ["Apple", "Mango"];
+    fruits.splice(1, 0, "Banana");
+    console.log(fruits); // ["Apple", "Banana", "Mango"]
+
+start = 1
+deleteCount = 0
+add = "Banana"
+ 
+*  splice() Replace Elements :
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    fruits.splice(1, 1, "Orange");
+    console.log(fruits); // ["Apple", "Orange", "Mango"]
+
+* splice() Mutates the Original Array
+
+    const numbers = [1, 2, 3, 4];
+    numbers.splice(1, 2);
+    console.log(numbers); // [1, 4]
+
+- The original array changed.
+
+
+- slice() :
+ ----------
+- Creates a new array. it does not modify the original array.
+- returns a shallow copy of a portion of an array into a new array.
+- array.slice(start, end)
+
+    const numbers = [1, 2, 3, 4];
+    const result = numbers.slice(1, 3);
+    console.log(result);  // [2, 3]
+    console.log(numbers); // [1, 2, 3, 4]
+
+- slice() does not mutate the original array.
+
+- slice() vs splice() :
+ -----------------------
+- slice() : Creates a new array.
+- slice() : Creates a new array.
+
+slice  → copy/extract → does NOT mutate
+splice → add/remove   → mutates
+
+
+- concat() :
+ -----------
+- Combines arrays. The original arrays aren't changed.
+
+    const a = [1, 2];
+    const b = [3, 4];
+    const result = a.concat(b);
+    console.log(result); // [1, 2, 3, 4]
+
+
+- Spread Operator for Combining Arrays :
+ ----------------------------------------
+
+    const a = [1, 2];
+    const b = [3, 4];
+    const result = [...a, ...b];
+    console.log(result); // [1,2,3,4]
+
+
+- indexOf() :
+ --------------
+- Finds the first index of an element.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    console.log(fruits.indexOf("Banana")); // 1
+
+- If not found: -1
+
+
+- includes() :
+ -------------
+- Checks whether an array contains an element.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    console.log(fruits.includes("Banana")); // true
+
+- If Not found: false
+
+
+- find() :
+ ----------
+- find() is extremely important for React interviews.
+- It returns the first element that satisfies a condition.
+
+const numbers = [10, 20, 30, 40];
+const result = numbers.find((number) => number > 20);
+console.log(result); // 30
+
+* find() With Objects :
+
+    const users = [
+        { id: 1, name: "Sai" },
+        { id: 2, name: "Raj" },
+        { id: 3, name: "John" }
+    ];
+    const user = users.find((user) => user.id === 2);
+    console.log(user); // { id: 2, name: "Raj" }
+
+- find() Returns undefined If Not Found
+
+
+- findIndex() :
+ --------------
+- Returns the index of the first matching element.
+
+    const numbers = [10, 20, 30, 40];
+    const index = numbers.findIndex((number) => number > 20);
+    console.log(index); // 2
+
+
+- filter() :
+ -----------
+- filter() returns a new array containing all elements that satisfy a condition.
+
+    const numbers = [10, 20, 30, 40];
+    const result = numbers.filter((number) => number > 20);
+    console.log(result); // [30, 40]
+
+- find() : Returns one element
+- filter() : Returns an array
+
+find   → first matching element
+filter → all matching elements
+
+
+- map() :
+ ----------
+- It creates a new array by transforming every element.
+
+    const numbers = [1, 2, 3, 4];
+    const result = numbers.map((number) => number * 2);
+    console.log(result); // [2, 4, 6, 8]
+
+
+- forEach() :
+ --------------
+- forEach() executes a function for every element.
+
+    const numbers = [1, 2, 3];
+    numbers.forEach((number) => {
+        console.log(number);
+    });
+
+Output :
+
+1
+2
+3
+
+- map() vs forEach() :
+ ---------------------
+- map() Returns a new array
+- forEach() Does not create a transformed result array
+
+map     → transform → returns new array
+forEach → perform action → returns undefined
+
+
+- some() :
+ ---------
+- Checks whether at least one element satisfies a condition.
+
+    const numbers = [10, 20, 30, 40];
+    const result = numbers.some((number) => number > 30);
+    console.log(result); // true
+
+
+- every() :
+ -----------
+- Checks whether all elements satisfy a condition.
+
+    const numbers = [10, 20, 30];
+    const result = numbers.every((number) => number > 5);
+    console.log(result); // true
+
+
+- some() vs every() :
+ --------------------
+some()  → at least ONE passes
+every() → ALL must pass
+
+
+- reduce() :
+ ------------
+- It reduces an array to a single value.
+
+    const numbers = [1, 2, 3, 4];
+    const total = numbers.reduce((sum, number) => {
+        return sum + number;
+    }, 0);
+    console.log(total); // 10
+
+- reduce() Syntax :
+
+    array.reduce((accumulator, currentValue) => {
+        // logic
+    }, initialValue);
+
+accumulator  → stores the result
+currentValue → current array element
+initialValue → starting value
+
+
+- sort() :
+ ----------
+- Sorts an array.
+
+- Ascending:
+
+    const numbers = [10, 2, 30, 4];
+    numbers.sort((a, b) => a - b);
+    console.log(numbers); // [2, 4, 10, 30]
+
+- Descending:
+
+    numbers.sort((a, b) => b - a); // [30, 10, 4, 2]
+
+- Important: sort() Mutates the Array. The original array changes.
+
+
+- reverse() :
+ -------------
+- Reverses an array in place.
+
+    const numbers = [1, 2, 3];
+    numbers.reverse();
+    console.log(numbers); [3, 2, 1]
+
+
+- join() :
+ ----------
+- Converts an array to a string.
+
+    const fruits = ["Apple", "Banana", "Mango"];
+    console.log(fruits.join(", ")); // Apple, Banana, Mango
+
+- Without separator:
+
+    fruits.join("") // AppleBananaMango
+
+
+- flat() :
+ ----------
+- Flattens nested arrays.
+
+    const numbers = [1, [2, 3], [4, 5]];
+    console.log(numbers.flat()); // [1, 2, 3, 4, 5]
+
+
+- flatMap() :
+ -------------
+- Combines: map + flat
+
+    const numbers = [1, 2, 3];
+    const result = numbers.flatMap((number) => [number, number * 2]);
+    console.log(result); // [1, 2, 2, 4, 3, 6]
+
+
+- Array.from() :
+ ---------------
+- Creates an array from an iterable or array-like value.
+
+    const result = Array.from("Hello");
+    console.log(result); // ["H", "e", "l", "l", "o"]
+
+
+- Array.of() :
+ --------------
+- Creates an array from the provided values.
+
+    const numbers = Array.of(1, 2, 3);
+    console.log(numbers); // [1, 2, 3]
+
+
+- Mutating methods :
+  --------------------
+push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()
+
+- These modify the original array.
+
+- Non-mutating/common functional methods :
+ ------------------------------------------
+map()
+filter()
+find()
+findIndex()
+some()
+every()
+slice()
+concat()
+
+- These return values/new arrays without changing the original array.
+
+
+| Method        | Purpose                      | Returns               |
+| ------------- | ---------------------------- | --------------------- |
+| `map()`       | Transform every item         | New array             |
+| `filter()`    | Select matching items        | New array             |
+| `find()`      | Find first matching item     | Element / `undefined` |
+| `findIndex()` | Find first matching position | Number                |
+| `some()`      | Check if any matches         | Boolean               |
+| `every()`     | Check if all match           | Boolean               |
+| `reduce()`    | Combine into one result      | Any value             |
+| `forEach()`   | Perform action for each      | `undefined`           |
+
+
+- Array Destructuring :
+ -----------------------
+- You already learned destructuring, but arrays are where it is commonly used.
+
+    const colors = ["red", "green", "blue"];
+    const [first, second, third] = colors;
+    console.log(first);  // red
+    console.log(second); // green
+    console.log(third);  // blue
+
+
+- Rest With Arrays :
+ ---------------------
+
+const numbers = [1, 2, 3, 4, 5];
+const [first, ...rest] = numbers;
+console.log(first); // 1
+console.log(rest);  // [2, 3, 4, 5]
+
+
+- Spread With Arrays :
+ ---------------------
+- Copy an array:
+
+    const numbers = [1, 2, 3];
+    const copy = [...numbers];
+    console.log(copy);
+
+- You now have a new array.
+
+-->
