@@ -172,3 +172,21 @@ const → ReferenceError
 - Trying to call: undefined() produces a TypeError.
 
 -->
+
+<script>
+
+console.log(x)
+var x =10;
+
+greet()
+function greet(){
+    console.log('hi')
+}
+
+hi();
+var hi = function(){
+    console.log('greeting')
+}
+
+
+</script>
