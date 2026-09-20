@@ -1,0 +1,220 @@
+<!-- 
+
+- Scope :
+ --------
+- Scope determines where a variable can be accessed in your JavaScript code.
+
+
+- Types of Scope :
+ -----------------
+* Global Scope
+* Function Scope
+* Block Scope
+* Lexical Scope
+* Module Scope
+
+- Global Scope :
+ ---------------
+- A variable declared outside functions and blocks is generally in the global scope.
+
+    let age = 22;
+    console.log(age);
+    function test() {
+        console.log(age);
+    }
+    test();
+
+Output:
+
+22
+22
+
+- If a large application has thousands of variables in global scope, variable conflicts can become a problem.
+
+
+- Function Scope :
+ -----------------
+- A variable declared inside a function is accessible only inside that function.
+
+function greet() {
+    let message = "Hello";
+    console.log(message); // Hello
+}
+greet();
+
+
+- Block Scope :
+ ----------------
+- A block is code inside { }.
+
+    {
+        let x = 10;
+    }
+
+| Keyword | Function Scope | Block Scope |
+| ------- | -------------- | ----------- |
+| `var`   | ✅              | ❌           |
+| `let`   | ✅              | ✅           |
+| `const` | ✅              | ✅           |
+
+
+- Nested Scope :
+ ----------------
+- Scopes can exist inside other scopes.
+
+    let a = 10;
+    function outer() {
+        let b = 20;
+        function inner() {
+            let c = 30;
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+        inner();
+    }
+    outer();
+
+Output:
+
+10
+20
+30
+
+- Why can inner() access all three? Because of the scope chain.
+
+
+- Scope Chain :
+ --------------
+- When JavaScript tries to find a variable, it searches:
+- Current scope → Parent scope → Parent's parent → Global scope
+- This is called the scope chain.
+
+- Inner scope can access outer scope, but outer scope cannot access inner scope.
+
+    GLOBAL
+    │
+    ├── a
+    │
+    └── outer()
+        │
+        ├── b
+        │
+        └── inner()
+            │
+            └── c
+
+inner() can access:
+
+c
+b
+a
+
+outer() can access:
+
+b
+a
+
+Global can access:
+
+a
+
+
+- Lexical Scope :
+ -----------------
+- Lexical scope means that scope is determined by where the code is written, 
+  not where the function is called.
+
+    let name = "Sai";
+    function outer() {
+        let message = "Hello";
+        function inner() {
+            console.log(message);
+        }
+        inner();
+    }
+    outer();
+
+- inner() can access message because inner() was written inside outer(). That's lexical scope.
+
+    let x = 10;
+    function test() {
+        console.log(x);
+    }
+    function another() {
+        let x = 20;
+        test();
+    }
+    another();
+
+- What is the output? 10 ,Not 20
+- Because test() was defined in the global scope.
+- Its scope is determined by where it was defined, not where it was called.
+
+
+- Lexical Scope vs Dynamic Scope :
+ ---------------------------------
+- JavaScript uses lexical scope.
+
+- Lexical scope :
+- Scope depends on: Where the function is written.
+
+- Dynamic scope :
+- Scope would depend on: Where the function is called.
+
+
+- Scope and Closures :
+ ----------------------
+- Scope is directly connected to closures.
+
+    function outer() {
+        let count = 0;
+        function inner() {
+            count++;
+            console.log(count);
+        }
+        return inner;
+    }
+    const counter = outer();
+    counter();
+    counter();
+    counter();
+
+Output:
+
+1
+2
+3
+
+- Why can inner() still access count even after outer() has finished? Because of a closure.
+- A closure allows a function to remember variables from its outer lexical scope.
+- Closures are built on lexical scope.
+
+
+- Module Scope :
+ ---------------
+- Modern JavaScript applications commonly use modules.
+- Variables inside a module are normally scoped to that module unless explicitly exported.
+- This is called module scope.
+
+user.js :
+
+    const username = "Sai";
+    export { username };
+
+app.js:
+
+    import { username } from "./user.js";
+    console.log(username);
+    
+
+| Scope    | Where variable is accessible               |
+| -------- | ------------------------------------------ |
+| Global   | Throughout applicable global code          |
+| Function | Inside the function                        |
+| Block    | Inside `{}` block                          |
+| Module   | Inside the module unless exported/imported |
+| Lexical  | Based on where code is written             |
+
+
+-->
