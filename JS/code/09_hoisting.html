@@ -1,0 +1,174 @@
+<!-- 
+
+- Hoisting :
+ ------------
+- Hoisting is JavaScript's behavior of processing declarations before executing the code in their scope.
+- Hoisting does NOT mean JavaScript physically moves your code to the top.
+
+    console.log(x); // undefined
+    var x = 10;
+
+- But because var is hoisted, the declaration is processed before execution.
+- Conceptually, you can think of it approximately like:
+
+    var x;
+    console.log(x);
+    x = 10;
+
+
+- Declaration vs Initialization :
+ ---------------------------------
+
+    var x = 10;
+
+- There are actually two things happening:
+
+- Declaration:
+    var x
+
+- Initialization/Assignment:
+    x = 10
+
+- During hoisting: var x; is processed first.
+- But: x = 10; doesn't happen until JavaScript reaches that line during execution.
+
+
+- Hoisting Does NOT Move the Value :
+ ------------------------------------
+
+- This is wrong:
+
+    JavaScript moves:
+    var x = 10;
+    to the top
+
+- Instead, think:
+
+    Declaration → processed early
+    Assignment  → happens where written
+
+
+- var Hoisting :
+ ---------------
+- var declarations are hoisted and initialized with: undefined
+
+    console.log(x); // undefined
+    var x = 10;
+
+
+- let and const Hoisting :
+ -------------------------
+- let and const declarations are also processed during the creation/setup of their scope, 
+  but they are not initialized in the same way as var.
+- Before their declaration is reached, accessing them results in a: ReferenceError
+- This period is called the: Temporal Dead Zone (TDZ)
+
+
+- Temporal Dead Zone (TDZ) :
+ ---------------------------
+
+    console.log(x); // ReferenceError
+    let x = 10;
+
+- Because x is in the Temporal Dead Zone from the beginning of its scope until the declaration is executed.
+
+    Scope begins
+        ↓
+    x exists but is uninitialized
+        ↓
+    Temporal Dead Zone
+        ↓
+    console.log(x) ❌
+        ↓
+    let x = 10
+        ↓
+    TDZ ends
+        ↓
+    x can now be accessed
+
+var   → undefined before declaration
+let   → ReferenceError
+const → ReferenceError
+
+
+- var vs let vs const :
+ ----------------------
+
+| Feature                                | `var`       | `let`            | `const`          |
+| -------------------------------------- | ----------- | ---------------- | ---------------- |
+| Declaration processed before execution | ✅           | ✅                | ✅                |
+| Initialized immediately to `undefined` | ✅           | ❌                | ❌                |
+| TDZ                                    | ❌           | ✅                | ✅                |
+| Access before declaration              | `undefined` | ❌ ReferenceError | ❌ ReferenceError |
+| Block scoped                           | ❌           | ✅                | ✅                |
+| Function scoped                        | ✅           | ✅                | ✅                |
+
+- var is initialized to undefined; let and const remain uninitialized until execution reaches their declaration.
+
+
+    {
+        // TDZ starts
+
+        console.log(x); // ❌
+
+        let x = 10;
+
+        // TDZ ends
+    }
+
+
+- Function Declaration Hoisting :
+ ---------------------------------
+- Function declarations are also hoisted.
+
+    greet(); // Hello
+    function greet() {
+        console.log("Hello");
+    }
+
+- The function declaration is available when the code starts executing.
+- Unlike a variable assignment, the function declaration can be called before it appears in the source code.
+
+
+- Function Expression Hoisting :
+ ---------------------------------
+
+    greet(); // ReferenceError
+    const greet = function() {
+        console.log("Hello");
+    };
+
+- because greet is a const variable and is in the TDZ.
+
+
+- Arrow Function Hoisting :
+ --------------------------
+- Arrow functions are commonly assigned to variables.
+
+    greet(); // ReferenceError
+    const greet = () => {
+        console.log("Hello");
+    };
+
+- Because: const greet is subject to TDZ.
+
+- Arrow Function With let : ReferenceError
+- Arrow Function With var : TypeError
+
+    greet();
+    var greet = () => {
+        console.log("Hello");
+    };
+
+- Conceptually: 
+
+    var greet;
+    greet();
+    greet = () => {
+        console.log("Hello");
+    };
+
+- At the time of the call: greet is undefined
+- Trying to call: undefined() produces a TypeError.
+
+-->
