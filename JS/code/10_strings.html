@@ -1,0 +1,347 @@
+<!-- 
+
+- String :
+ ---------
+- A string is a sequence of characters used to represent text.
+
+
+- Creating Strings :
+ --------------------
+- JavaScript provides three common ways.
+
+* Double quotes : let name = "Sai";
+* Single quotes : let name = 'Sai';
+* Backticks.    : let name = `Sai`;
+
+    let name = "Sai";
+    let age = 22;
+    let message = `My name is ${name} and I am ${age} years old.`;
+    console.log(message);
+
+
+- String Length : ( .length )
+ ----------------
+- .length is a property, not a function.
+- So use name.length not name.length()
+- Spaces Count in .length , The space is also a character.
+
+    let message = "Hello World";
+    console.log(message.length); // 11
+
+
+- Accessing Characters :
+ -----------------------
+- Strings use zero-based indexing.
+
+    let name = "Sai";
+
+    console.log(name[0]); // S
+    console.log(name[1]); // a
+    console.log(name[2]); // i
+
+- First Character - console.log(name[0]);
+- Last Character -  name[name.length - 1]
+
+
+- .at() Method 
+ --------------
+- Modern JavaScript also provides: .at()
+
+    let name = "Sai";
+
+    console.log(name.at(0));  // S
+    console.log(name.at(-1)); // i
+
+- The nice thing is that negative indexes work.
+
+
+- charAt() :
+ -----------
+- Another way.
+
+    let name = "Sai";
+    console.log(name.charAt(0)); // S
+
+
+- Strings Are Immutable :
+ ------------------------
+- Strings in JavaScript are immutable.
+- That means you cannot directly change an individual character.
+
+    let name = "Sai";
+    name[0] = "R";
+    console.log(name); // Sai
+
+- The string wasn't changed.
+
+- How to Change a String ?
+- Instead of modifying the original character, create a new string.
+
+    let name = "Sai";
+    name = "Raj";
+    console.log(name); // Raj
+
+- string methods generally return new strings.
+
+
+- toUpperCase() :
+ -----------------
+- Converts a string to uppercase.
+
+    let name = "sai";
+    console.log(name.toUpperCase()); // SAI
+
+
+- toLowerCase() :
+ -----------------
+- Converts a string to lowercase.
+
+    let name = "SAI";
+    console.log(name.toLowerCase());
+
+
+- trim() :
+ ---------
+- trim() removes whitespace from the beginning and end.
+
+    let name = "   Sai   ";
+    console.log(name.trim()); // Sai
+
+
+- trimStart() :
+ --------------
+- Removes whitespace from the beginning.
+
+    let name = "   Sai   ";
+    console.log(name.trimStart()); // "Sai   "
+
+
+- trimEnd() :
+ ------------
+- Removes whitespace from the end.
+
+    let name = "   Sai   ";
+    console.log(name.trimEnd()); // "   Sai"
+
+
+- includes() :
+ --------------
+- Checks whether a string contains another string.
+- includes() Is Case-Sensitive
+
+    let message = "Hello Sai";
+    console.log(message.includes("Sai")); // true
+    console.log(message.includes("Raj")); // false
+
+
+- startsWith() :
+ ---------------
+- Checks whether a string starts with a particular value.
+
+    let url = "https://example.com";
+    console.log(url.startsWith("https")); // true
+
+
+- endsWith() :
+ -------------
+- Checks whether a string ends with a particular value.
+
+    let file = "resume.pdf";
+    console.log(file.endsWith(".pdf")); // true
+
+
+- indexOf() :
+ ------------
+- Returns the position of the first occurrence of a value.
+
+    let message = "Hello World";
+    console.log(message.indexOf("World"));  // 6
+
+- indexOf() When Not Found: -1
+
+
+- lastIndexOf() :
+ ----------------
+- Finds the last occurrence.
+
+    let text = "hello hello";
+    console.log(text.lastIndexOf("hello")); // 6
+
+
+- search() :
+ -----------
+- search() searches for a pattern and returns its index.
+
+    let text = "Hello World";
+    console.log(text.search("World")); // 6
+
+- It is especially useful with regular expressions.
+
+    let text = "Hello 123";
+    console.log(text.search(/\d/)); // 6
+
+
+- slice() : 
+ ----------
+- slice() extracts part of a string.
+- string.slice(start, end)
+- The end index is not included.
+
+    let text = "JavaScript";
+    console.log(text.slice(0, 4)); // Java
+
+* slice() With One Argument :
+
+    let text = "JavaScript";
+    console.log(text.slice(4)); // Script
+
+- Start at index 4 and continue to the end.
+
+* slice() With Negative Index :
+ 
+    let text = "JavaScript";
+    console.log(text.slice(-6)); // Script
+
+- Negative indexes count from the end.
+
+
+- substring() :
+ --------------
+- Another method for extracting strings:
+
+    let text = "JavaScript";
+    console.log(text.substring(0, 4)); // Java
+
+- For most everyday code, slice() is often easier to reason about,
+  especially because slice() supports negative indexes.
+
+
+- substr() ⚠️
+ -------------
+- You may see: substr() in older code.
+- It is deprecated/legacy and should generally not be used in new code.
+- Prefer: slice() or substring()
+
+
+- replace() :
+ ------------
+- Replaces a matching part of a string.
+
+    let text = "Hello World";
+    let result = text.replace("World", "Sai");
+    console.log(result); // Hello Sai
+
+- replace() returns a new string.
+
+* replace() Replaces the First Match
+
+    let text = "apple apple";
+    console.log(text.replace("apple", "banana")); // banana apple
+
+
+- replaceAll() :
+ ---------------
+- To replace all matching occurrences:
+
+    let text = "apple apple";
+    console.log(text.replaceAll("apple", "banana")); // banana banana
+
+
+- split() :
+ ----------
+- split() converts a string into an array.
+
+    let fruits = "apple,banana,mango";
+    let result = fruits.split(",");
+    console.log(result); // ["apple", "banana", "mango"]
+
+* Splitting by Spaces :
+
+    let name = "Sai Teja";
+    console.log(name.split(" ")); // ["Sai", "Teja"]
+
+* Splitting Into Individual Characters :
+
+    let word = "Hello";
+    console.log(word.split("")); // ["H", "e", "l", "l", "o"]
+
+- concat() :
+ ------------
+- You can join strings with concat():
+
+    let first = "Hello";
+    let second = "World";
+    console.log(first.concat(" ", second)); // Hello World
+
+- However, modern JavaScript usually prefers: `${first} ${second}` or first + " " + second
+
+
+- Escape Characters :
+ ---------------------
+- Sometimes you need special characters inside strings.
+
+- New line :
+
+    let message = "Hello\nWorld";
+    console.log(message);
+
+Hello
+World
+
+- Tab :
+
+    let message = "Hello\tWorld";
+
+- Quote inside a string :
+
+    let message = "He said \"Hello\""; // He said "Hello"
+
+
+- Convert Other Values to Strings : String()
+ ----------------------------------
+
+    let number = 123;
+    let text = String(number);
+    console.log(text); // "123"
+    console.log(typeof text); // string
+
+-  You can also use: .toString()
+
+    let number = 123;
+    console.log(number.toString());
+
+- But be careful with: null.toString() and undefined.toString() .These cause errors.
+- String(null) is safer when you explicitly want conversion:
+
+
+- Common String Methods Cheat Sheet :
+ ------------------------------------
+
+ | Method           | Purpose                     |
+| ---------------- | --------------------------- |
+| `.length`        | Get length                  |
+| `.at()`          | Get character               |
+| `.charAt()`      | Get character               |
+| `.toUpperCase()` | Uppercase                   |
+| `.toLowerCase()` | Lowercase                   |
+| `.trim()`        | Remove outer whitespace     |
+| `.trimStart()`   | Remove beginning whitespace |
+| `.trimEnd()`     | Remove ending whitespace    |
+| `.includes()`    | Check if contained          |
+| `.startsWith()`  | Check beginning             |
+| `.endsWith()`    | Check ending                |
+| `.indexOf()`     | Find first index            |
+| `.lastIndexOf()` | Find last index             |
+| `.slice()`       | Extract part                |
+| `.substring()`   | Extract part                |
+| `.replace()`     | Replace first match         |
+| `.replaceAll()`  | Replace all matches         |
+| `.split()`       | Convert string to array     |
+| `.concat()`      | Join strings                |
+
+
+
+
+
+
+-->
