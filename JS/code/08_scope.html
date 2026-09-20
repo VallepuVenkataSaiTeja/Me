@@ -206,7 +206,7 @@ app.js:
 
     import { username } from "./user.js";
     console.log(username);
-    
+
 
 | Scope    | Where variable is accessible               |
 | -------- | ------------------------------------------ |
@@ -218,3 +218,39 @@ app.js:
 
 
 -->
+
+<script>
+
+let a = 1;
+function pri(){
+    let a = 3
+    console.log(a)
+}
+pri();
+console.log(a)
+
+let x = 10;
+function outer(){
+   let y =20;
+   function inner(){
+      let z = 30;
+      console.log(x);
+      console.log(y);
+      console.log(z);
+   }
+   inner()
+}
+outer();
+
+let name = 'sai';
+function nm(){
+    console.log(name);
+}
+
+function inr(){
+    let name = 'teja';
+    nm();
+}
+inr()
+
+</script>
