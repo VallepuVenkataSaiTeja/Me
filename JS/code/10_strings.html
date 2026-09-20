@@ -340,8 +340,73 @@ World
 | `.concat()`      | Join strings                |
 
 
-
-
-
-
 -->
+
+
+<script>
+    let name = 'sai';
+    let city = "kadapa";
+    let state = `andhra pradesh`;
+
+    // length
+    console.log(name.length);
+
+    // accessing
+    let a1 = 'college';
+    console.log(a1[0]);
+    console.log(a1.at(1));
+    console.log(a1.charAt(2))
+
+    // case
+    console.log('hello'.toUpperCase());
+    console.log('BYE'.toLocaleLowerCase());
+
+    // trim
+    console.log('  hi  '.trim());
+    console.log('  hi  '.trimStart());
+    console.log('  hi  '.trimEnd());
+
+    // includes
+    console.log('hello world'.includes('orl'))
+
+    // starts / ends with
+    console.log('hello world'.startsWith('hell'));
+    console.log('hello world'.endsWith('ld'));
+
+    // index
+    console.log('apple'.indexOf('p'));
+    console.log('apple'.lastIndexOf('p'));
+
+    // search
+    console.log('car'.search('r'));
+
+    //slice
+    console.log('javascript'.slice(0,4));
+    console.log('javascript'.slice(4));
+    console.log('javascript'.slice(-4))
+
+    console.log('javascript'.substring(0,4));
+
+    console.log('javascript'.substr(4))
+
+    // replace 
+    console.log('apple apple'.replace('apple','kiwi'));
+    console.log('apple apple'.replaceAll('apple','orange'));
+
+    // concat
+    console.log('a'.concat('-','bob'));
+
+    // split
+    console.log('hello,how,are,you'.split(','))
+    console.log('hello'.split(''))
+
+    // string
+    console.log(String(123));
+
+    // special characters
+    console.log('hello\nworld');
+    console.log('hello\tworld');
+    console.log('hello \"world\"')
+
+
+</script>
