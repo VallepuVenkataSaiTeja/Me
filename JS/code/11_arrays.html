@@ -498,10 +498,10 @@ concat()
 - Rest With Arrays :
  ---------------------
 
-const numbers = [1, 2, 3, 4, 5];
-const [first, ...rest] = numbers;
-console.log(first); // 1
-console.log(rest);  // [2, 3, 4, 5]
+    const numbers = [1, 2, 3, 4, 5];
+    const [first, ...rest] = numbers;
+    console.log(first); // 1
+    console.log(rest);  // [2, 3, 4, 5]
 
 
 - Spread With Arrays :
@@ -515,3 +515,89 @@ console.log(rest);  // [2, 3, 4, 5]
 - You now have a new array.
 
 -->
+
+
+<script>
+    let fruits = ['apple', 'orange', 'kiwi'];
+    console.log(fruits[0]);
+
+    console.log(fruits.length);
+
+    console.log(fruits[fruits.length-1])
+    console.log(Array.isArray(fruits))
+
+    let nums = [1,2,3];
+    nums.push(4);
+    console.log(nums)
+    console.log(nums.unshift(0));
+    console.log(nums)
+    console.log(nums.pop());
+    console.log(nums.shift())
+
+    let fr = ['apple', 'orange'];
+    fr.splice(1,0,'kiwi');
+    console.log(fr)
+
+    let num = [1,2,3];
+    num.splice(1,2);
+    console.log(num)
+
+    let n =[2,3,4];
+    console.log( n.slice(1,2))
+    console.log(n)
+
+    let a =[1,3];
+    let b = [5,7];
+    console.log(a.concat(b))
+
+    console.log([...a, ...b])
+
+    console.log(fruits.indexOf('orange'))
+    console.log(fruits.includes('kiwi'))
+
+    let c = [10,20,30];
+    console.log(c.find(n => n > 11))
+    console.log(c.findIndex(n => n > 11))
+
+    console.log(c.filter(n => n > 11));
+    console.log(c.map(n => n * 2))
+
+    c.forEach(p => {
+        console.log(p*11)
+    })
+
+    console.log(c.some(n => n>12));
+    console.log(c.every(n => n > 2))
+
+    console.log(c.reduce((prev,next) => prev + next, 0))
+
+    console.log([1,11,80,5].sort((a,b) => a - b))
+    console.log([1,11,80,5].sort((a,b) => b - a))
+    console.log(c.reverse())
+
+    console.log(['apple','potato','guava'].join(','))
+    console.log('hello'.split(''))
+
+    const a1 =[1,[2,3],[4,5]];
+    console.log(a1.flat())
+
+    let a2 = [1,2,3]
+    console.log(a2.flatMap(n => [n, n*2]))
+
+    console.log(Array.from('hello'));
+    console.log(Array.of(2,4,6))
+
+    const s = [1,2,3];
+    const [one,two,three] = s;
+    console.log(one);
+    console.log(two);
+    console.log(three)
+
+    let ss =[1,2,3,4,5];
+    let [a3,...b3] = ss;
+    console.log(a3);
+    console.log(b3)
+
+    console.log([...ss])
+
+</script>
