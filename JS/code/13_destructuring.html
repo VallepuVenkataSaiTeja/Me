@@ -1,0 +1,203 @@
+<!-- 
+
+- Destructuring :
+ -----------------
+- Destructuring lets you take values from an object or array and store them directly in variables.
+
+    const user = {
+        name: "Sai",
+        age: 22,
+        city: "Bengaluru"
+    };
+
+    const { name, age, city } = user;
+
+    console.log(name);
+    console.log(age);
+    console.log(city);
+
+
+- Two Types of Destructuring :
+ -------------------------------
+
+1. Object Destructuring
+const { name, age } = user;
+
+2. Array Destructuring 
+const [first, second] = numbers;
+
+
+- Object Destructuring :
+ -----------------------
+
+    const student = {
+        name: "Sai",
+        age: 22,
+        course: "React"
+    };
+
+- Without destructuring:
+
+    const name = student.name;
+    const age = student.age;
+    const course = student.course;
+
+- With destructuring:
+
+    const { name, age, course } = student;
+
+- Now you can directly use:
+
+    console.log(name);
+    console.log(age);
+    console.log(course);
+
+
+* Destructuring With Different Variable Names :
+
+    const user = {
+        name: "Sai",
+        age: 22
+    };
+
+- You want the variable to be called userName instead of name.
+
+    const { name: userName } = user;
+    console.log(userName);
+
+
+* Default Values :
+
+- Suppose the property doesn't exist :
+
+    const user = {
+        name: "Sai"
+    };
+    const { age } = user;
+    console.log(age); // undefined
+
+- You can provide a default
+
+    const { age = 22 } = user;
+    console.log(age); // 22
+
+- Existing Value Beats Default.
+- The default does not apply to null. The default applies when the value is undefined.
+
+
+* Nested Object Destructuring :
+
+    const user = {
+        name: "Sai",
+        address: {
+            city: "Bengaluru",
+            state: "Karnataka"
+        }
+    };
+
+- With nested destructuring:
+
+    const {
+        address: { city, state }
+    } = user;
+
+    console.log(city);
+    console.log(state);
+
+* Nested Destructuring With Renaming :
+
+    const {
+        address: { city: userCity }
+    } = user;
+
+
+- Array Destructuring :
+ ------------------------
+
+    const numbers = [10, 20, 30];
+
+- Without destructuring:
+
+    const first = numbers[0];
+    const second = numbers[1];
+    const third = numbers[2];
+
+- With destructuring:
+
+    const [first, second, third] = numbers;
+
+    console.log(first);
+    console.log(second);
+    console.log(third);
+
+* Array Destructuring Works by Position
+
+    const numbers = [10, 20, 30];
+    const [a, b, c] = numbers;
+
+- means:
+
+    a → first item
+    b → second item
+    c → third item
+
+- The variable names don't matter.
+
+- Object destructuring → property names
+- Array destructuring  → positions
+
+* Skipping Array Values :
+
+     const numbers = [10, 20, 30];
+
+- You only want the first and third values. You can skip the second:
+
+    const [first, , third] = numbers;
+
+    console.log(first); // 10
+    console.log(third); // 30
+
+* Array Destructuring With Default Values
+
+    const numbers = [10];
+    const [first, second = 20] = numbers;
+
+    console.log(first);  // 10
+    console.log(second); // 20
+
+* Existing Value Beats Default
+
+    const numbers = [10, 50];
+    const [first, second = 20] = numbers;
+    console.log(second); // 50
+
+
+- Rest Operator With Array Destructuring :
+ -----------------------------------------
+
+     const numbers = [10, 20, 30, 40, 50];
+
+- You want the first value separately and the remaining values together.
+
+    const [first, ...remaining] = numbers;
+
+    console.log(first);     // 10
+    console.log(remaining); // [20, 30, 40, 50]
+
+- Rest Must Be Last : const [first, ...remaining] = numbers;
+
+
+- Object Rest Destructuring :
+ ----------------------------
+
+    const user = {
+        name: "Sai",
+        age: 22,
+        city: "Bengaluru"
+    };
+
+    const { name, ...otherDetails } = user;
+    console.log(name);
+    console.log(otherDetails);
+
+-->
