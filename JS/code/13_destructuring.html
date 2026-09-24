@@ -201,3 +201,37 @@ const [first, second] = numbers;
     console.log(otherDetails);
 
 -->
+
+
+<script>
+    const user = {
+        name: "Sai",
+        age: 22,
+        city: "Bengaluru",
+        address: {
+            state: "Karnataka"
+        },
+    };
+    const {name: userName, age, city, pincode=516004, address: {state} } = user;
+    console.log(userName);
+    console.log(age);
+    console.log(city);
+    console.log(pincode)
+    console.log(state)
+
+    const {name, ...rest} = user;
+    console.log(name);
+    console.log(rest);
+
+
+    const nums = [1,2,3];
+    const [one, two, three, four = 4] = nums;
+    console.log(one);
+    console.log(two);
+    console.log(three);
+    console.log(four)
+
+    const [one1, ...two2] = nums;
+    console.log(one1);
+    console.log(two2);
+</script>
