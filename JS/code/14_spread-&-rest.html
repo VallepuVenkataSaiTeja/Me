@@ -1,0 +1,348 @@
+<!-- 
+
+- Spread Operator :
+ --------------------
+- The spread operator uses ... to expand the elements of an array or the properties of an object.
+
+    const numbers = [10, 20, 30];
+    console.log(...numbers); // 10 20 30
+
+
+- Spread With Arrays :
+ ---------------------
+- You can create a copy:
+
+    const copy = [...numbers];
+    console.log(copy); // [10, 20, 30]
+
+- Here ...numbers take all elements from numbers and put them into this new array.
+
+
+- Why Do We Use Spread?
+ -----------------------
+- One major reason is copying without directly mutating the original.
+
+    const numbers = [10, 20, 30];
+    const copy = [...numbers];
+    copy.push(40);
+
+    console.log(numbers); // [10, 20, 30]
+    console.log(copy); // [10, 20, 30, 40]
+
+
+- Spread Creates a New Outer Array :
+ -----------------------------------
+
+    const numbers = [10, 20, 30];
+    const copy = [...numbers];
+    console.log(numbers === copy); // false
+
+- They contain the same values, but are different array objects.
+
+
+- Combining Arrays :
+ --------------------
+
+    const frontend = ["HTML", "CSS", "JavaScript"];
+    const backend = ["Node.js", "PHP"];
+    const skills = [...frontend, ...backend];
+
+    console.log(skills);
+
+- This is much cleaner than manually adding every item.
+
+
+- Adding Items to an Array :
+ ----------------------------
+- You can also use spread to add elements.
+
+    const numbers = [20, 30];
+    const result = [10, ...numbers, 40];
+    console.log(result); // [10, 20, 30, 40]
+
+* Adding an Item to the Beginning ( const newFruits = ["Apple", ...fruits]; )
+* Adding an Item to the End ( const newFruits = [...fruits, "Orange"]; )
+
+
+- Spread With Function Calls :
+ ------------------------------
+
+    const numbers = [10, 20, 30];
+
+    function add(a, b, c) {
+        return a + b + c;
+    }
+
+- You could write: add(numbers[0], numbers[1], numbers[2]);
+- But spread allows: add(...numbers); // 60
+
+- Because add(...numbers); becomes conceptually add(10, 20, 30);
+
+
+- Spread With Math.max() :
+ --------------------------
+
+const numbers = [10, 50, 20, 80, 30];
+console.log(Math.max(...numbers)); // 80
+
+- Without spread, Math.max() does not receive the individual array elements as separate arguments.
+
+
+- Spread With Strings :
+ -----------------------
+- Spread can also expand an iterable such as a string.
+
+    const word = "React";
+    console.log([...word]); // ["R", "e", "a", "c", "t"]
+
+- So [..."React"] creates an array of characters.
+
+
+- Spread With Objects :
+ -----------------------
+
+    const user = {
+        name: "Sai",
+        age: 22
+    };
+    const copy = {
+        ...user
+    };
+    console.log(copy);
+
+Output:
+
+    {
+        name: "Sai",
+        age: 22
+    }
+
+- It copies the object's enumerable properties into a new object.
+
+
+- Adding Properties With Object Spread :
+ ---------------------------------------
+
+    const user = {
+        name: "Sai",
+        age: 22
+    };
+    const updatedUser = {
+        ...user,
+        city: "Bengaluru"
+    };
+    console.log(updatedUser);
+
+- Output:
+
+    {
+        name: "Sai",
+        age: 22,
+        city: "Bengaluru"
+    }
+
+
+- Updating an Object With Spread :
+ ----------------------------------
+
+    const user = {
+        name: "Sai",
+        age: 22,
+        city: "Bengaluru"
+    };
+
+- You want to change only the age.
+
+    const updatedUser = {
+        ...user,
+        age: 23
+    };
+
+- Result:
+
+    {
+        name: "Sai",
+        age: 23,
+        city: "Bengaluru"
+    }
+
+- Why Does age: 23 Replace age: 22?
+* Because properties appearing later overwrite properties with the same key.
+
+- When duplicate object keys exist, the last value wins.
+
+
+- Combining Objects :
+ --------------------
+
+    const personal = {
+        name: "Sai",
+        age: 22
+    };
+    const professional = {
+        role: "Frontend Developer",
+        experience: 1
+    };
+    const user = {
+        ...personal,
+        ...professional
+    };
+    console.log(user);
+
+- Output:
+
+    {
+        name: "Sai",
+        age: 22,
+        role: "Frontend Developer",
+        experience: 1
+    }
+
+
+
+- Rest Operator :
+ ----------------
+- Collect the remaining values into one variable.
+
+    function sum(a, b, c) {
+        return a + b + c;
+    }
+
+- This only handles three parameters.
+- Rest lets you accept any number of arguments:
+
+    function sum(...numbers) {
+        console.log(numbers);
+    }
+    sum(10, 20, 30, 40); // [10, 20, 30, 40]
+
+- The rest parameter collects all arguments into an array.
+
+
+- Rest With a Normal Parameter :
+ -------------------------------
+
+    function sum(first, ...numbers) {
+        console.log(first);    // 10
+        console.log(numbers);  // [20, 30, 40] 
+    }
+    sum(10, 20, 30, 40);
+
+
+    function add(...numbers) {
+        let total = 0;
+
+        for (const number of numbers) {
+            total += number;
+        }
+
+        return total;
+    }
+
+    console.log(add(10, 20));             // 30
+    console.log(add(10, 20, 30));         // 60
+    console.log(add(10, 20, 30, 40, 50)); // 150
+
+
+- Rest vs arguments :
+ --------------------
+- Older JavaScript often used:
+
+    function add() {
+        console.log(arguments);
+    }
+
+- Modern JavaScript commonly uses:
+
+    function add(...numbers) {
+        console.log(numbers);
+    }
+
+- Rest has advantages because it is a real array.
+- You can directly use:
+    numbers.map(...)
+    numbers.filter(...)
+    numbers.reduce(...)
+
+- With arguments, you often need to convert it first.
+
+
+- Rest With Object Destructuring :
+ ----------------------------------
+
+    const user = {
+        name: "Sai",
+        age: 22,
+        city: "Bengaluru"
+    };
+    const { name, ...otherDetails } = user;
+    console.log(name);
+    console.log(otherDetails);
+
+- Output:
+
+    Sai
+
+    {
+        age: 22,
+        city: "Bengaluru"
+    }
+
+
+- Rest Must Be Last :
+ ---------------------
+- This is an important rule.
+
+- Correct: const [first, ...rest] = numbers;
+- Incorrect: const [...rest, last] = numbers;
+
+
+- Spread and Rest Comparison :
+
+| Feature             | Spread                                 | Rest                      |
+| ------------------- | -------------------------------------- | ------------------------- |
+| Syntax              | `...`                                  | `...`                     |
+| Purpose             | Expand                                 | Collect                   |
+| Arrays              | Yes                                    | Yes                       |
+| Objects             | Yes                                    | Yes                       |
+| Functions           | Function calls                         | Function parameters       |
+| Destructuring       | No                                     | Yes                       |
+| Creates collection? | Usually expands an existing collection | Collects remaining values |
+| React importance    | ⭐⭐⭐⭐⭐                               | ⭐⭐⭐⭐                   |
+
+
+- Spread Is a Shallow Copy :
+ ---------------------------
+
+    const user = {
+        name: "Sai",
+        address: {
+            city: "Bengaluru"
+        }
+    };
+    const copy = {
+        ...user
+    };
+    
+- The outer object is copied.
+- But the nested address object is still shared.
+
+    copy.address.city = "Mysuru";
+    console.log(user.address.city); // Mysuru
+
+- Spread Does Not Deep Clone. It only copies the first level.
+
+
+- Spread With Objects vs Object.assign() :
+ -----------------------------------------
+
+    const copy = Object.assign({}, user);
+
+- This can create a shallow copy.
+- Modern JavaScript commonly uses:
+
+    const copy = {
+        ...user
+    };
+
+-->
