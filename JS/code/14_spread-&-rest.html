@@ -346,3 +346,64 @@ Output:
     };
 
 -->
+
+
+<script>
+
+    const numbers = [10,20,30];
+    console.log(...numbers)
+
+    const copy = [...numbers]
+    console.log(copy)
+
+    // numbers.push(40);
+    console.log(numbers);
+    console.log(copy);
+
+    console.log(numbers === copy)
+
+    const a = ['a','b','c'];
+    const b = [1,2,3];
+    console.log([...a,...b]);
+
+    const c = [0,...b,4];
+    console.log(c)
+
+    function add(a,b,c){
+    console.log(a,b,c)
+    }
+    add(numbers[0],numbers[1],numbers[2]);
+
+    function ad(...num){
+    console.log(num)
+    }
+    ad(10,20,30)
+
+    console.log(Math.max(...[10,20,30]))
+
+    console.log(...'hello')
+
+
+    const user = {
+    name: 'sai',
+    age: 22
+    }
+    const cpy = {
+    ...user
+    }
+    console.log(user);
+    console.log(cpy);
+
+    const updateUser = {
+    ...user,
+    age: 24
+    }
+    console.log(updateUser)
+
+    function sm(first,...remaining){
+    console.log(first);
+    console.log(remaining);
+    }
+    sm(1,2,3,4,5)
+
+</script>
