@@ -1,0 +1,108 @@
+<!-- 
+
+- Higher-Order Function :
+ -------------------------
+- A Higher-Order Function is a function that does at least one of these:
+* Accepts another function as an argument
+* Returns another function
+* Or it can do both.
+
+- Simple definition : A Higher-Order Function is a function that works with other functions.
+
+    function greet() {
+        console.log("Hello");
+    }
+
+    function execute(callback) {
+        callback();
+    }
+
+    execute(greet);
+
+- Here execute(greet); greet is being passed into execute().
+- Therefore execute() is a Higher-Order Function.
+- greet is the callback function.
+
+
+- HOF Can Return a Function :
+ -----------------------------
+- A function doesn't necessarily have to accept a function.
+- It can also return a function.
+
+    function createGreeting() {
+        return function() {
+            console.log("Hello");
+        };
+    }
+
+    const greet = createGreeting();
+    greet(); // Hello
+
+- Here createGreeting() returns a function.
+- Therefore createGreeting is a Higher-Order Function.
+
+
+- Arrow Function Version :
+ --------------------------
+- The same thing can be written:
+
+    const createGreeting = () => {
+        return () => {
+            console.log("Hello");
+        };
+    };
+
+    const greet = createGreeting();
+    greet();
+
+
+- HOF Can Accept AND Return a Function :
+ ----------------------------------------
+- A function can do both.
+
+    function createMultiplier(number) {
+
+        return function(value) {
+            return value * number;
+        };
+    }
+
+    const double = createMultiplier(2);
+    console.log(double(5));
+
+
+- Array Methods Are Higher-Order Functions :
+ --------------------------------------------
+ map()
+filter()
+forEach()
+find()
+some()
+every()
+reduce()
+sort()
+
+- Many of these are Higher-Order Functions because they accept callback functions.
+
+-->
+
+<script>
+    
+    function calc(n){
+    return function(x){
+        return n + x
+    }
+    }
+    const add = calc(2);
+    console.log(add(5))
+
+
+    const mul = (x) => {
+    return (y) => {
+        return x * y
+    }
+    }
+    const res = mul(5);
+    console.log(res(2))
+
+</script>
