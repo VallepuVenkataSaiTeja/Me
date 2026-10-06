@@ -1,0 +1,882 @@
+<!-- 
+ 
+- DOM = Document Object Model :
+ --------------------------------
+- When a browser loads an HTML page, it converts the HTML document into a tree-like structure of objects.
+
+    <!DOCTYPE html>
+        <html>
+        <head>
+            <title>My Page</title>
+        </head>
+
+        <body>
+            <h1>Hello World</h1>
+            <p>Welcome to JavaScript</p>
+        </body>
+    </html>
+
+- The browser creates a DOM representation of this HTML.cYou can think of it approximately like:
+
+    Document
+    │
+    └── html
+        ├── head
+        │   └── title
+        │       └── "My Page"
+        │
+        └── body
+            ├── h1
+            │   └── "Hello World"
+            │
+            └── p
+                └── "Welcome to JavaScript"
+
+- JavaScript can interact with these objects.
+
+
+- DOM Tree :
+ -------------
+- The DOM is represented as a tree.
+- This creates relationships between elements.
+- These relationships are important when we learn DOM traversal later.
+
+
+- Document, Element, Node :
+ --------------------------
+
+- Document :
+ ------------
+- document represents the entire HTML document.
+
+    console.log(document); // You can use it to access the webpage.
+
+- Element :
+ ----------
+- An element represents an HTML element.
+
+    <h1>Hello</h1> // The <h1> is an element.
+
+- Node :
+ -------
+- Node is a broader concept.
+- Different things in the DOM can be nodes.
+
+    <div>Hello</div>
+
+    Element Node
+        div
+        │
+        └── Text Node
+            "Hello"
+
+- The comment is also represented in the DOM as a node.
+
+    Node
+    ├── Document
+    ├── Element
+    ├── Text
+    └── Comment
+
+
+- Selecting Elements :
+ ----------------------
+
+* 1. getElementById() :
+ -----------------------
+- This is used to select one element by its id.
+
+    <h1 id="title">Hello World</h1>
+
+    const heading = document.getElementById("title");
+    console.log(heading);
+
+- The browser returns the <h1> element. You can then modify it.
+
+    heading.textContent = "Hello JavaScript";
+
+- It returns the element with the specified ID, or null if no matching element is found.
+
+
+* 2. getElementsByClassName() :
+ -------------------------------
+- This selects elements based on their class name.
+
+    <p class="text">Hello</p>
+    <p class="text">Welcome</p>
+    <p class="text">JavaScript</p>
+
+    const elements = document.getElementsByClassName("text");
+    console.log(elements);
+
+- There are three matching elements. You can access them using indexes:
+
+    console.log(elements[0]);
+    console.log(elements[1]);
+    console.log(elements[2]);
+
+- getElementsByClassName() returns an HTMLCollection
+
+
+* 3. getElementsByTagName() :
+ ----------------------------
+- This selects elements based on their HTML tag name.
+
+    <p>Hello</p>
+    <p>Welcome</p>
+    <p>JavaScript</p>
+
+- You can select all <p> elements:
+
+    const paragraphs = document.getElementsByTagName("p");
+    console.log(paragraphs);
+
+- It returns all matching <p> elements.
+- You can access them:
+
+    console.log(paragraphs[0]);
+    console.log(paragraphs[1]);
+    console.log(paragraphs[2]);
+
+
+* 4. querySelector() :
+ ----------------------
+- This is one of the most important DOM methods.
+- querySelector() selects the first element that matches a CSS selector.
+- This is powerful because you can use normal CSS selector syntax.
+
+* Selecting by ID    ( const heading = document.querySelector("#title"); )
+* Selecting by class ( const paragraph = document.querySelector(".text"); )
+* Selecting by tag   ( const heading = document.querySelector("h1"); )
+
+
+* 5. querySelectorAll() :
+ -------------------------
+- querySelectorAll() selects all elements that match a CSS selector.
+
+    <p class="text">One</p>
+    <p class="text">Two</p>
+    <p class="text">Three</p>
+
+    const paragraphs = document.querySelectorAll(".text");
+    console.log(paragraphs);
+
+- It returns all three elements.
+- You can access them:
+
+    console.log(paragraphs[0]);
+    console.log(paragraphs[1]);
+    console.log(paragraphs[2]);
+
+
+- NodeList vs HTMLCollection :
+ -----------------------------
+
+| Feature              | NodeList             | HTMLCollection             |
+| -------------------- | -------------------- | -------------------------- |
+| Commonly returned by | `querySelectorAll()` | `getElementsByClassName()` |
+| Contains             | Nodes                | Elements                   |
+| Index access         | ✅                    | ✅                         |
+| `forEach()`          | ✅ Commonly available | ❌ Not directly            |
+| Can be live          | Sometimes            | Commonly live              |
+| CSS selectors        | `querySelectorAll()` | No                         |
+
+
+- Static vs Live Collections :
+ ------------------------------
+
+    <div class="box">One</div>
+    <div class="box">Two</div>
+
+    querySelectorAll()
+            ↓
+    Static NodeList
+
+- ex: If you later add another .box, the existing boxes collection does not automatically update.
+
+    getElementsByClassName()
+            ↓
+    Live HTMLCollection
+
+- ex: If matching elements are added or removed, the collection can automatically reflect those changes.
+
+
+| Method                     | Selects          | Returns          |
+| -------------------------- | ---------------- | ---------------- |
+| `getElementById()`         | One ID           | Element / `null` |
+| `getElementsByClassName()` | Matching classes | HTMLCollection   |
+| `getElementsByTagName()`   | Matching tags    | HTMLCollection   |
+| `querySelector()`          | First CSS match  | Element / `null` |
+| `querySelectorAll()`       | All CSS matches  | NodeList         |
+
+
+- Changing HTML Elements :
+ --------------------------
+
+* 1. innerHTML :
+ ----------------
+- innerHTML gets or changes the HTML inside an element.
+
+    <div id="box">
+        <h1>Hello</h1>
+        <p>Welcome</p>
+    </div>
+
+    const box = document.querySelector("#box");
+    console.log(box.innerHTML);
+
+- You get the HTML inside #box:
+
+    <h1>Hello</h1>
+    <p>Welcome</p>
+
+- Changing innerHTML : You can replace the content - 
+
+    box.innerHTML = "<h1>Hello JavaScript</h1>";
+
+- You can add multiple elements:
+
+    box.innerHTML = `
+        <h1>Welcome</h1>
+        <p>Learn JavaScript</p>
+        <button>Click Me</button>
+    `;
+
+
+* 2. innerText :
+ ---------------
+- innerText gets or changes the visible text of an element.
+
+    <div id="box">
+        <h1>Hello</h1>
+        <p>Welcome</p>
+    </div>
+
+    const box = document.querySelector("#box");
+    console.log(box.innerText);
+
+- Result:
+
+    Hello
+    Welcome
+
+- Changing innerText:
+ 
+    box.innerText = "Hello JavaScript";
+
+- The result becomes:
+
+    <div id="box">
+        Hello JavaScript
+    </div>
+
+
+* 3. textContent :
+ -----------------
+- textContent gets or changes all text content inside an element.
+
+    <div id="box">
+        <h1>Hello</h1>
+        <p>Welcome</p>
+    </div>
+
+    console.log(box.textContent);
+
+- Result is approximately:
+
+    Hello
+    Welcome
+
+
+- innerText vs textContent :
+ ---------------------------
+
+    innerText
+        ↓
+    Visible/rendered text
+
+    textContent
+        ↓
+    Text content in the DOM
+
+
+* 6. outerHTML :
+ -----------------
+- outerHTML includes the element itself plus its contents.
+
+    <div id="box">
+        <h1>Hello</h1>
+    </div>
+
+    const box = document.querySelector("#box");
+    console.log(box.outerHTML);
+
+- Returns approximately:
+
+    <div id="box">
+        <h1>Hello</h1>
+    </div>
+
+
+    innerHTML
+    → inside
+
+    outerHTML
+    → element + inside
+
+
+| Property      | Gets                  | Sets             | Includes HTML tags? |
+| ------------- | --------------------- | ---------------- | ------------------- |
+| `innerHTML`   | HTML inside           | HTML inside      | ✅                   |
+| `innerText`   | Visible/rendered text | Text             | ❌                   |
+| `textContent` | DOM text              | Text             | ❌                   |
+| `outerHTML`   | Element + HTML inside | Replaces element | ✅                   |
+
+
+
+- Changing Attributes :
+ -----------------------
+
+- Attribute :
+ ------------
+- An attribute provides additional information about an HTML element.
+
+
+- getAttribute() :
+ ------------------
+- getAttribute() is used to read the value of an attribute.
+- Syntax : element.getAttribute("attributeName");
+
+    <img id="photo" src="image.jpg" alt="My Photo">
+
+    const image = document.querySelector("#photo");
+    console.log(image.getAttribute("src")); // image.jpg
+
+
+- setAttribute() :
+ -------------------
+- setAttribute() is used to add or change an attribute.
+
+    <img id="photo" src="old.jpg">
+
+    const image = document.querySelector("#photo");
+    image.setAttribute("src", "new.jpg");
+
+- Now the DOM becomes:
+
+    <img id="photo" src="new.jpg">
+
+- setAttribute() Can Also Add New Attributes
+
+    <h1 id="title">Hello</h1> 
+    
+- There is no class attribute. You can add one:
+
+    const title = document.querySelector("#title");
+    title.setAttribute("class", "heading");
+
+- Now:
+
+    <h1 id="title" class="heading">
+        Hello
+    </h1>
+
+- So setAttribute() does both:
+
+    Attribute exists?
+        ↓
+    Yes → Change it
+
+    No → Create it
+
+
+- removeAttribute() :
+ --------------------
+- Used to remove an attribute.
+
+    <input
+        type="text"
+        disabled
+    >
+
+    const input = document.querySelector("input");
+    input.removeAttribute("disabled");
+
+- Now the input is enabled.
+
+* Before: <input type="text" disabled>
+* After: <input type="text">
+
+
+- hasAttribute() :
+ ------------------
+- Used to check whether an element has a particular attribute.
+
+    <input id="username" disabled>
+
+    const input = document.querySelector("#username");
+    console.log(input.hasAttribute("disabled")); // true
+    console.log(input.hasAttribute("placeholder")); // false
+
+
+- Changing CSS / Styles :
+ ------------------------
+- JavaScript can change the appearance of HTML elements dynamically using the DOM.
+- There are two main approaches:
+    * Using element.style
+    * Using CSS classes with classList
+
+* 1. Using element.style :
+ -------------------------
+- The style property allows JavaScript to modify inline CSS. ( element.style.property = "value"; )
+
+    <h1 id="title">Hello World</h1>
+
+    const title = document.getElementById("title");
+    title.style.color = "red";
+
+* Changing Text Color         : title.style.color = "blue";
+* Changing Background Color   : title.style.backgroundColor = "yellow";
+
+- JavaScript uses camelCase for CSS properties.
+
+| CSS                | JavaScript        |
+| ------------------ | ----------------- |
+| `background-color` | `backgroundColor` |
+| `font-size`        | `fontSize`        |
+| `font-weight`      | `fontWeight`      |
+| `margin-top`       | `marginTop`       |
+| `padding-left`     | `paddingLeft`     |
+| `border-radius`    | `borderRadius`    |
+| `text-align`       | `textAlign`       |
+
+* Changing Font Size          : title.style.fontSize = "50px";
+* Changing Width and Height   : box.style.width = "300px"; box.style.height = "200px";
+* Changing Margin and Padding : box.style.margin = "20px"; box.style.padding = "30px"; box.style.marginTop = "20px";
+* Changing Border             : box.style.border = "2px solid black";
+* Hiding an Element           : message.style.display = "none";
+* Showing the Element Again   : message.style.display = "block";
+* Changing Visibility         : element.style.visibility = "hidden";
+
+* Setting CSS Using cssText :
+ ----------------------------
+
+    element.style.cssText = `
+        color: white;
+        background-color: black;
+        padding: 20px;
+    `;
+
+* Reading Inline Styles :
+ -------------------------
+
+    const title = document.getElementById("title");
+    title.style.color = "red";
+    console.log(title.style.color); // red
+
+- element.style primarily represents inline styles.
+
+    <style>
+        h1 {
+            color: blue;
+        }
+    </style>
+
+    <h1 id="title">Hello</h1>
+    console.log(title.style.color);
+
+- may return an empty string because the color wasn't set inline.
+
+* Reading the Actual Computed Style :
+ -------------------------------------
+- For the final style applied by the browser, use getComputedStyle()
+
+    const title = document.getElementById("title");
+    const styles = getComputedStyle(title);
+    console.log(styles.color);
+
+- If CSS contains:
+
+    h1 {
+        color: blue;
+    }
+
+- you can get the computed value.
+
+- element.style      : Reads/changes inline styles.
+- getComputedStyle() : Reads the final computed CSS style applied by the browser.
+
+* Using className :
+ ------------------
+- Instead of changing individual CSS properties, you can change CSS classes.
+
+    .red {
+        color: red;
+    }
+
+    .big {
+        font-size: 40px;
+    }
+
+    <h1 id="title">Hello</h1>
+
+    const title = document.getElementById("title");
+    title.className = "red";
+
+- Now the element has:
+
+    <h1 id="title" class="red">
+        Hello
+    </h1>
+
+* Problem With className : 
+- it will replace all existing classes. That's why classList is generally much better.
+
+    <h1 id="title" class="heading active">
+        Hello
+    </h1>
+
+    title.className = "red";
+
+    <h1 id="title" class="red">
+
+
+- classList :
+ ------------
+- classList gives us methods for working with CSS classes.
+- The most important methods are:
+
+    add()
+    remove()
+    toggle()
+    contains()
+    replace()
+
+* classList.add()         : title.classList.add("active");
+* Adding Multiple Classes : title.classList.add("active", "large", "highlight");
+* classList.remove()      : title.classList.remove("active");
+
+* classList.toggle()      : title.classList.toggle("active");
+- If the class exists, remove it. If it doesn't exist, add it.
+
+* classList.contains()    : element.classList.contains("active");
+- Checks whether an element contains a particular class.
+
+* classList.replace()     : element.classList.replace("oldClass", "newClass");
+- Replaces one class with another.
+
+
+* Creating & Removing Elements :
+ --------------------------------
+
+* Creating an Element with createElement() :
+ ----------------------------------------------
+- Creating an element does not automatically put it on the webpage.
+- You have created it in memory, but you still need to add it to the DOM.
+
+    const paragraph = document.createElement("p");
+
+- This creates a new: <p></p>
+
+Ex :
+----
+
+    <div id="container"></div>
+
+    const container = document.getElementById("container");
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Hello World";
+    container.append(paragraph);
+
+- Result:
+
+    <div id="container">
+        <p>Hello World</p>
+    </div>
+
+
+* Adding Text to the New Element :
+ ---------------------------------
+
+    const heading = document.createElement("h1");
+    heading.textContent = "Welcome to My Website";
+    document.body.append(heading);
+
+- Result:
+
+    <h1>Welcome to My Website</h1>
+
+
+* Adding CSS Classes :
+ ----------------------
+- After creating an element, you can use classList.
+
+.card {
+        background-color: lightblue;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.textContent = "This is a card";
+    document.body.append(card);
+
+    <div class="card">
+        This is a card
+    </div>
+
+* Adding an ID :
+ ----------------
+
+    const heading = document.createElement("h1");
+    heading.id = "mainHeading";
+
+- Result:
+
+    <h1 id="mainHeading"></h1>
+
+
+* Adding Attributes :
+ ---------------------
+- You can use setAttribute(). 
+
+    const image = document.createElement("img");
+    image.setAttribute("src", "image.jpg");
+    image.setAttribute("alt", "My Image");
+    document.body.append(image);
+
+- Result:
+
+    <img src="image.jpg" alt="My Image">
+
+
+* append() :
+ ------------
+- append() adds content at the end of an element.
+
+    <div id="container">
+        <p>First</p>
+    </div>
+
+    const container = document.getElementById("container");
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Second";
+    container.append(paragraph);
+
+- Result:
+
+    <div id="container">
+        <p>First</p>
+        <p>Second</p>
+    </div>
+
+- append() Can Add Multiple Things :
+
+    const p1 = document.createElement("p");
+    p1.textContent = "Hello";
+
+    const p2 = document.createElement("p");
+    p2.textContent = "World";
+
+    container.append(p1, p2);
+
+- You can also append text directly: container.append("Hello World");
+
+
+* appendChild() :
+ ----------------
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Hello World";
+    container.appendChild(paragraph);
+
+- Result:
+
+    <div id="container">
+        <p>Hello World</p>
+    </div>
+
+| `append()`             | `appendChild()`           |
+| ---------------------- | ------------------------- |
+| Modern method          | Older/common DOM method   |
+| Can add multiple nodes | Adds one node             |
+| Can add text           | Requires a Node           |
+| Returns `undefined`    | Returns the appended node |
+| More flexible          | More specific             |
+
+
+* prepend() :
+ -------------
+- prepend() adds content at the beginning.
+
+    <div id="container">
+        <p>Second</p>
+    </div>
+
+    const first = document.createElement("p");
+    first.textContent = "First";
+    container.prepend(first);
+
+- Result:
+
+    <div id="container">
+        <p>First</p>
+        <p>Second</p>
+    </div>
+
+
+* before() :
+ -----------
+- before() inserts an element before another element.
+
+    <div id="box">Box</div>
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Hello";
+    box.before(paragraph);
+
+- Result:
+
+    <p>Hello</p>
+    <div id="box">Box</div>
+
+- Notice that the paragraph is not inserted inside box. It is inserted before it.
+
+
+* after() :
+ -----------
+-after() inserts an element after another element.
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Hello";
+    box.after(paragraph);
+
+- Result:
+
+    <div id="box">Box</div>
+    <p>Hello</p>
+
+
+- Removing an Element with remove() :
+ -------------------------------------
+
+    <p id="message">Hello World</p>
+
+    const message = document.getElementById("message");
+    message.remove();
+
+- The paragraph is removed from the DOM.
+
+- Removing a Child with removeChild() :  ( parent.removeChild(child); )
+ ----------------------------------------
+
+    <div id="container">
+        <p id="message">Hello World</p>
+    </div>
+
+    const container = document.getElementById("container");
+    const message = document.getElementById("message");
+    container.removeChild(message);
+
+- Result:
+
+    <div id="container">
+    </div>
+
+
+- remove() vs removeChild() :
+ -----------------------------
+
+    remove()
+        ↓
+    "I remove myself."
+
+    removeChild()
+        ↓
+    "Parent removes its child."
+
+- Removing the Last Child  : list.lastElementChild.remove();
+- Removing the First Child : list.firstElementChild.remove();
+
+
+- innerHTML vs createElement() :
+ --------------------------------
+
+- You can create HTML like this:
+
+    container.innerHTML = `
+        <div class="card">
+            <h2>Hello</h2>
+            <p>Welcome</p>
+        </div>
+    `;
+
+- Or with DOM methods:
+
+    const card = document.createElement("div");
+
+    const heading = document.createElement("h2");
+    heading.textContent = "Hello";
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Welcome";
+
+    card.append(heading, paragraph);
+
+    container.append(card);
+
+
+- children vs childNodes :
+ -------------------------
+
+- children   : Returns element children only. ( console.log(container.children); )
+- childNodes : 
+* Returns all child nodes, including:
+    Elements
+    Text nodes
+    Comments
+- For example, whitespace in HTML can create text nodes.
+
+
+- firstElementChild and lastElementChild :
+ -----------------------------------------
+- element.firstElementChild - Gets the first child element.
+- element.lastElementChild  - Gets the last child element.
+
+
+- Moving an Existing Element :
+ -----------------------------
+- An interesting DOM behavior.
+- If you append an element that already exists somewhere else, JavaScript moves it rather than creating a copy.
+
+    <div id="box1">
+        <p id="message">Hello</p>
+    </div>
+    <div id="box2"></div>
+
+    const message = document.getElementById("message");
+    const box2 = document.getElementById("box2");
+    box2.append(message);
+
+- The <p> moves from box1 to box2. It does not get duplicated.
+
+
+- Cloning an Element :
+ ---------------------
+- If you actually want a copy, use cloneNode()
+
+    const copy = element.cloneNode(true);
+
+- true means: Clone the element and its descendants.
+
+    const original = document.getElementById("box");
+    const copy = original.cloneNode(true);
+    document.body.append(copy);
+
+- Now you have a copy.
+
+* element.cloneNode(false); Clones only the element itself.
+* element.cloneNode(true);  Clones the element and all descendants.
+
+-->
