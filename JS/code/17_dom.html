@@ -880,3 +880,111 @@ Ex :
 * element.cloneNode(true);  Clones the element and all descendants.
 
 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+            font-size: 24px;
+        }
+        .bc {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">This is a heading</h1>
+
+    <p class="text">Hello</p>
+    <p class="text">Welcome</p>
+    <p class="text">JavaScript</p>
+
+    <p>Hello</p>
+    <p>Welcome</p>
+    <p>JavaScript</p>
+
+    <div class="select-text">
+        <h1>Hello world</h1>
+    </div>
+
+    <span class="hello">Hello
+        <p class="bye" style="visibility: hidden;">bye</p>
+    </span>
+
+    <img id="photo" src="image.jpg" alt="My Photo">
+
+    <p class="bh">bye hello</p>
+
+    <p class="class-list">hello</p>
+
+    <div class="zzz">
+        <p>1st</p>
+    </div>
+
+    <script>
+       const id = document.getElementById('heading');
+       console.log(id)
+
+       const text = document.getElementsByClassName('text');
+       console.log(text)
+
+       const para = document.getElementsByTagName('p');
+       console.log(para)
+
+       const q1 = document.querySelector('.text');
+       console.log(q1)
+
+       const q2 = document.querySelectorAll('.text');
+       console.log(q2)
+
+       const st = document.querySelector('.select-text');
+       console.log(st);
+
+       st.innerHTML = '<p>bye bye<p>'
+        console.log(st)
+
+
+        const hello = document.querySelector('.hello');
+        hello.innerText = 'kjkwerwkern'
+        console.log(hello.textContent)
+
+        const photo = document.querySelector('#photo');
+        console.log(photo)
+       console.log( photo.getAttribute('alt'))
+       photo.setAttribute('class', 'pic')
+       
+       photo.removeAttribute('alt');
+       console.log(photo)
+       console.log(photo.hasAttribute('src'))
+       console.log(photo.hasAttribute('alt'))
+
+       const bh = document.querySelector('.bh');
+       console.log(bh)
+       bh.style.color = 'red'
+
+       let cl = document.querySelector('.class-list');
+       cl.classList.add('active');
+    //    cl.classList.remove('active');
+       cl.classList.contains('active');
+       cl.classList.replace('active', 'bc')
+
+       const zzz = document.querySelector('.zzz')
+       const span = document.createElement('span');
+       span.textContent = 'this is a span element';
+       zzz.after(span)
+       span.remove();
+
+
+
+
+
+       
+    </script>
+</body>
+</html>
