@@ -1,0 +1,487 @@
+<!-- 
+
+- Event :
+ ---------
+- An event is something that happens in the browser.
+- JavaScript can listen for these events and execute code when they happen.
+
+    User clicks a button
+            ↓
+    click event
+
+    User types in input
+            ↓
+    input event
+
+    User submits form
+            ↓
+    submit event
+
+    User presses keyboard key
+            ↓
+    keydown event
+
+    User moves mouse
+            ↓
+    mousemove event
+
+- addEventListener() :
+ ---------------------
+- The most important method for handling events is:
+
+    <button id="btn">Click Me</button>
+
+    const button = document.getElementById("btn");
+    button.addEventListener("click", function () {
+        alert("Button clicked!");
+    });
+
+    Click button
+        ↓
+    click event occurs
+        ↓
+    event listener detects it
+        ↓
+    function runs
+        ↓
+    alert appears
+
+
+* onclick vs addEventListener() :
+ --------------------------------
+- addEventListener() is generally preferred because multiple listeners can be
+  attached to the same event and it provides better event management.
+
+* onclick :
+ 
+- The important difference is that assigning onclick repeatedly replaces the previous handler:
+
+    button.onclick = function () {
+        console.log("First");
+    };
+
+    button.onclick = function () {
+        console.log("Second");
+    };
+
+- Only "Second" runs.
+
+* With addEventListener():
+ 
+    button.addEventListener("click", function () {
+        console.log("First");
+    });
+
+    button.addEventListener("click", function () {
+        console.log("Second");
+    });
+
+- Both can run.
+
+
+- Common DOM Events :
+ --------------------
+
+* Mouse events :
+click
+dblclick
+mousedown
+mouseup
+mousemove
+mouseenter
+mouseleave
+mouseover
+mouseout
+
+* Keyboard events :
+keydown
+keyup
+keypress
+
+* Form events :
+submit
+input
+change
+focus
+blur
+
+* Window events :
+load
+DOMContentLoaded
+resize
+scroll
+
+
+* click Event :
+ --------------
+- Probably the most commonly used DOM event.
+
+    <button id="btn">Click Me</button>
+
+    const btn = document.getElementById("btn");
+    btn.addEventListener("click", function () {
+        console.log("Button clicked");
+    });
+
+- Every click runs the function.
+
+* Double Click — dblclick :
+ --------------------------
+- You can listen for a double click:
+
+    btn.addEventListener("dblclick", function () {
+        console.log("Double clicked");
+    });
+
+- The function runs when the user double-clicks.
+
+
+* Mouse Events :
+ ----------------
+
+- mousedown :
+ ------------
+- Fires when the mouse button is pressed down.
+
+element.addEventListener("mousedown", function () {
+    console.log("Mouse button pressed");
+});
+
+- mouseup :
+ -----------
+- Fires when the mouse button is released.
+
+    element.addEventListener("mouseup", function () {
+        console.log("Mouse button released");
+    });
+
+- mouseenter :
+ --------------
+-Fires when the mouse enters an element.
+
+    box.addEventListener("mouseenter", function () {
+        console.log("Mouse entered");
+    });
+
+
+- mouseleave :
+ --------------
+- Fires when the mouse leaves an element.
+
+    box.addEventListener("mouseleave", function () {
+        console.log("Mouse left");
+    });
+
+- mouseover vs mouseenter :
+ --------------------------
+- Both happen when the mouse enters an element, but they behave differently with child elements.
+
+- mouseenter : Doesn't bubble from child elements.
+- mouseover : Can fire again when moving between the parent and its child elements.
+
+- For basic hover behavior, mouseenter / mouseleave are often easier to reason about.
+
+
+* Keyboard Events :
+ -------------------
+- JavaScript can detect keyboard actions.
+
+- keydown :
+------------
+- Fires when a key is pressed.
+
+    document.addEventListener("keydown", function () {
+        console.log("Key pressed");
+    });
+
+- If you press: A ,the event occurs.
+
+- keyup :
+ ---------
+- Fires when the key is released.
+
+    document.addEventListener("keyup", function () {
+        console.log("Key released");
+    });
+
+- Detecting Which Key Was Pressed :
+- This is where the Event Object becomes important.
+
+    document.addEventListener("keydown", function (event) {
+        console.log(event.key);
+    });
+
+- If you press: A ,you may get: a
+
+* event.key :
+ ------------
+
+    document.addEventListener("keydown", function (event) {
+        console.log("You pressed:", event.key);
+    });
+
+
+- input Event :
+ ---------------
+- The input event fires whenever the value of an input changes due to user input.
+
+    <input id="name" type="text">
+
+    const input = document.getElementById("name");
+    input.addEventListener("input", function () {
+        console.log(input.value);
+    });
+
+- If the user types, the event fires as the value changes.
+
+
+- change Event :
+ ---------------
+- The change event is used when the value has been changed and the browser considers the change committed.
+- For a text input, it generally fires after the user changes the value and then leaves the field.
+
+    input.addEventListener("change", function () {
+        console.log("Value changed");
+    });
+
+- For controls such as <select>, it fires when the selected value changes.
+
+- input vs change :
+ -------------------
+
+- input : Fires as the user changes the value.
+
+    Type S
+    ↓
+    input
+
+    Type Sa
+    ↓
+    input
+
+    Type Sai
+    ↓
+    input
+
+- change : Fires when the change is committed. For text inputs, this is commonly after leaving the field.
+
+    Type Sai
+    ↓
+    Leave input
+    ↓
+    change
+
+
+- focus Event :
+ ---------------
+- Fires when an element receives focus.
+
+    input.addEventListener("focus", function () {
+        console.log("Input focused");
+    });
+
+
+    Click inside input
+        ↓
+    focus event
+
+
+- blur Event :
+ --------------
+- Fires when an element loses focus.
+
+    input.addEventListener("blur", function () {
+        console.log("Input lost focus");
+    });
+
+
+- submit Event :
+ ---------------
+
+    <form id="loginForm">
+        <input type="text">
+        <button type="submit">
+            Login
+        </button>
+    </form>
+
+    const form = document.getElementById("loginForm");
+    form.addEventListener("submit", function () {
+        console.log("Form submitted");
+    });
+
+- The submit event belongs to the form, not the button.
+
+
+- preventDefault() :
+ -------------------
+- When a form is submitted, the browser normally performs its default form action, which may navigate/reload the page.
+- You can prevent that:
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        console.log("Form submission stopped");
+
+    });
+
+
+- load Event :
+ -------------
+- The load event occurs when a resource has finished loading.
+- For the window:
+
+    window.addEventListener("load", function () {
+        console.log("Page fully loaded");
+    });
+
+- This waits for the page's resources, such as images, to load as well.
+
+
+- DOMContentLoaded :
+ --------------------
+
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM is ready");
+    });
+
+- It fires when the HTML has been parsed and the DOM is ready.
+- It does not wait for every image/resource to finish loading.
+
+
+- scroll Event :
+ -----------------
+- You can detect scrolling:
+
+    window.addEventListener("scroll", function () {
+        console.log("Page scrolling");
+    });
+
+
+- resize Event :
+ ----------------
+- Fires when the browser window changes size.
+
+    window.addEventListener("resize", function () {
+        console.log(window.innerWidth);
+    });
+
+
+- Event Handler :
+ -----------------
+- A function that runs when an event occurs is commonly called an event handler.
+
+    function handleClick() {
+        console.log("Clicked");
+    }
+
+- Then: button.addEventListener("click", handleClick);
+
+* Anonymous Function as Event Handler :
+
+    button.addEventListener("click", function () {
+        console.log("Clicked");
+    });
+
+- This is called an anonymous function because it doesn't have a name.
+
+* Arrow Function : 
+
+    button.addEventListener("click", () => {
+        console.log("Clicked");
+    });
+
+
+- Removing an Event Listener :
+ ------------------------------
+- You can remove an event listener using: removeEventListener()
+- But there is an important requirement. You need the same function reference. 
+
+    function handleClick() {
+        console.log("Clicked");
+    }
+
+    button.addEventListener("click", handleClick);
+
+    button.removeEventListener("click", handleClick);
+
+- The listener is removed.
+
+* Why This Doesn't Work ?
+
+    button.addEventListener("click", function () {
+        console.log("Clicked");
+    });
+
+    button.removeEventListener("click", function () {
+        console.log("Clicked");
+    });
+
+- This does not remove the listener.
+- Because these are two different function objects.
+
+
+* Event Listener Options :
+ ---------------------------
+- You can provide a third argument:
+
+    element.addEventListener(
+        "click",
+        handleClick,
+        options
+    );
+
+- One commonly discussed option is: { once: true }
+
+    button.addEventListener("click", function () {
+        console.log("Clicked once");
+    }, { once: true });
+
+- The event listener automatically removes itself after the first event.
+
+    First click
+        ↓
+    Runs
+
+    Second click
+        ↓
+    Doesn't run
+
+
+* What is the difference between onclick and addEventListener()?
+- onclick assigns a single event handler and assigning it again replaces the previous one.
+- addEventListener() allows multiple listeners and provides more flexible event handling.
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <input class="inp" type="text">
+</head>
+<body>
+    <button id="btn">Click me</button>
+    <script>
+        const btn = document.querySelector('#btn');
+
+
+        btn.addEventListener('mouseenter',function(){
+            console.log('button clicked')
+        })
+
+        document.addEventListener('keydown', function(e){
+            console.log('key pressed :' + e.key )
+        })
+
+        const inp = document.querySelector('.inp');
+        inp.addEventListener('focus', function(){
+            console.log('focused')
+        })
+
+    </script>
+</body>
+</html>
